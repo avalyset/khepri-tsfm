@@ -162,3 +162,16 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
   (ingen force). Heretter `git pull --no-rebase`.
 - NUMBERS generert over MANUS-01–04, arxiv/main.tex og README: 492 tall, 0 uten kilde (SOURCES inkludert for eksterne tall).
 - arXiv bygget på nytt: 0 feil, 0 overfull/udefinert, 14 sider.
+
+## Frys (M4), ca. 09:10–09:17 UTC
+- Fryselesing a–f: (a) nøkkeltall konsistente på tvers (361/14 origins, MDE 2.989, retro-MDE 0.413, v1.5-tall 7 av 9/0.02–2.64/+2.92);
+  (b) abstract og resultatsetninger kontrollert mot RESULTATER-tabellene; (c) ingen overclaim-treff (first, outperform, significantly,
+  equivalen …) utenom «not as equivalence»; (d) NUMBERS 492 tall, 0 uten kilde (eksterne i SOURCES); (e) «References (draft, for A)» i
+  MANUS-02 erstattet med henvisning til arxiv/references.tex; «NOTE for A» 0; (f) arXiv-tittel presisert (studien, ikke baselinene, er
+  preregistrert); CITATION/README/OSF-tittel samsvarer.
+- ARXIV: $V/ARXIV_KHEPRI-TSFM_v1_2026-11-02.tar.gz (main.tex + sections/), sha256 1d68802b290a985c5c77b06a54b8476326d4dc61f1100b4e06e4d3639987636c;
+  kompilert fra utpakking med pdflatex: 0 feil, 0 udefinerte referanser, 0 overfull, 14 sider.
+- BREVETPAKKE: $V og repo (like), 1553 linjer: fulltekst manus + README + Zenodo-beskrivelse + ankerliste (11 DOI, 11 arXiv-ID, OSF,
+  modellrevisjoner, sha-er, 492 tall).
+- OTS ca. 09:15 UTC: komplett — SHA256SUMS_raw2026.txt, PREREG-tarball, CI-parquet; ikke komplett ennå — 6× PRED, PROSP 2026-11-02
+  (venter på Bitcoin-bekreftelser; `ots upgrade` på nytt senere). `ots verify` krever lokal Bitcoin-node (ikke tilgjengelig).
