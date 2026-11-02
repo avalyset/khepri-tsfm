@@ -232,3 +232,18 @@ MASKINEN ER LEDIG
   tittel = innledningen i del 3 uten parentesene.
 - DOI satt inn i arxiv/main.tex (makroen \zenodoDOI fjernet), MANUS-01, MANUS-03, README, AIUSE, CITATION.cff (doi + date-released);
   plassholdere etterpå: 0. OTS for PRED-filene fortsatt ikke komplett (ventende .ots følger med).
+
+## Publisering — steg 3–4 (ca. 09:53–10:08 UTC)
+- ZENODO-tarball bygget fra 0495e6a: sha256 9a2dce9d3c33efdd6b36741bf3e4094bb64e914301bd9d1855cbe679f8dab184, 175 434 437 B, md5 fb8f6b1f83b3ec6492a02044fd6dddf9.
+  Ren venv (SES pauset, ingen LAS): pytest 27 passed, RESULTATER 2883d030… byte-lik, PREREG-sha OK, begge taggsignaturer gode.
+- Opplasting: 20 biter à ≤ 9 MB via nettleserens filfelt, satt sammen i siden (sha256 kontrollert = lokal), lastet opp med Zenodos
+  fil-API i Eiriks økt (862 s); Zenodo md5 = lokal md5. Utkastet lest tilbake: tittel, versjon 1.0.0, dato, software, forfatter/ORCID/
+  affiliasjon, apache-2.0 + cc-by-4.0, references 10.5281/zenodo.23101127 og https://osf.io/hncz5, DOI; beskrivelse normalisert lik del 3
+  (sha256 6675944f…, 1780 tegn).
+- **PUBLISERT 2026-11-02 ca. 10:06 UTC: https://zenodo.org/records/23881315, DOI 10.5281/zenodo.23881315, konsept-DOI 10.5281/zenodo.23881314.**
+  doi.org → 302 → 200 anonymt.
+- Hemmelighetsskann av hele historikken (35 commits, 195 blobs, alle refs): ENTSO-E-token (telling), securityToken=, sk-ant-, ghp_,
+  github_pat_, PRIVATE KEY: 0 treff; ingen .env-filer.
+- Tagg **v1.0.0** (GPG-signert, god) → 0495e6a158b0bf545bc7685ffacf379e0c703c81, pushet. Ingen GitHub-release.
+- **Repoet er OFFENTLIG** fra ca. 10:08 UTC: https://github.com/avalyset/khepri-tsfm (anonym curl 200; README og tagg-arkiv 200).
+- Repo-URL lagt inn i README (CITATION.cff hadde den) i commit etter taggen.
