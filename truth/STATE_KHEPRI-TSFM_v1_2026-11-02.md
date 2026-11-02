@@ -152,3 +152,13 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 - «NOTE for A» fjernet etter behandling: `grep -rn "NOTE for A" manus/` → 0. Åpent punkt for publisering: repo-URL i MANUS-01
   legges inn først når utgivelsen er besluttet (repoet er privat).
 - Kreditt-ettermåling: allerede gjort 08:59:26Z (194 USD, fall 10 USD).
+
+## Fulltekstpass, TSFM-sjekk og historikk (ca. 09:07–09:14 UTC)
+- results/TSFMREPRO_KHEPRI-TSFM_v1_2026-11-02.md: uavhengig TSFM-sjekk fra taggen repro-ready alene (fersk Opus-subagent, ny venv,
+  én origin om gangen): NO4-holdout maks |Δ| punkt 7.820e-4 (Timestral-5M) og 3.815e-6 (Chronos-2) g/kWh; største MAPE-endring 1.263e-4 pp.
+- MANUS-02 oppgradert fra fulltekst (S20–S26 i SOURCES): CarbonX, Impermanent, EnsembleCI, Leerbeck (arXiv-preprint), Cramer, Clauß lest;
+  Hong et al. 2016 bare abstrakt. [NR] fjernet der arbeidet er lest; står igjen for CarbonCast (artikkel), Chronos-2-rapporten, DM, HLN, G&R.
+- `git pull --rebase` flatet ut REPRO-mergen (a7e6782 → 4fec392); historikken gjenopprettet med innholdsløs merge 7ba4835 av 2c23d31
+  (ingen force). Heretter `git pull --no-rebase`.
+- NUMBERS generert over MANUS-01–04, arxiv/main.tex og README: 492 tall, 0 uten kilde (SOURCES inkludert for eksterne tall).
+- arXiv bygget på nytt: 0 feil, 0 overfull/udefinert, 14 sider.

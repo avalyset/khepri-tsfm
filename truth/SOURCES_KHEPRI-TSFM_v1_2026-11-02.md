@@ -150,3 +150,47 @@ Identifikatorer fra truth/KJENTGRUNNLAG_KHEPRI-TSFM_v1_2026-11-02.md:2-3, 19-24.
 - «Om noe er prospektivt eller post-release»: besvart bare for CarbonX-lageret (S02, ingen treff).
 - Fraværspåstander i nabolitteraturens vokabular (bygningsfysikk, demand response, jf. Clauß):
   IKKE kontrollert. Manus inneholder derfor ingen fraværspåstand.
+
+## Fulltekstpass (økt A, 2026-11-02 ca. 09:00–09:12 UTC; etter merge av B, på oppdrag fra Eirik)
+Lest lokalt (nett åpent) av en Sonnet-subagent; hvert sitat grep-kontrollert mot pdftotext-/XML-uttrekket, og hovedøkta
+kontrollerte selv sju bærende sitater (alle treff). Filer i $V/tmp/fulltekst/. Ærlig User-Agent, ingen omgåelse; 403/CAPTCHA
+førte til alternativ åpen kopi eller «ikke tilgjengelig». Lesedato for alle: 2026-11-02 (UTC).
+
+### S20 CarbonX — artikkel (fulltekst) arXiv:2510.01521v2
+- URL https://arxiv.org/pdf/2510.01521v2 · carbonx.pdf sha256 65498b6ce37778ea78d708f55e37a3686281d78fea86a1378d79ab28cf910347
+- s.2 Tabell 1 (fem TSFM-er: MOMENT-1-large, Chronos-t5-large, TimesFM-2.0-500M, sundial-base-128m, Time-MoE-50M); s.3 §3.1 «up to 96 hours»;
+  s.9 «up to 3 weeks (21 days)»; s.6 §5.1 «The European grids are Sweden (SE), Germany (DE), Poland (PL), Spain (ES), and the Netherlands (NL).»,
+  «we evaluate forecasting accuracy on the final six months of 2021», 214 nett fra Electricity Maps, «2021 to 2024 … 70–30 ratio»; s.6 Tabell 6
+  (bare antall per verdensdel). Søk uten treff: Norway, Norwegian, NO1, SE3, bidding, Nordic, contaminat, prospective, live.
+  «leakage» bare i konform kalibrering (s.6 §4.2.3). → MANUS-02 §2.2.
+### S21 Impermanent — artikkel (fulltekst) arXiv:2603.08707v2
+- URL https://arxiv.org/pdf/2603.08707v2 · impermanent.pdf sha256 12f4fabf4e3a9cc8920348174b8530b182045b45628213c9e4d1d9a6677fd5ee
+- s.3 §3 «must produce point and probabilistic forecasts for the next h periods before any ground truth is available»; s.4 §5; s.8 (scoring etter
+  fasit); s.2 §2 (GH Archive, fire hendelsestyper, 400 repoer); s.4 §3 (Chronos-2, Moirai 2.0-R-Small, TimesFM 2.5, TiRex). Søk uten treff:
+  energy, electric, carbon, grid. → MANUS-02 §2.3.
+### S22 EnsembleCI — artikkel (fulltekst) arXiv:2505.01959v2
+- URL https://arxiv.org/pdf/2505.01959v2 · ensembleci.pdf sha256 cca7e386935f456777e38e6cee9266a7dd85419e884ac25f879626fbee0e606a
+- s.1 «across 11 grids (6 in the US and 5 in the EU)», «up to 4 days into the future»; s.2 Tabell 1 (State/Country: Germany, Sweden, Spain,
+  Netherlands, Poland); s.3 (LightGBM, CatBoost, NN; stacking); s.4 (MAPE; EU-test andre halvår 2021; dag 1–4 mot CarbonCast). → MANUS-02 §2.1.
+### S23 Leerbeck et al. 2020 — innsendt versjon arXiv:2003.05740v1 (utgiverversjon IKKE lest: ScienceDirect 403, ingen åpen utgiverkopi)
+- URL https://arxiv.org/pdf/2003.05740 · leerbeck_arxiv.pdf sha256 2b7a3348bd8a877cb52d1f0b488e46ef4c917d7ac64ef5cb778d111662fe98bb
+- s.1 abstrakt «Danish bidding zone DK2», ARIMAX, softmax-vektet kombinasjon; s.2 «short-term (24h ahead) forecasts with uncertainty margins
+  (95% prediction intervals)»; s.11 §6 «data collected and supplied by Tmrow IVS». → MANUS-02 §2.1.
+### S24 Cramer et al. 2022 — fulltekst PMC9169655 (CC-BY) via Europe PMC XML
+- URL https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9169655/fullTextXML · cramer_epmc.xml sha256 22f3ab5b3984b6aed283af78bce89c5b3ce5a62fbbb6071d712ef3c3e362a3df
+- Results > Overall Model Accuracy (WIS; «empirical coverage rates of prediction intervals»); Methods > Forecast Format («a set of 23 quantiles at
+  probability levels 0.01, 0.025, 0.05, 0.10, 0.15, …, 0.95, 0.975, 0.99»); Introduction («published weekly in real time»). Lokator er seksjon
+  (XML, ingen sider). → MANUS-02 §2.4.
+### S25 Clauß et al. 2019 — publisert CC-BY-versjon via NTNU Brage (hdl.handle.net/11250/2598501); mdpi.com ga 403
+- clauss_ntnu_nva.pdf sha256 8de0b4098b4d492c2a3bfc44e1ff06f5a1392c63e96bde64333fe6ca44bb8084
+- s.1 abstrakt (input–output; handel mellom budområder; «six Scandinavian bidding zones»; DR for boligoppvarming); s.6 §3.1.1 (ENTSO-E; svenske
+  BZ fra svensk TSO); s.10 §3.4 (alle norske BZ for 2015); s.14 §4.2; s.19 (CI «can actually be predicted» — antydet, ikke gjort). → MANUS-02 §2.1.
+### S26 Hong et al. 2016 — KUN abstrakt (DTU Orbit); fulltekst ikke tilgjengelig (utgiver lukket; CORE 403)
+- URL https://orbit.dtu.dk/en/publications/5407773d-7770-4ae7-b5d7-fcd7df6fd9bc · orbit_hong.html sha256 d85072e18685580aa29e1ca02d173e3ec6f0a4805f0ed133561faa1325b65b3b
+- Abstrakt: «four tracks on load, price, wind and solar forecasting». Ingen påstand utover dette. → MANUS-02 §2.1.
+### Bibliografiske metadata (referanselista i arxiv/references.tex)
+- Rå arXiv-API-/Crossref-svar for 15 referanser i $V/tmp/sources/ (lest 2026-11-02; sha256 per fil i A sin kildeverifisering, ført i
+  $V/tmp/manus-reserve/KILDER-RESERVE.md). Hong et al. 2016: riktig DOI 10.1016/j.ijforecast.2016.02.001.
+### Chronos-2 slippdato (D-12)
+- Primærkilder og sha256 i truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md D-12 (arXiv 2025-10-17; README 2025-10-20; HF amazon/chronos-2 2025-10-30;
+  autogluon/chronos-2 opprettet 2025-10-06, modell 2025-11-24). Råsvar i $V/tmp/chronos2-dato/.

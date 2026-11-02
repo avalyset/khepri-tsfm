@@ -9,7 +9,10 @@ Not read at all (network policy): Leerbeck et al. 2020, Hong et al. 2016, Cramer
 Diebold & Mariano 1995, Harvey et al. 1997, Gneiting & Raftery 2007. They carry no content claim here.
 NO ABSENCE OR PRIORITY CLAIM is made. The absence checks the brief asks for (CarbonX papers' NO/SE coverage,
 prospective evaluation in the papers, the building-physics / demand-response vocabulary of Clauß et al.)
-could not be done from session B; only the repository-level checks below were done. -->
+could not be done from session B; only the repository-level checks below were done.
+FULL-TEXT PASS by session A, 2026-11-02 ca. 09:10 UTC (SOURCES S20–S26): CarbonX, Impermanent, EnsembleCI,
+Leerbeck et al. (arXiv preprint only), Cramer et al. and Clauß et al. read in full text; Hong et al. 2016 abstract only.
+[NR] removed where the paper is now read. -->
 
 # 2 Related work
 
@@ -25,7 +28,7 @@ with ENTSO-E data for the European regions. It uses data from 2019–2021, retra
 six months and reports predictions for the last six months of 2021 as the test, with MAPE as the
 metric.
 <!-- src: S06 DACF.pdf p.2 §2.1 (six regions; Europe: Sweden (SE), Germany (DE)); p.3 Table 3 (SE, DE: ENTSOE); p.3-4 §4.1 (2019–2021, re-train every six months, last six months of 2021, MAPE) -->
-DACF is compared with the authors' own reimplementation of the method of Leerbeck et al. (2020) [NR],
+DACF is compared with the authors' own reimplementation of the method of Leerbeck et al. (2020),
 since that code was not public.
 <!-- src: S06 DACF.pdf p.4 §4.3 ("Since the code is not publicly available, we develop our own implementation"); bibliographic data for Leerbeck et al. from DACF.pdf p.5 ref. [14] -->
 
@@ -36,7 +39,7 @@ repository states that results similar to the paper are obtained when testing on
 2021. It also points to a real-time v3.0 branch in testing, which we did
 not read.
 <!-- src: S07 CarbonCast README.md:5 ("up to 96 hours ... extension of DACF"), README.md:30-46 (regions; Europe: DE, NL, ES, SE, PL), README.md:94 (train Jan–Dec 2020, validate Jan–Jun 2021, test Jul–Dec 2021); README.md:11 (v3.0 real-time branch, not read); bibtex README.md:159-165. Paper not read. -->
-The repository of EnsembleCI (Yan et al. 2025) [NR] implements CI forecasting with
+The repository of EnsembleCI (Yan et al. 2025) implements CI forecasting with
 gradient-boosting, neural and ensemble learners (LightGBM, a FastAI network, CatBoost, XGBoost and
 an AutoGluon weighted ensemble) and lists 11 regions, with Sweden (SE) as the only Nordic one.
 <!-- src: S08 EnsembleCI README.md:17-32 (regions; Europe DE, SE, PL, NL, ES), README.md:38-43 (models), README.md:53-59 (bibtex). Paper not read. -->
@@ -45,16 +48,37 @@ country level and Norway does not appear; no series for the bidding zones NO1–
 included.
 <!-- src: SOURCES S06–S08: grep for Norway, Nordic, NO1..NO5, SE1..SE4, "NO-", "SE-<digit>" in the three repositories: no matches (subagent report, PRIORART_REPOS_REPORT.md); B checked the region lists (CarbonCast README.md:30-46, EnsembleCI README.md:17-32, DACF README.md:23-31). This is a statement about the repositories only, not about the papers. -->
 
-<!-- [TO WRITE after reading — B could not read these: Leerbeck et al. 2020 (Applied Energy 277:115527);
-Hong et al. 2016 (IJF 32(3):896–913); Cramer et al. 2022 (PNAS 119(15):e2113561119);
-Clauß et al. 2019 (Energies 12(7):1345). Include the absence check in the building-physics and
-demand-response vocabulary (Clauß et al.) before any statement about what this literature does or does not cover.] -->
+Leerbeck et al. (2020) forecast average and marginal CO2 emission intensity for the Danish bidding
+zone DK2 up to 24 hours ahead with 95 % prediction intervals, combining linear models with
+exogenous inputs (ARIMAX) fitted to data supplied by Tmrow.
+<!-- src: S23 leerbeck_arxiv.pdf (arXiv:2003.05740v1, submitted version; publisher version not read) p.1 abstract ("Danish bidding zone DK2", "ARIMAX"), p.2 ("short-term (24h ahead) forecasts with uncertainty margins (95% prediction intervals)"), p.11 §6 ("data collected and supplied by Tmrow IVS") -->
+The EnsembleCI paper (Yan et al. 2025) evaluates a stacked ensemble of gradient-boosting and neural
+learners on 11 grids, six in the US and five in the EU with Sweden as a country, up to four days
+ahead with MAPE, testing the EU grids on the second half of 2021, and reports lower MAPE than
+CarbonCast on all four days.
+<!-- src: S22 ensembleci.pdf p.1 ("across 11 grids (6 in the US and 5 in the EU)", "up to 4 days into the future"), p.2 Table 1 (State/Country: Germany Sweden Spain Netherlands Poland), p.3 (LightGBM, CatBoost, NN; multi-layer stacking), p.4 (MAPE; EU test second half of 2021; day-1..4 MAPE vs CarbonCast) -->
+Clauß et al. (2019) compute hourly average CO2-equivalent intensities for Scandinavian bidding
+zones with an input–output method that accounts for trade between zones, from ENTSO-E generation
+data (Swedish zones from the Swedish TSO), and use them as a control signal for the demand response
+of residential heating; the intensities are computed for 2015 and are not forecast.
+<!-- src: S25 clauss_ntnu_nva.pdf (published CC-BY version via NTNU Brage) p.1 abstract (input–output; trading between bidding zones; "six Scandinavian bidding zones"), p.6 §3.1.1 (ENTSO-E; Swedish TSO), p.10 §3.4 (all Norwegian BZs evaluated for 2015), p.14 §4.2, p.19 (CI "can actually be predicted" — suggested, not done; "forecast" 1 hit, "predict" 0 in the forecasting sense) -->
+GEFCom2014 had four probabilistic forecasting tracks, on load, price, wind and solar power (Hong
+et al. 2016).
+<!-- src: S26 Hong et al. 2016 abstract only (DTU Orbit record); full text not accessible; no further claim. -->
 
 ## 2.2 Foundation models for carbon intensity
 
+The CarbonX paper (Maji et al. 2025) evaluates five TSFMs (MOMENT, Chronos, TimesFM, Sundial and
+Time-MoE) zero-shot for CI forecasts up to 96 hours, extended to 21 days. Its benchmark has 13 grids;
+the European ones are Sweden (SE), Germany, Poland, Spain and the Netherlands, evaluated on the last
+six months of 2021, and a global evaluation uses Electricity Maps data for 214 grids (2021–2024,
+70/30 split) whose names are not given in the paper. The evaluations are on historical data; we found
+no discussion in the paper of overlap between the models' pretraining data and the evaluation data,
+and no Norwegian grid or bidding zone is named.
+<!-- src: S20 carbonx.pdf (arXiv:2510.01521v2) p.2 Table 1 (five TSFMs), p.3 §3.1 ("up to 96 hours"), p.9 ("up to 3 weeks (21 days)"), p.6 §5.1 ("The European grids are Sweden (SE), Germany (DE), Poland (PL), Spain (ES), and the Netherlands (NL)"; "final six months of 2021"; 214 grids; "2021 to 2024 ... 70–30 ratio"), p.6 Table 6 (counts per continent only); searched without hits: Norway, Norwegian, NO1, SE3, bidding, Nordic, contaminat, prospective, live; "leakage" only in conformal calibration (p.6 §4.2.3) -->
 The CarbonX repository provides zero-shot CI forecasts with five TSFMs (Chronos, MOMENT, Sundial,
 Time-MoE and TimesFM) for 214 grids at a horizon of up to 96 hours, with an extended mode of up to
-21 days (CarbonX [NR]).
+21 days.
 <!-- src: S02 CarbonX README.md:95-101 (models), README.md:73 (214 grids), README.md:41 (max 96), README.md:121 (up to 21 days) -->
 Norway and Sweden are included as whole countries; the released data for both are hourly series
 from 2021-01-01 to 2024-12-31, and no bidding-zone series is released.
@@ -77,7 +101,7 @@ maximum context of 8192 steps.
 
 ## 2.3 Contamination and live evaluation
 
-According to its repository, Impermanent (Garza et al. 2026) [NR] is a live benchmark for
+According to its repository, Impermanent (Garza et al. 2026) is a live benchmark for
 temporal generalisation in which models must forecast before the future is observed and are
 scored as data arrive. The repository motivates this with the risk that, for foundation models,
 "[t]raining data may overlap with evaluation data" in static benchmarks. The signals it lists are
@@ -91,8 +115,19 @@ a few hours later, while most of the 96 target hours are still unobserved; the c
 origin.
 <!-- src: DEC:5-7; PRE:197-202; STA:52-53, STA:99 (data fetched 07:12–07:28 UTC, arms run 07:50–08:28 UTC on 2026-11-02); S03 git log (2026-10-15), S04 README.md:20 (2025-10-20); launchd/no.ecodeco.khepri-tsfm.v1.plist:10 (05:00 local time), issue.py:9 and :84 (waits for run.lock at most 6 h). Describes our design, not Impermanent. -->
 
+In the paper, every model must produce point and probabilistic forecasts for the next horizon at
+each cutoff before any ground truth is available, and forecasts are scored after the outcomes
+arrive; it evaluates four TSFMs, among them Chronos-2, on GitHub activity series from GH Archive and
+contains no energy or CI series.
+<!-- src: S21 impermanent.pdf (arXiv:2603.08707v2) p.3 §3 ("must produce point and probabilistic forecasts for the next h periods before any ground truth is available"), p.4 §5, p.8 (scoring once ground truth arrives), p.2 §2 (GH Archive; four event types; 400 repositories), p.4 §3 (Chronos-2, Moirai 2.0-R-Small, TimesFM 2.5, TiRex); searched without hits: energy, electric, carbon, grid -->
+
 ## 2.4 Forecast comparison and evaluation
 
+Real-time probabilistic forecasting exercises outside energy evaluate forecasts submitted as
+quantiles with the weighted interval score and the empirical coverage of prediction intervals, for
+example the US COVID-19 Forecast Hub, whose forecasts were submitted as 23 quantiles from 0.01 to
+0.99 (Cramer et al. 2022).
+<!-- src: S24 cramer_epmc.xml (PMC9169655, CC-BY) Results > Overall Model Accuracy (WIS; empirical coverage of PIs), Methods > Forecast Format (23 quantiles 0.01 ... 0.99), Introduction ("published weekly in real time") -->
 We compare forecast accuracy with the Diebold–Mariano test (Diebold & Mariano 1995 [NR]) with the
 small-sample correction of Harvey, Leybourne & Newbold (1997) [NR], and evaluate predictive
 quantiles with the CRPS (Gneiting & Raftery 2007 [NR]); details are in Section 3.

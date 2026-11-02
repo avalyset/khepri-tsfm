@@ -158,27 +158,27 @@ standard errors are wide (0.124--0.360~pp).
 \section{Software and availability}
 \label{sec:software}
 
-\paragraph{Summary.} Khepri-TSFM is a small, preregistered evaluation package: it fetches
+\subsection{Summary} Khepri-TSFM is a small, preregistered evaluation package: it fetches
 ENTSO-E A75 data, derives hourly carbon intensity with Khepri v1.5, runs three zero-shot TSFMs
 and the Khepri v1.5 baselines on a fixed set of 96-hour forecast origins, and applies one locked
 analysis script. The repository holds the CI series every arm saw, all forecasts with 21
 quantiles, the analysis output and the ledgers that tie every number in this paper to a file
 and line.
 
-\paragraph{Statement of need.} Carbon-aware scheduling needs day-ahead to four-day CI forecasts
+\subsection{Statement of need} Carbon-aware scheduling needs day-ahead to four-day CI forecasts
 per bidding zone, and TSFMs are now offered as drop-in forecasters. A comparison against an
 already published baseline is only informative if the baseline is not retuned, the forecast
 origins and context are shared across arms, and the analysis is fixed before the TSFM forecasts
 exist. Khepri-TSFM provides such a comparison for the nine Nordic zones, with a post-release
 holdout as a contamination control.
 
-\paragraph{State of the field.} TSFM-based CI forecasting tools and live TSFM benchmarks exist
+\subsection{State of the field} TSFM-based CI forecasting tools and live TSFM benchmarks exist
 (Section~\ref{sec:related}). This study is kept as its own repository rather than contributed to
 a general toolkit or benchmark because its object is a frozen, versioned comparison: the
 baselines, splits, pinned model revisions and analysis must stay bound to the preregistration
 and its timestamps, which a contribution into a moving code base would not preserve.
 
-\paragraph{Software design.} Four trade-offs shape the package. (i) The Khepri v1.5 SARIMA and
+\subsection{Software design} Four trade-offs shape the package. (i) The Khepri v1.5 SARIMA and
 GBM code and hyperparameters are used unchanged; a driver repeats the v1.5 evaluation loop only
 to keep the hourly forecasts (deviation D-01). (ii) Khepri v1.5 is vendored byte-identically as
 \texttt{khepri\_v15}, because its tag has no package definition (D-11). (iii) All TSFMs get the
@@ -187,13 +187,13 @@ Everything runs on a CPU (Apple M1, 16~GB): with a batch of nine zones one forec
 median of 0.143~s (Timestral-5M), 1.800~s (Timestral-209M) and 0.922~s (Chronos-2), and a SARIMA
 fit takes 17.8~s (\texttt{results/LATENS\_KHEPRI-TSFM\_v1\_2026-11-02.md}).
 
-\paragraph{Research impact.} The package reproduces the published Khepri v1.5 baselines and
+\subsection{Research impact statement} The package reproduces the published Khepri v1.5 baselines and
 extends them with probabilistic forecasts; the CI series, all forecasts and the analysis can be
 re-run from the repository without ENTSO-E access (\texttt{repro\_from\_ci.py}); a daily
 prospective log continues the comparison beyond the holdout. We make no claim beyond the nine
 zones and the periods tested.
 
-\paragraph{AI usage disclosure.} Implementation was assisted by Claude Code (Anthropic) as a tool
+\subsection{AI usage disclosure} Implementation was assisted by Claude Code (Anthropic) as a tool
 under the author's direction; roles, tools and versions are listed in
 \texttt{AIUSE\_KHEPRI-TSFM\_v1\_2026-11-02.md}. The author is responsible for all choices and
 numbers.

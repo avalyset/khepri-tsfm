@@ -21,6 +21,7 @@ SOURCES = [
     "truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md",
     "truth/KJENTGRUNNLAG_KHEPRI-TSFM_v1_2026-11-02.md",
     "truth/STATE_KHEPRI-TSFM_v1_2026-11-02.md",
+    "truth/SOURCES_KHEPRI-TSFM_v1_2026-11-02.md",
 ]
 NUM = re.compile(r"(?<![\w.])-?\d+(?:\.\d+)?(?![\w])")
 
