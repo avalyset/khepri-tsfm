@@ -88,9 +88,11 @@ def build_raw(day):
         idx = pd.to_datetime(df.index, utc=True)
         df = df[~idx.duplicated(keep="last")]
         idx = pd.to_datetime(df.index, utc=True)
+        order = np.argsort(idx.values, kind="stable")
+        df, idx = df.iloc[order], idx[order]
         for y in sorted(set(idx.year)):
             if y >= 2026:
-                df[idx.year == y].sort_index().to_csv(os.path.join(mdir, f"{zone}_generation_{y}.csv"))
+                df[idx.year == y].to_csv(os.path.join(mdir, f"{zone}_generation_{y}.csv"))
         for y in range(2019, 2026):
             src = os.path.join(SRC[zone[:2]], f"{zone}_generation_{y}.csv")
             if os.path.exists(src):

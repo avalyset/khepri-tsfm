@@ -78,3 +78,13 @@ før/etter PREREG, hva, hvorfor, konsekvens, sha256 + OTS-stempel av fila etter 
 - RESULTATER får en tabell per sone: retro-snitt-MAPE for vår SARIMA og GBM mot de
   publiserte v1.5-tallene (docs/forecast-results.md:46-54, docs/se-forecast-results.md:41-48),
   laget av `repro_v15.py`. Den er beskrivende og påvirker ingen test.
+
+## Etter tagg prereg-v1, før OSF-innsending og før noen TSFM-prediksjon på ekte CI
+
+### D-09 Feilretting i issue.py (prospektiv logg), ikke analyse eller armer
+- 2026-11-02 ca. 07:45 UTC. Tørrtest av `issue.build_raw` (bare A75-delta og skjøting, ingen
+  prognoser) viste at skjøtet 2026-fil ble sortert som tekst med blandet UTC-offset
+  (+01:00/+02:00), altså ikke kronologisk. Rettet: sortering på tolket UTC-tid
+  (`np.argsort`, stabil). Etter rettingen: NO2 29 308 rader, SE4 29 307, monotont stigende,
+  0 duplikater. `analysis.py`, `khepri_tsfm/*`, `run_arms.py` og `prosp_arms.py` er uendret
+  siden prereg-v1.
