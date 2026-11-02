@@ -1,6 +1,6 @@
 Arkivnøkkel: BREVETPAKKE_KHEPRI-TSFM_v1_2026-11-02
 
-Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main 9f878a1d6dc480973dc6f4ed6a4ae53649931039.
+Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main e99852f5d43f3ce826fe4abed855d8b02f394e95.
 Plassholdere som settes ved publisering: \zenodoDOI (arxiv/main.tex), [ZENODO-DOI] (MANUS-01/-03),
 {{ZENODO_DOI}} (README, AIUSE). Repoet er privat; repo-URL legges inn ved utgivelse.
 Manuskriptkilden for arXiv er arxiv/ (main.tex, references.tex) med MANUS-01–04; md-filene i manus/ er rensede
@@ -975,6 +975,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 - 2883d030b1832fa05e815b262490148d91296be652a48a6e7700535470c7a76a
 - 29ec3766d36d6f73f0696f85560a422f50e8498c
 - 473dbd7972b0cf9d6a18ea4746944fa74c9559f6ec5f24eff363a520ae953c94
+- 528906785ac32ffc737856e5888364b2fb32c9c90d36a695bdf2064719542ccc
 - 6fb2c76cfdcf7235a8284d9631a64714b3aeaf3efddb997f0b173ebcbf7ab5a0
 - 70571f2067a4013537ad472e59922475958a47f5
 - 74539f2af7bb6d203d8c8452e01d96a222156078
