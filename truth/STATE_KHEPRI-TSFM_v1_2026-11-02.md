@@ -129,3 +129,14 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 - repro_from_ci.py (SES pauset, ingen LAS; kjørt serielt): baselines k=361 (alle holdout + 1 retro-origin per sone, 12960 rader per arm)
   maks |Δ| 0.0 for snaive_week, GBM og SARIMA (punkt og 21 kvantiler); tsfm k=361: maks |Δ| 0.0 for Timestral-5M, Timestral-209M, Chronos-2.
 - pytest 9.1.1 lagt til som dev-gruppe (uv.lock oppdatert). `pytest -q` i $V/.venv: 27 passed.
+
+## Merge av B, kreditt og arXiv (ca. 08:59–09:05 UTC)
+- STATE-B: «manus ferdig 2026-11-02T08:54:21Z». Grenen origin/claude/focused-mayer-kv2xv5 inneholdt bare B-eide filer (MANUS-01–03,
+  SOURCES, CLOUDSMOKE, STATE-B) pluss én merge fra main; 0 Co-Authored-By. Merget inn i main (640544d, vanlig merge), pushet.
+- CREDITCHECK ettermåling 08:59:26Z: 194 USD igjen (fra 204) → «bekreftet: B trekker kreditt»; uke 51 % (fra 47 %).
+- REPRO-frist: 09:54 UTC (1 t etter «manus ferdig»).
+- Plist lastet 2026-11-02 ca. 09:00 UTC: ~/Library/LaunchAgents/no.ecodeco.khepri-tsfm.v1.plist, `launchctl bootstrap gui/<uid>`,
+  daglig 05:00 lokal tid. Første utstedelse kjørt manuelt 08:30–08:41 UTC: $V/prosp/PROSP_KHEPRI-TSFM_v1_2026-11-02.parquet,
+  5184 rader (6 armer × 9 soner × 96 t), sha256 7b0f70333409f33b34043f1d7eb149bc23ad73ed84eefc1144a5a51bb0f3d535, OTS-stempel rc 0.
+- arXiv: arxiv/main.tex + arxiv/references.tex + arxiv/build_arxiv.sh (pandoc for MANUS-01–03, MANUS-04 som LaTeX). Kompilert
+  med pdflatex: 0 feil, 0 udefinerte referanser, 0 overfull hbox, 14 sider. Zenodo-DOI som makro \zenodoDOI (settes ved publisering).

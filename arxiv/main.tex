@@ -1,0 +1,76 @@
+% Arkivnøkkel: main.tex (fast navn, arXiv) — Khepri-TSFM v1
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\le}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\ge}}
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03A3}{\ensuremath{\Sigma}}
+\DeclareUnicodeCharacter{03C4}{\ensuremath{\tau}}
+\DeclareUnicodeCharacter{221A}{\ensuremath{\surd}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{00B7}{\ensuremath{\cdot}}
+\DeclareUnicodeCharacter{00B2}{\ensuremath{^2}}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\newcounter{none} % pandoc longtable without caption
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+% Set at publication (Brevet prompt): the Zenodo DOI of this deposit.
+\newcommand{\zenodoDOI}{[ZENODO-DOI]}
+
+\title{Zero-shot time-series foundation models against preregistered baselines\\
+for 96-hour carbon-intensity forecasts in nine Nordic bidding zones}
+\author{Eirik Botten Nicolaysen\\EcoDeco AS, Norway\\\texttt{eirik@ecodeco.no}}
+\date{2026-11-02}
+
+\begin{document}
+\sloppy\setlength{\emergencystretch}{3em}
+\maketitle
+
+\begin{abstract}
+We compare three zero-shot time-series foundation models (Timestral-5M, Timestral-209M and
+Chronos-2, 8192-hour context, no covariates) with the Khepri v1.5 SARIMA and GBM baselines,
+whose code and hyperparameters are unchanged, for 96-hour forecasts of hourly carbon intensity in NO1--NO5 and SE1--SE4. The
+design, the analysis code and a minimum detectable effect were fixed before any foundation-model
+forecast existed (preregistration anchored in Zenodo, DOI \zenodoDOI{}; additional reference
+OSF osf.io/hncz5, registered 2026-11-02 07:49 UTC). On the 2025 test (361 daily origins,
+contamination not ruled out) all three models have a lower zone-averaged MAPE than both baselines,
+by 0.952 to 1.347 percentage points (Diebold--Mariano with the Harvey--Leybourne--Newbold
+correction, all $p<0.0001$), and each beats SARIMA in 9 of 9 zones. On a post-release holdout of
+14 origins from 2026-10-16 the point estimates have the same sign (0.729 to 1.326 percentage
+points lower), but all lie within the preregistered minimum detectable effect of 2.989 points and
+are reported as not determined. The models' holdout CRPS is lower than SARIMA's. The contamination
+indicator does not exceed its preregistered threshold for any comparison. Forecasts, the CI series,
+the locked analysis and all deviations are released with the code.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/relatedwork}
+\input{sections/method}
+\input{sections/results}
+
+\section*{Data and code availability}
+Code, the hourly CI series, all forecasts and the analysis output: Zenodo, DOI \zenodoDOI{}
+(repository github.com/avalyset/khepri-tsfm). Khepri v1.5.0: DOI 10.5281/zenodo.23101127.
+
+\section*{AI use}
+Implementation was assisted by Claude Code (Anthropic) as a tool under the author's direction
+(\texttt{AIUSE\_KHEPRI-TSFM\_v1\_2026-11-02.md} in the repository). The author is responsible for
+all choices and numbers.
+
+{\sloppy\small
+\input{sections/references}}
+
+\end{document}

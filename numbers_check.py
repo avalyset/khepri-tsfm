@@ -27,7 +27,14 @@ NUM = re.compile(r"(?<![\w.])-?\d+(?:\.\d+)?(?![\w])")
 
 def norm(s):
     s = s.replace("\u2212", "-").replace("\u2013", "-")
+    s = re.sub(r"(?<=\d)[ \u00a0\u202f](?=\d{3}\b)", "", s)  # 32 768 -> 32768
     return re.sub(r"(?<=\d),(?=\d)", ".", s)
+
+
+# not numbers of the study: identifiers, locators, section references, Unicode code points
+SKIP = re.compile(r"doi:\S+|arXiv:\S+|10\.\d{4,}/\S+|\b\S+\.(?:md|py|json|tex|toml):\d+(?:[-,]\d+)*|"
+                  r"\b(?:Section|Sections|§)\s*~?\\?(?:ref\{[^}]*\}|\d+(?:\.\d+)*)|\bS\d\d\b|"
+                  r"\\DeclareUnicodeCharacter\{[0-9A-F]+\}")
 
 
 NAMES = re.compile(r"Timestral-\d+M|Chronos-2|\b(?:NO|SE)\d(?:--(?:NO|SE)?\d)?|D-\d+|CO\$_2\$|"
@@ -36,6 +43,8 @@ NAMES = re.compile(r"Timestral-\d+M|Chronos-2|\b(?:NO|SE)\d(?:--(?:NO|SE)?\d)?|D
 
 def strip_tex(line):
     line = re.sub(r"(?<!\\)%.*", "", line)
+    line = re.sub(r"^#+\s+\d+(?:\.\d+)*", " ", line)  # Markdown heading numbers
+    line = SKIP.sub(" ", norm(line))
     line = NAMES.sub(" ", line)
     line = re.sub(r"\\(label|ref|caption\{|begin|end|section|subsection|paragraph)\{[^}]*\}", " ", line)
     line = re.sub(r"\\[a-zA-Z]+", " ", line)
@@ -65,7 +74,14 @@ def main(out, *tex):
             src.append((fp, i, norm(l)))
     rows, missing = [], []
     for tf in tex:
-        for ln, line in enumerate(open(tf, encoding="utf-8"), 1):
+        text = open(tf, encoding="utf-8").read()
+        # drop HTML comments (source notes in the Markdown sections) but keep line numbers
+        text = re.sub(r"<!--.*?-->", lambda m: "\n" * m.group(0).count("\n"), text, flags=re.S)
+        lines = text.splitlines()
+        if lines and lines[0].startswith("Arkivnøkkel:") or lines and lines[0].startswith("% Arkivnøkkel:"):
+            lines[0] = ""
+        refs = next((i for i, l in enumerate(lines) if re.match(r"#+ References", l)), len(lines))
+        for ln, line in enumerate(lines[:refs], 1):
             for m in NUM.finditer(strip_tex(line)):
                 n = m.group(0).lstrip("-")
                 hit = find(n, src)
