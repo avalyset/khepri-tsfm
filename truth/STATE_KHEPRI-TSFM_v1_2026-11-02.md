@@ -18,7 +18,7 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 |---|---|---|---|
 | M0 | 0 repo, truth/ | FERDIG, commit 6d89c93 | 2026-11-02 |
 | M1 | 1 kilder, 2 latens, 3 data | FERDIG (denne commit) | 2026-11-02 |
-| M2 | 4 MDE, PREREG, OSF | ikke startet | |
+| M2 | 4 MDE, PREREG, OSF | PREREG låst (tagg prereg-v1); OSF-registrering pågår | 2026-11-02 |
 | M3 | 7 kjøring, 8 analyse | ikke startet | |
 | M4 | 9 frys | ikke startet | |
 

@@ -1,0 +1,52 @@
+{
+  "method": "MDE = (t_{0.975,n-1} + t_{0.80,n-1}) / HLN(n,h) * sqrt(sigma2_LR / n); sigma2_LR = rectangular-kernel long-run variance (lags 0..h-1) of the zone-averaged per-origin MAPE difference SARIMA - GBM on the v1.5 2025 test",
+  "source_rows": {
+    "NO1": [
+      "s2-j2b/NO1_primaer_2025_rows.csv",
+      "s2-ren/NO1_primaer_2025_std_ren365_rows.csv"
+    ],
+    "NO2": [
+      "s2-j2b/NO2_primaer_2025_rows.csv",
+      "s2-ren/NO2_primaer_2025_std_ren365_rows.csv"
+    ],
+    "NO3": [
+      "s2-j2b/NO3_primaer_2025_rows.csv",
+      "s2-ren/NO3_primaer_2025_std_ren365_rows.csv"
+    ],
+    "NO4": [
+      "s2-j2b/NO4_primaer_2025_rows.csv",
+      "s2-ren/NO4_primaer_2025_std_ren365_rows.csv"
+    ],
+    "NO5": [
+      "s2-j2b/NO5_primaer_2025_rows.csv",
+      "s2-ren/NO5_primaer_2025_std_ren365_rows.csv"
+    ],
+    "SE1": [
+      "s2-j2b/SE1_se_2025_rows.csv",
+      "s2-ren/SE1_se_2025_std_ren365_rows.csv"
+    ],
+    "SE2": [
+      "s2-j2b/SE2_se_2025_rows.csv",
+      "s2-ren/SE2_se_2025_std_ren365_rows.csv"
+    ],
+    "SE3": [
+      "s2-j2b/SE3_se_2025_rows.csv",
+      "s2-ren/SE3_se_2025_std_ren365_rows.csv"
+    ],
+    "SE4": [
+      "s2-j2b/SE4_se_2025_rows.csv",
+      "s2-ren/SE4_se_2025_std_ren365_rows.csv"
+    ]
+  },
+  "n_retro_origins": 361,
+  "mean_diff_retro_pp": 0.21410244452464194,
+  "sigma2_lr": 7.645470746105159,
+  "kernel": "rectangular",
+  "h": 4,
+  "horizon_hours": 96,
+  "alpha": 0.05,
+  "power": 0.8,
+  "n_holdout": 14,
+  "mde_pp": 2.9894202530226432,
+  "mde_retro_pp_n361": 0.41282137852731876
+}
