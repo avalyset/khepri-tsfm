@@ -261,3 +261,20 @@ MASKINEN ER LEDIG
   MAPE, D-03-forbehold); «before any foundation-model forecast» (latensmålingen før PREREG brukte bare syntetiske serier, presisert i
   PREREG og MANUS-03 «on real CI data»); «v2» vs «a later version»; repo-påstander uten egne referanseoppføringer (kilder i SOURCES).
 - Zenodo-lisensfeltet har begge (RDM: apache-2.0, cc-by-4.0); det eldre API-et viser bare den første.
+
+## Publisering — steg 6 arXiv (ca. 10:35–10:45 UTC)
+- ARXIV-tarball fra 70ddbf7 (med DOI): sha256 4b484e2b14870cfba991078126c6a7a82d045425a295a65034014bc1ac1428e2, 18 399 B; lokalt 0 feil, 15 sider.
+- Konto EirikBN, ny innsending **submit/8316470**: primær physics.soc-ph, kryssliste cs.LG (godtatt), lisens CC BY 4.0, forfatter
+  «Eirik Botten Nicolaysen». arXiv-kompilering pdflatex/TeX Live 2025: SUCCEEDED, 15 sider, 0 udefinerte referanser; forhåndsvisning
+  kontrollert (tittel, abstract, DOI 10.5281/zenodo.23881315 på s. 1).
+- Tittel = main.tex. Comments: «15 pages. Code, data and preregistration proofs: https://doi.org/10.5281/zenodo.23881315».
+- Abstract-feltet: arXiv avviste full PDF-abstract (2057 tegn > 1920) og deretter tankestreker (U+2013, «Bad character(s)»). Innsendt
+  1919 tegn, ASCII (sha256 cf1872db…9b6c): samme setninger og alle tall som PDF-abstractet; fjernet siste setning («released with the
+  code»), «minimum detectable effect» → «MDE» andre gang, «(n = 14 origins)» → «(n = 14)», «(p < 0.0001 for each comparison)» →
+  «(each p < 0.0001)», «–» → «-». PDF-abstractet er uendret.
+- Status 10:45 UTC: «processing». Månedskvoten på arXiv er nå brukt (2/2).
+
+## Åpne punkter etter publisering
+- Zenodo 23881315: legg til relatert identifikator «is documented by» → arXiv-ID når artikkelen er kunngjort (metadata-redigering, samme DOI).
+- OTS: `ots upgrade` for de seks PRED-.ots og PROSP-.ots når Bitcoin-bekreftelsene er inne (de i Zenodo-tarballen er ventende).
+- OSF hncz5: ingen handling; godkjennes automatisk.
