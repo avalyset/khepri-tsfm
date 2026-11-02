@@ -122,3 +122,10 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 - sha256 results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md = 2883d030b1832fa05e815b262490148d91296be652a48a6e7700535470c7a76a,
   identisk med blob-en i 315e487. (STATE hadde ingen sha256 for RESULTATER-md fra M3; verifisert mot M3-commiten og ført her nå.)
 - NUMBERS generert på nytt med TILLEGG blant kildene: 208 tall, 0 uten kilde.
+
+## D-11-kontroll, reproduksjon fra CI og tester (ca. 08:45–09:00 UTC)
+- Ren venv fra `git archive` (e74be60) under $V/tmp/cleantest: `uv sync --frozen`; `import khepri` → ModuleNotFoundError;
+  analysis.py → RESULTATER md og json byte-like med repoet (md sha256 2883d030b1832fa05e815b262490148d91296be652a48a6e7700535470c7a76a).
+- repro_from_ci.py (SES pauset, ingen LAS; kjørt serielt): baselines k=361 (alle holdout + 1 retro-origin per sone, 12960 rader per arm)
+  maks |Δ| 0.0 for snaive_week, GBM og SARIMA (punkt og 21 kvantiler); tsfm k=361: maks |Δ| 0.0 for Timestral-5M, Timestral-209M, Chronos-2.
+- pytest 9.1.1 lagt til som dev-gruppe (uv.lock oppdatert). `pytest -q` i $V/.venv: 27 passed.

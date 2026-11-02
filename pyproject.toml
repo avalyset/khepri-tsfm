@@ -24,3 +24,6 @@ dependencies = [
 
 [tool.uv]
 package = false
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]  # version pinned in khepri-v1.5/requirements.txt
