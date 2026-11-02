@@ -1,0 +1,26 @@
+[project]
+name = "khepri-tsfm"
+version = "1.0.0"
+description = "Khepri-TSFM v1: zero-shot time-series foundation models vs Khepri v1.5 baselines for Nordic carbon intensity"
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
+dependencies = [
+  # Khepri v1.5 runtime, pinned exactly as in khepri-v1.5/requirements.txt
+  "numpy==2.4.2",
+  "pandas==3.0.2",
+  "statsmodels==0.14.6",
+  "lightgbm==4.6.0",
+  "entsoe-py==0.8.0",
+  "scikit-learn==1.9.0",  # required by lightgbm.sklearn; version of the v1.5 reproduction env
+  # TSFM arms
+  "chronos-forecasting>=2.0",
+  "timestral @ git+https://github.com/mistralai/timestral.git",
+  # Evidence and IO
+  "opentimestamps-client",
+  "pyarrow",
+  "psutil",
+  "scipy==1.17.1",  # version of the v1.5 reproduction env; 1.18.1 stops the SARIMA fit after 1 iteration
+]
+
+[tool.uv]
+package = false
