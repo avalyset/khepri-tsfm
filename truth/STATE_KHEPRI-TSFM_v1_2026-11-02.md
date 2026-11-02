@@ -212,3 +212,14 @@ MASKINEN ER LEDIG
 - arXiv: 0 feil, 15 sider; ARXIV-tarball sha256 5709217e7a23ddf9b475d61237f3fc152474b14dab4f084864c030f9dc1c114a. NUMBERS 504/0.
 
 MASKINEN ER LEDIG
+
+## Publisering — steg 1–2 (Eiriks oppdrag «før Brevet-teksten tilbake, publiser», 2026-11-02 ca. 09:43–09:50 UTC)
+- Brevet-tekst: ~/Desktop/BREVETPAKKE_KHEPRI-TSFM_v1-stemmepass_2026-11-02.md → $V/tmp/, sha256
+  168479a5205c26c12afa80e1c98612432ef824272b74121efa70e4d8522bd6cb, 117659 B (stemmer med oppdraget).
+- Tilbakeført del for del etter mappingen i build_brevetpakke.py: arxiv/main.tex, MANUS-01–03, MANUS-04 (uendret), references.tex (uendret),
+  README.md, Zenodo-beskrivelsen (ZENODO i build_brevetpakke.py, identisk med del 3). Ankerkontroll mot 30aaf1d (tall, hasher, URL, DOI,
+  arXiv-ID, D/RQ/H/sone-ID, \-kommandoer, $…$): identiske i alle åtte deler. Del 4 (ankerlista) var byte-lik.
+- Eneste avvik fra Brevet: (a) D-12-raden i MANUS-03 §3.9 «October–November 2025» → «October 2025» (D-12 i DEVIATIONS er norsk og har
+  ikke samme ordlyd, står); (b) lisensnavnet «Modified MIT License» ordrett fra overskriften i LICENSE for mistralai/Timestral-209M @
+  9874d252… (HF-cache på Vault), likt i MANUS-02 §2.2, MANUS-03 §3.12 og README (bare MANUS-02 hadde «license»).
+- arXiv-bygg 0 feil; NUMBERS 0 uten kilde.

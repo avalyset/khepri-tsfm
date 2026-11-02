@@ -118,7 +118,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## AI use
 
-See [AIUSE_KHEPRI-TSFM_v1_2026-11-02.md](AIUSE_KHEPRI-TSFM_v1_2026-11-02.md). The owner is responsible for all choices and numbers.
+See [AIUSE_KHEPRI-TSFM_v1_2026-11-02.md](AIUSE_KHEPRI-TSFM_v1_2026-11-02.md). The author is responsible for all choices and numbers.
 
 ## Citation
 

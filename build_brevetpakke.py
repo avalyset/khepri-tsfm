@@ -14,7 +14,7 @@ V = os.environ.get("V", "/Volumes/Vault/khepri-tsfm")
 NAME = "BREVETPAKKE_KHEPRI-TSFM_v1_2026-11-02.md"
 OSF = "submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval)"
 
-ZENODO = f"""Khepri-TSFM v1 — preregistered comparison of zero-shot time-series foundation models (Timestral-5M,
+ZENODO = f"""Khepri-TSFM v1: preregistered comparison of zero-shot time-series foundation models (Timestral-5M,
 Timestral-209M, Chronos-2; pinned Hugging Face revisions, 8192-hour context, no covariates) with the Khepri v1.5
 SARIMA and GBM baselines (code and hyperparameters unchanged) and a weekly seasonal-naive reference, for 96-hour
 forecasts of hourly carbon intensity in the nine Nordic bidding zones NO1–NO5 and SE1–SE4.
@@ -31,7 +31,7 @@ byte-identically as khepri_v15/ (DOI 10.5281/zenodo.23101127). Raw ENTSO-E data 
 Reproduce: `uv sync --frozen`, then `uv run pytest -q` and `uv run python analysis.py predictions
 results/MDE_KHEPRI-TSFM_v1_2026-11-02.json <out>` (expected sha256 of the .md output:
 2883d030b1832fa05e815b262490148d91296be652a48a6e7700535470c7a76a).
-AI use: implementation assisted by Claude Code (Anthropic) as a tool; the author is responsible for all choices and
+AI use: implementation was assisted by Claude Code (Anthropic) as a tool; the author is responsible for all choices and
 numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md)."""
 
 MANUS = [

@@ -103,7 +103,7 @@ The NO1 SARIMA fit is not bit-reproducible (D-02): in the pinned environment it 
 1 L-BFGS iteration, against 22 in the 2026-10-01 v1.5 run; in the validation before registration
 this gave a NO1 retro mean SARIMA MAPE of 2.4596 against 2.4656 in the stored v1.5 rows. The
 reproduction table (Section 3.8) reports the final run. Data, code, library versions and BLAS thread count were
-ruled out; the cause was not found. We report this rather than adjust the fit.
+ruled out as causes; the cause was not found. We report this rather than adjust the fit.
 
 The environment is pinned by `uv.lock` (Python 3.12.13). Inference ran on a CPU (Apple M1, 16 GB)
 with `torch.set_num_threads(8)` and the Hugging Face hub offline after download.
@@ -125,12 +125,13 @@ drops out of the comparison, and the numbers of origins per arm are reported.
 
 ## 3.6 Research questions, hypotheses and tests
 
-The research questions are: RQ1, on the post-release holdout, do the TSFMs have lower 96-h MAPE
-than the Khepri v1.5 SARIMA and GBM baselines; RQ2, the same question on the retro test; RQ3,
-how the TSFMs fare in NO4 and NO5, the two zones where GBM lost to SARIMA in Khepri v1.5
-(+2.92 pp and +0.53 pp), descriptively; RQ4, whether TSFM predictive quantiles are better than
-SARIMA's on the holdout (CRPS and coverage); and RQ5, whether the TSFM advantage is larger on
-the retro test than on the holdout.
+The research questions are:
+RQ1, whether the TSFMs have lower 96-h MAPE than the Khepri v1.5 SARIMA and GBM baselines on the
+post-release holdout; RQ2, the same question on the retro test; RQ3, how the TSFMs do in NO4 and
+NO5, the two zones where GBM lost to SARIMA in Khepri v1.5 (+2.92 pp and +0.53 pp), reported
+descriptively; RQ4, whether TSFM predictive quantiles are better than SARIMA's on the holdout
+(CRPS and coverage); and RQ5, whether the TSFM advantage is larger on the retro test than on the
+holdout.
 
 *Hypotheses.* H1: on the retro test a TSFM beats SARIMA (lower mean 96-h MAPE) in at least 5 of
 the 9 zones, evaluated separately for each TSFM. H2: on the retro test the TSFM advantage over
@@ -217,13 +218,13 @@ analysis; D-11 (packaging) and D-12 (wording) change no analysis and no number.
 | D-09 | Bug fix in the prospective-log issuer (chronological splicing of new A75 data) | Prospective log only; analysis and arms unchanged |
 | D-10 | Guard in the prospective-log issuer that skips a day's issue while another heavy job runs; such days are logged as lost, never back-filled | Prospective log only; analysis and arms unchanged |
 | D-11 | Khepri v1.5 included byte-identically as `khepri_v15/` because its tag has no package definition; only import lines changed | Packaging only; RESULTATER byte-identical in a clean environment |
-| D-12 | Preregistration wording on training cut-offs corrected: Chronos-2 became public in October–November 2025 | Wording only; analyses unchanged |
+| D-12 | Preregistration wording on training cut-offs corrected: Chronos-2 became public in October 2025 | Wording only; analyses unchanged |
 
 ## 3.10 Prospective log
 
 From registration onward, a daily job issues all arms for the 00:00 UTC origin with the holdout
 training rule and writes each issue with its sha256 and an OpenTimestamps stamp. Lost days are
-logged and never back-filled. The log will be analysed later, with no fixed date, with the same
+logged and never back-filled. The log will be analysed at a later date, not yet fixed, with the same
 locked `analysis.py`, after joining the truth from a later A75 pull through the same Khepri v1.5
 CI code. It is not part of the results of this paper.
 

@@ -2,7 +2,7 @@ Arkivnøkkel: MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02
 
 # 1 Introduction
 
-Forecasts of the carbon intensity (CI) of electricity, in grams of CO2-equivalent per kWh, are
+Forecasts of the carbon intensity (CI) of electricity, in grams of CO2-equivalent per kWh, have been
 proposed as a building block for shifting flexible electricity use to hours with lower
 emissions (Maji et al. 2022a).
 
@@ -17,16 +17,16 @@ Time-series foundation models (TSFMs) are pretrained forecasters that can be app
 series without training on it ("zero-shot").
 Chronos-2 is described by its developers as
 offering zero-shot support for univariate, multivariate and covariate-informed forecasting
-(Ansari et al. 2025); Timestral, released by Mistral AI on 2026-10-15, comes in four sizes
+(Ansari et al. 2025). Timestral, released by Mistral AI on 2026-10-15, comes in four sizes
 from 5M to 209M parameters with 21 predictive quantiles per time step.
 
-For a CI series, a zero-shot TSFM needs only the history of the series itself. This makes it a
-direct comparison for the Khepri baselines, which are also univariate and are fitted per zone.
+For a CI series, a zero-shot TSFM needs only the history of the series itself. This makes it
+directly comparable with the Khepri baselines, which are also univariate and fitted per zone.
 
 TSFMs have already been applied to CI: the public CarbonX repository lists zero-shot forecasts
 with five TSFMs for 214 grids, among them Norway and Sweden as whole countries (CarbonX).
 
-At bidding-zone level the baselines behave differently from zone to zone: in v1.5, NO5 had by
+At bidding-zone level the baselines differ between zones: in v1.5, NO5 had by
 far the lowest MAPE level (SARIMA 0.72 %), and NO4 and NO5 were the two zones where GBM lost to
 SARIMA.
 
@@ -46,8 +46,8 @@ origins per zone) has more statistical power but is labelled "contamination not 
 post-release holdout uses only origins from 2026-10-16, the day after the Timestral release, so
 that every target hour lies after the release of all three TSFMs; it has 14 origins per zone.
 
-Fourteen origins give little power: the minimum detectable effect for the zone-averaged MAPE
-difference, estimated from the SARIMA − GBM loss difference on the 2025 test, is 2.989 pp, against 0.413 pp on the retro test, and a holdout difference smaller than
+Fourteen origins give little power. The minimum detectable effect (MDE) for the zone-averaged MAPE
+difference, estimated from the SARIMA − GBM loss difference on the 2025 test, is 2.989 pp on the holdout, against 0.413 pp on the retro test. A holdout difference smaller than
 this is reported as "not determined", not as equivalence.
 
 The holdout is therefore a contamination control, and the difference between the TSFM advantage
@@ -72,4 +72,5 @@ The contributions are as follows. We make no claim of priority.
   later with the same locked analysis code.
 
 The rest of the paper is organised as follows. Section 2 reviews related work, Section 3
-describes the data, arms, tests and deviations, [Section 4 results, Section 5 discussion: A].
+describes the data, arms, tests and deviations, Section 4 reports the results and Section 5
+describes the software and its availability.

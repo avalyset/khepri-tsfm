@@ -1,6 +1,6 @@
 Arkivnøkkel: BREVETPAKKE_KHEPRI-TSFM_v1_2026-11-02
 
-Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main 25254905ffcecb429f4791abea25ce6fdbf43f7b.
+Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main 30aaf1d382ebecd19d55bf6a54fa001d795ec5b2.
 Plassholdere som settes ved publisering: \zenodoDOI (arxiv/main.tex), [ZENODO-DOI] (MANUS-01/-03),
 {{ZENODO_DOI}} (README, AIUSE). Repoet er privat; repo-URL legges inn ved utgivelse.
 Manuskriptkilden for arXiv er arxiv/ (main.tex, references.tex) med MANUS-01–04; md-filene i manus/ er rensede
@@ -56,7 +56,7 @@ carbon-intensity forecasts in nine Nordic bidding zones: a preregistered compari
 \begin{abstract}
 We compare three zero-shot time-series foundation models (Timestral-5M, Timestral-209M and
 Chronos-2, 8192-hour context, no covariates) with the Khepri v1.5 SARIMA and GBM baselines,
-whose code and hyperparameters are unchanged, for 96-hour forecasts of hourly carbon intensity in NO1--NO5 and SE1--SE4. The
+with their code and hyperparameters unchanged, for 96-hour forecasts of hourly carbon intensity in the Nordic bidding zones NO1--NO5 and SE1--SE4. The
 design, the analysis code and a minimum detectable effect (MDE) were timestamped before any
 foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag
 prereg-v1; the proofs are archived in Zenodo (DOI \zenodoDOI{}). The preregistration was also
@@ -66,14 +66,14 @@ by 0.952 to 1.347 percentage points (Diebold--Mariano with the Harvey--Leybourne
 correction, all $p<0.0001$), and each beats SARIMA in 9 of 9 zones. On a post-release holdout of
 14 origins from 2026-10-16 the point estimates have the same sign (0.729 to 1.326 percentage
 points lower), but all lie within the preregistered minimum detectable effect of 2.989 points and
-are reported as not determined. For the preregistered calibration question (RQ4: a Diebold--Mariano--HLN test on CRPS, locked in the
-preregistration; the MDE applies to MAPE only), holdout CRPS point estimates (n = 14 origins) are
+are reported as not determined. For calibration (RQ4) the preregistration locked a Diebold--Mariano--HLN test on CRPS;
+the MDE applies to MAPE only. Holdout CRPS point estimates (n = 14 origins) are
 1.1114 (Timestral-5M), 1.0733 (Timestral-209M) and 1.1198 (Chronos-2) against 1.4165 gCO$_2$-eq/kWh
-for SARIMA ($p<0.0001$ for each comparison); the SARIMA quantiles are constructed as a Gaussian
-predictive distribution from the fitted model (deviation D-03), not a native v1.5 forecast, so the
-difference may partly reflect the SARIMA intervals. With 14 holdout origins the contamination indicator has low power (HAC
-standard errors 0.124 to 0.360 pp); it does not exceed its preregistered threshold for any
-comparison. Forecasts, the CI series,
+for SARIMA ($p<0.0001$ for each comparison). The SARIMA quantiles are constructed from the fitted
+model's Gaussian predictive distribution (deviation D-03), not taken from a native v1.5 forecast, so the
+difference may partly reflect the SARIMA intervals. The contamination indicator does not exceed its
+preregistered threshold for any comparison; with 14 holdout origins it has low power (HAC
+standard errors 0.124 to 0.360 pp). Forecasts, the CI series,
 the locked analysis and all deviations are released with the code.
 \end{abstract}
 
@@ -103,7 +103,7 @@ Arkivnøkkel: MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02
 
 # 1 Introduction
 
-Forecasts of the carbon intensity (CI) of electricity, in grams of CO2-equivalent per kWh, are
+Forecasts of the carbon intensity (CI) of electricity, in grams of CO2-equivalent per kWh, have been
 proposed as a building block for shifting flexible electricity use to hours with lower
 emissions (Maji et al. 2022a).
 
@@ -118,16 +118,16 @@ Time-series foundation models (TSFMs) are pretrained forecasters that can be app
 series without training on it ("zero-shot").
 Chronos-2 is described by its developers as
 offering zero-shot support for univariate, multivariate and covariate-informed forecasting
-(Ansari et al. 2025); Timestral, released by Mistral AI on 2026-10-15, comes in four sizes
+(Ansari et al. 2025). Timestral, released by Mistral AI on 2026-10-15, comes in four sizes
 from 5M to 209M parameters with 21 predictive quantiles per time step.
 
-For a CI series, a zero-shot TSFM needs only the history of the series itself. This makes it a
-direct comparison for the Khepri baselines, which are also univariate and are fitted per zone.
+For a CI series, a zero-shot TSFM needs only the history of the series itself. This makes it
+directly comparable with the Khepri baselines, which are also univariate and fitted per zone.
 
 TSFMs have already been applied to CI: the public CarbonX repository lists zero-shot forecasts
 with five TSFMs for 214 grids, among them Norway and Sweden as whole countries (CarbonX).
 
-At bidding-zone level the baselines behave differently from zone to zone: in v1.5, NO5 had by
+At bidding-zone level the baselines differ between zones: in v1.5, NO5 had by
 far the lowest MAPE level (SARIMA 0.72 %), and NO4 and NO5 were the two zones where GBM lost to
 SARIMA.
 
@@ -147,8 +147,8 @@ origins per zone) has more statistical power but is labelled "contamination not 
 post-release holdout uses only origins from 2026-10-16, the day after the Timestral release, so
 that every target hour lies after the release of all three TSFMs; it has 14 origins per zone.
 
-Fourteen origins give little power: the minimum detectable effect for the zone-averaged MAPE
-difference, estimated from the SARIMA − GBM loss difference on the 2025 test, is 2.989 pp, against 0.413 pp on the retro test, and a holdout difference smaller than
+Fourteen origins give little power. The minimum detectable effect (MDE) for the zone-averaged MAPE
+difference, estimated from the SARIMA − GBM loss difference on the 2025 test, is 2.989 pp on the holdout, against 0.413 pp on the retro test. A holdout difference smaller than
 this is reported as "not determined", not as equivalence.
 
 The holdout is therefore a contamination control, and the difference between the TSFM advantage
@@ -173,7 +173,8 @@ The contributions are as follows. We make no claim of priority.
   later with the same locked analysis code.
 
 The rest of the paper is organised as follows. Section 2 reviews related work, Section 3
-describes the data, arms, tests and deviations, [Section 4 results, Section 5 discussion: A].
+describes the data, arms, tests and deviations, Section 4 reports the results and Section 5
+describes the software and its availability.
 
 ## 1.2 MANUS-02 Related work
 
@@ -260,7 +261,7 @@ Table 6) is an ENTSO-E or CI series; the energy-domain datasets listed are Elect
 Farms, London Smart Meters and Buildings 900K. The report gives no training cut-off or release date.
 
 The Timestral code is released under Apache-2.0 and the weights separately under a
-"Modified MIT license"; its repository discloses neither training data nor a training cut-off.
+"Modified MIT License"; its repository discloses neither training data nor a training cut-off.
 Chronos-2 became public in October 2025: its technical report appeared on 2025-10-17, its
 repository announces the release on 2025-10-20, and the Hugging Face model repository
 amazon/chronos-2 dates from 2025-10-30 (D-12). The quickstart notebook in its repository gives a
@@ -281,9 +282,9 @@ the prospective log (Section 3.10) a scheduled job issues the forecast for each 
 a few hours later, while most of the 96 target hours are still unobserved; the context ends at the
 origin.
 
-In the paper, every model must produce point and probabilistic forecasts for the next horizon at
+In the Impermanent paper, every model must produce point and probabilistic forecasts for the next horizon at
 each cutoff before any ground truth is available, and forecasts are scored after the outcomes
-arrive; it evaluates four TSFMs, among them Chronos-2, on GitHub activity series from GH Archive and
+arrive. The paper evaluates four TSFMs, among them Chronos-2, on GitHub activity series from GH Archive and
 contains no energy or CI series.
 
 ## 2.4 Forecast comparison and evaluation
@@ -409,7 +410,7 @@ The NO1 SARIMA fit is not bit-reproducible (D-02): in the pinned environment it 
 1 L-BFGS iteration, against 22 in the 2026-10-01 v1.5 run; in the validation before registration
 this gave a NO1 retro mean SARIMA MAPE of 2.4596 against 2.4656 in the stored v1.5 rows. The
 reproduction table (Section 3.8) reports the final run. Data, code, library versions and BLAS thread count were
-ruled out; the cause was not found. We report this rather than adjust the fit.
+ruled out as causes; the cause was not found. We report this rather than adjust the fit.
 
 The environment is pinned by `uv.lock` (Python 3.12.13). Inference ran on a CPU (Apple M1, 16 GB)
 with `torch.set_num_threads(8)` and the Hugging Face hub offline after download.
@@ -431,12 +432,13 @@ drops out of the comparison, and the numbers of origins per arm are reported.
 
 ## 3.6 Research questions, hypotheses and tests
 
-The research questions are: RQ1, on the post-release holdout, do the TSFMs have lower 96-h MAPE
-than the Khepri v1.5 SARIMA and GBM baselines; RQ2, the same question on the retro test; RQ3,
-how the TSFMs fare in NO4 and NO5, the two zones where GBM lost to SARIMA in Khepri v1.5
-(+2.92 pp and +0.53 pp), descriptively; RQ4, whether TSFM predictive quantiles are better than
-SARIMA's on the holdout (CRPS and coverage); and RQ5, whether the TSFM advantage is larger on
-the retro test than on the holdout.
+The research questions are:
+RQ1, whether the TSFMs have lower 96-h MAPE than the Khepri v1.5 SARIMA and GBM baselines on the
+post-release holdout; RQ2, the same question on the retro test; RQ3, how the TSFMs do in NO4 and
+NO5, the two zones where GBM lost to SARIMA in Khepri v1.5 (+2.92 pp and +0.53 pp), reported
+descriptively; RQ4, whether TSFM predictive quantiles are better than SARIMA's on the holdout
+(CRPS and coverage); and RQ5, whether the TSFM advantage is larger on the retro test than on the
+holdout.
 
 *Hypotheses.* H1: on the retro test a TSFM beats SARIMA (lower mean 96-h MAPE) in at least 5 of
 the 9 zones, evaluated separately for each TSFM. H2: on the retro test the TSFM advantage over
@@ -523,13 +525,13 @@ analysis; D-11 (packaging) and D-12 (wording) change no analysis and no number.
 | D-09 | Bug fix in the prospective-log issuer (chronological splicing of new A75 data) | Prospective log only; analysis and arms unchanged |
 | D-10 | Guard in the prospective-log issuer that skips a day's issue while another heavy job runs; such days are logged as lost, never back-filled | Prospective log only; analysis and arms unchanged |
 | D-11 | Khepri v1.5 included byte-identically as `khepri_v15/` because its tag has no package definition; only import lines changed | Packaging only; RESULTATER byte-identical in a clean environment |
-| D-12 | Preregistration wording on training cut-offs corrected: Chronos-2 became public in October–November 2025 | Wording only; analyses unchanged |
+| D-12 | Preregistration wording on training cut-offs corrected: Chronos-2 became public in October 2025 | Wording only; analyses unchanged |
 
 ## 3.10 Prospective log
 
 From registration onward, a daily job issues all arms for the 00:00 UTC origin with the holdout
 training rule and writes each issue with its sha256 and an OpenTimestamps stamp. Lost days are
-logged and never back-filled. The log will be analysed later, with no fixed date, with the same
+logged and never back-filled. The log will be analysed at a later date, not yet fixed, with the same
 locked `analysis.py`, after joining the truth from a later A75 pull through the same Khepri v1.5
 CI code. It is not part of the results of this paper.
 
@@ -904,7 +906,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## AI use
 
-See [AIUSE_KHEPRI-TSFM_v1_2026-11-02.md](AIUSE_KHEPRI-TSFM_v1_2026-11-02.md). The owner is responsible for all choices and numbers.
+See [AIUSE_KHEPRI-TSFM_v1_2026-11-02.md](AIUSE_KHEPRI-TSFM_v1_2026-11-02.md). The author is responsible for all choices and numbers.
 
 ## Citation
 
@@ -913,7 +915,7 @@ See `CITATION.cff`.
 
 # 3 Zenodo-beskrivelse
 
-Khepri-TSFM v1 — preregistered comparison of zero-shot time-series foundation models (Timestral-5M,
+Khepri-TSFM v1: preregistered comparison of zero-shot time-series foundation models (Timestral-5M,
 Timestral-209M, Chronos-2; pinned Hugging Face revisions, 8192-hour context, no covariates) with the Khepri v1.5
 SARIMA and GBM baselines (code and hyperparameters unchanged) and a weekly seasonal-naive reference, for 96-hour
 forecasts of hourly carbon intensity in the nine Nordic bidding zones NO1–NO5 and SE1–SE4.
@@ -930,7 +932,7 @@ byte-identically as khepri_v15/ (DOI 10.5281/zenodo.23101127). Raw ENTSO-E data 
 Reproduce: `uv sync --frozen`, then `uv run pytest -q` and `uv run python analysis.py predictions
 results/MDE_KHEPRI-TSFM_v1_2026-11-02.json <out>` (expected sha256 of the .md output:
 2883d030b1832fa05e815b262490148d91296be652a48a6e7700535470c7a76a).
-AI use: implementation assisted by Claude Code (Anthropic) as a tool; the author is responsible for all choices and
+AI use: implementation was assisted by Claude Code (Anthropic) as a tool; the author is responsible for all choices and
 numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 
 # 4 Ankerliste (generert fra manus, README, Zenodo-beskrivelse, NUMBERS, SOURCES, STATE, DEVIATIONS)
@@ -978,6 +980,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 
 ## 4.5 sha-er (40 hex = git, 64 hex = sha256) i manus, README, Zenodo-beskrivelse, STATE og DEVIATIONS
 
+- 168479a5205c26c12afa80e1c98612432ef824272b74121efa70e4d8522bd6cb
 - 19604aa701f89ec41f552172c754ac47b021de02
 - 1d68802b290a985c5c77b06a54b8476326d4dc61f1100b4e06e4d3639987636c
 - 2883d030b1832fa05e815b262490148d91296be652a48a6e7700535470c7a76a
@@ -1177,65 +1180,65 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:120 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
 | 80 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:120 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
 | 90 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:121 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
-| 96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:128 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:129 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
 | 2.92 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:131 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:24 |
 | 0.53 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:131 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:135 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 5 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:135 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 9 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:136 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
-| 0.72 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:138 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 1995 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:144 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:139 |
-| 1997 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:145 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:136 |
-| 4 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:145 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:145 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:146 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
-| 3 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:146 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 1 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:147 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 6 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:148 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 3 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:148 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 0.05 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:148 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:136 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 5 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:136 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 9 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:137 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
+| 0.72 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:139 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 1995 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:145 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:139 |
+| 1997 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:146 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:136 |
+| 4 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:146 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:146 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:147 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
+| 3 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:147 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 1 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:148 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
 | 6 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:149 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 0.05 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:157 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
-| 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:157 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
+| 3 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:149 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 0.05 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:149 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 6 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:150 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 0.05 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:158 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
 | 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:158 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
-| 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:162 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
-| 3 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:162 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 1.96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
-| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:164 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 2026 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:164 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:172 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 361 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:173 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 4 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:174 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 7.6455 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:174 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:12 |
-| 0.975 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:176 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 1 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:176 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 0.80 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:176 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:159 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
+| 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
+| 3 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 1.96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:164 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
+| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:165 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 2026 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:165 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
+| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:173 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 361 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:174 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 4 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:175 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 7.6455 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:175 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:12 |
+| 0.975 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:13 |
 | 1 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 0.05 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
-| 0.8 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
-| 2.989 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:178 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 14 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:178 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.413 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:178 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:19 |
-| 361 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:178 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 54.5 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:188 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:186 |
-| 111 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:189 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:68 |
-| 45 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:189 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:51 |
-| 58 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:189 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:68 |
-| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:189 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 9.5 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:189 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:187 |
-| 2.4596 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:210 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:7 |
-| 2.4656 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:210 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:191 |
-| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:213 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 2.79 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:214 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:61 |
-| 1.79 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:214 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:61 |
-| 3.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:214 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:61 |
-| 2.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:214 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
-| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:220 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 00 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:224 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:16 |
-| 32768 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:232 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:205 |
-| 2.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:237 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
-| 4.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:237 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
-| 2.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:239 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
+| 0.80 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 1 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:178 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
+| 0.05 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:178 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 0.8 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:178 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 2.989 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:179 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 14 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:179 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.413 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:179 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:19 |
+| 361 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:179 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 54.5 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:189 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:186 |
+| 111 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:190 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:68 |
+| 45 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:190 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:51 |
+| 58 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:190 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:68 |
+| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:190 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 9.5 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:190 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:187 |
+| 2.4596 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:211 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:7 |
+| 2.4656 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:211 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:191 |
+| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:214 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 2.79 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:215 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:61 |
+| 1.79 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:215 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:61 |
+| 3.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:215 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:61 |
+| 2.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:215 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
+| 2025 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:221 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 00 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:225 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:16 |
+| 32768 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:233 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:205 |
+| 2.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:238 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
+| 4.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:238 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
+| 2.0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:240 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
 | 361 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:9 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
 | 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:9 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
 | 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:10 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
@@ -1476,9 +1479,9 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 1.1198 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
 | 1.4165 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
 | 0.0001 | arxiv/main.tex:58 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 14 | arxiv/main.tex:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.124 | arxiv/main.tex:61 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
-| 0.360 | arxiv/main.tex:61 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
+| 14 | arxiv/main.tex:61 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.124 | arxiv/main.tex:62 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
+| 0.360 | arxiv/main.tex:62 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
 | 96 | README.md:5 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
 | 8192 | README.md:8 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
 | 2025 | README.md:11 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |

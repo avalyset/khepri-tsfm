@@ -42,7 +42,7 @@ carbon-intensity forecasts in nine Nordic bidding zones: a preregistered compari
 \begin{abstract}
 We compare three zero-shot time-series foundation models (Timestral-5M, Timestral-209M and
 Chronos-2, 8192-hour context, no covariates) with the Khepri v1.5 SARIMA and GBM baselines,
-whose code and hyperparameters are unchanged, for 96-hour forecasts of hourly carbon intensity in NO1--NO5 and SE1--SE4. The
+with their code and hyperparameters unchanged, for 96-hour forecasts of hourly carbon intensity in the Nordic bidding zones NO1--NO5 and SE1--SE4. The
 design, the analysis code and a minimum detectable effect (MDE) were timestamped before any
 foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag
 prereg-v1; the proofs are archived in Zenodo (DOI \zenodoDOI{}). The preregistration was also
@@ -52,14 +52,14 @@ by 0.952 to 1.347 percentage points (Diebold--Mariano with the Harvey--Leybourne
 correction, all $p<0.0001$), and each beats SARIMA in 9 of 9 zones. On a post-release holdout of
 14 origins from 2026-10-16 the point estimates have the same sign (0.729 to 1.326 percentage
 points lower), but all lie within the preregistered minimum detectable effect of 2.989 points and
-are reported as not determined. For the preregistered calibration question (RQ4: a Diebold--Mariano--HLN test on CRPS, locked in the
-preregistration; the MDE applies to MAPE only), holdout CRPS point estimates (n = 14 origins) are
+are reported as not determined. For calibration (RQ4) the preregistration locked a Diebold--Mariano--HLN test on CRPS;
+the MDE applies to MAPE only. Holdout CRPS point estimates (n = 14 origins) are
 1.1114 (Timestral-5M), 1.0733 (Timestral-209M) and 1.1198 (Chronos-2) against 1.4165 gCO$_2$-eq/kWh
-for SARIMA ($p<0.0001$ for each comparison); the SARIMA quantiles are constructed as a Gaussian
-predictive distribution from the fitted model (deviation D-03), not a native v1.5 forecast, so the
-difference may partly reflect the SARIMA intervals. With 14 holdout origins the contamination indicator has low power (HAC
-standard errors 0.124 to 0.360 pp); it does not exceed its preregistered threshold for any
-comparison. Forecasts, the CI series,
+for SARIMA ($p<0.0001$ for each comparison). The SARIMA quantiles are constructed from the fitted
+model's Gaussian predictive distribution (deviation D-03), not taken from a native v1.5 forecast, so the
+difference may partly reflect the SARIMA intervals. The contamination indicator does not exceed its
+preregistered threshold for any comparison; with 14 holdout origins it has low power (HAC
+standard errors 0.124 to 0.360 pp). Forecasts, the CI series,
 the locked analysis and all deviations are released with the code.
 \end{abstract}
 

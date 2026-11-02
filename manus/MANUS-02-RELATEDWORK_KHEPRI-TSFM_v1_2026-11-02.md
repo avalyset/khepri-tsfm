@@ -81,7 +81,7 @@ Table 6) is an ENTSO-E or CI series; the energy-domain datasets listed are Elect
 Farms, London Smart Meters and Buildings 900K. The report gives no training cut-off or release date.
 
 The Timestral code is released under Apache-2.0 and the weights separately under a
-"Modified MIT license"; its repository discloses neither training data nor a training cut-off.
+"Modified MIT License"; its repository discloses neither training data nor a training cut-off.
 Chronos-2 became public in October 2025: its technical report appeared on 2025-10-17, its
 repository announces the release on 2025-10-20, and the Hugging Face model repository
 amazon/chronos-2 dates from 2025-10-30 (D-12). The quickstart notebook in its repository gives a
@@ -102,9 +102,9 @@ the prospective log (Section 3.10) a scheduled job issues the forecast for each 
 a few hours later, while most of the 96 target hours are still unobserved; the context ends at the
 origin.
 
-In the paper, every model must produce point and probabilistic forecasts for the next horizon at
+In the Impermanent paper, every model must produce point and probabilistic forecasts for the next horizon at
 each cutoff before any ground truth is available, and forecasts are scored after the outcomes
-arrive; it evaluates four TSFMs, among them Chronos-2, on GitHub activity series from GH Archive and
+arrive. The paper evaluates four TSFMs, among them Chronos-2, on GitHub activity series from GH Archive and
 contains no energy or CI series.
 
 ## 2.4 Forecast comparison and evaluation
