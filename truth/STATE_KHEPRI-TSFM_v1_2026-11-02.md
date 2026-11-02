@@ -175,3 +175,10 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
   modellrevisjoner, sha-er, 492 tall).
 - OTS ca. 09:15 UTC: komplett — SHA256SUMS_raw2026.txt, PREREG-tarball, CI-parquet; ikke komplett ennå — 6× PRED, PROSP 2026-11-02
   (venter på Bitcoin-bekreftelser; `ots upgrade` på nytt senere). `ots verify` krever lokal Bitcoin-node (ikke tilgjengelig).
+
+## Slutt (2026-11-02 09:18 UTC)
+- RAPPORT: $V/RAPPORT_KHEPRI-TSFM_v1_2026-11-02.md (stier, sha256, OTS, OSF, MDE, latens, CREDITCHECK, df -h, avvik, JOSS-avkrysning).
+- df -h / ved slutt 09:16 UTC: 460Gi, 13Gi brukt, 31Gi ledig (30 %) — uendret fra start.
+- Ingen egne prosesser kjører (pgrep tomt). Plist er lastet og kjører neste gang 05:00 lokal tid med SES-vakt.
+
+MASKINEN ER LEDIG
