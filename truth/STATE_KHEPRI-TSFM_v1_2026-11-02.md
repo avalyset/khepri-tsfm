@@ -17,9 +17,9 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 | M | Steg | Status | UTC |
 |---|---|---|---|
 | M0 | 0 repo, truth/ | FERDIG, commit 6d89c93 | 2026-11-02 |
-| M1 | 1 kilder, 2 latens, 3 data | FERDIG (denne commit) | 2026-11-02 |
-| M2 | 4 MDE, PREREG, OSF | PREREG låst (tagg prereg-v1); OSF-registrering pågår | 2026-11-02 |
-| M3 | 7 kjøring, 8 analyse | ikke startet | |
+| M1 | 1 kilder, 2 latens, 3 data | FERDIG, commit 38b8441 | 2026-11-02 |
+| M2 | 4 MDE, PREREG, OSF | PREREG låst (signert tagg prereg-v1 → 74539f2); **OSF IKKE SENDT: Eirik ikke innlogget på osf.io** | 2026-11-02 |
+| M3 | 6 logg, 7 kjøring, 8 analyse | STOPPET før steg 7 (OSF-regelen); issue.py + plist skrevet, plist IKKE lastet | |
 | M4 | 9 frys | ikke startet | |
 
 ## Steg 1 (kilder, Sonnet-subagent; råsvar i $V/tmp/steg1/ med sha256 i subagentrapport)
@@ -57,3 +57,27 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
   meta sha256 97f1cf6d7c640968ec800ebefb578680bdcdf44a8269dea6bdb6f0638a5f7929, OTS-stempel .ots.
 - Origins: retro 361 per sone (2025-01-01 – 2025-12-27), holdout 14 per sone (2026-10-16 – 2026-10-29).
 - Pumpetime-NaN før utfylling i holdout: NO2 54,5 %, NO3 41,6 %, NO5 16,7 % (DEVIATIONS D-07).
+
+## Steg 4 (M2)
+- MDE: results/MDE_KHEPRI-TSFM_v1_2026-11-02.md — 2,989 pp (n = 14, h = 4, σ²_LR 7,6455 fra 361 retro-origins); retro n = 361: 0,413 pp.
+- PREREG: prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md (OSF-mal «Secondary Data Preregistration»), signert tagg prereg-v1
+  (tag-objekt bab425f2a39ad3f6cb46cdc789828bc83e95c1db → commit 74539f2af7bb6d203d8c8452e01d96a222156078), pushet.
+- Tarball: $V/PREREG_KHEPRI-TSFM_v1_2026-11-02.tar.gz (git archive prereg-v1, 5 822 754 B),
+  sha256 6fb2c76cfdcf7235a8284d9631a64714b3aeaf3efddb997f0b173ebcbf7ab5a0, OTS-stempel .ots (venter på Bitcoin).
+- OSF: 2026-11-02 ca. 07:40 UTC åpnet osf.io/registries/osf/new i Eiriks Chrome → videresendt til
+  accounts.osf.io/login. **Eirik er ikke innlogget på OSF.** Ingen innlogging forsøkt. OSF-URL: ingen.
+- Konsekvens (fast regel): ingen TSFM-prediksjon på ekte CI-data; stopp før steg 7. Heller ingen
+  SARIMA/GBM/naiv-prognose på holdout (PREREG §4 sier at ingen er laget). Plist er ikke lastet, fordi
+  issue.py kjører TSFM på ekte CI.
+- Etter tagg: D-09 (feilretting i issue.py, commit e4231f5). LICENSE (Apache-2.0) og LICENSE-DATA (CC-BY-4.0) lagt til.
+
+## Steg 5 (B)
+- STATE-B er tom (bare arkivnøkkel) ved M2. Ingen ettermåling av kreditt.
+
+## Gjenoppta (neste økt A)
+1. Eirik logger inn på osf.io i Chrome.
+2. Registrer med malen «Secondary Data Preregistration»: innhold fra prereg/PREREG_…md, vedlegg
+   $V/PREREG_KHEPRI-TSFM_v1_2026-11-02.tar.gz, embargo til 2027-12-31, godkjenn som admin; nevn D-09.
+   OSF-URL hit.
+3. Deretter: `python run_arms.py baselines 2026-11-02`, så `python run_arms.py tsfm 2026-11-02` (serielt, run.lock),
+   analysis.py → RESULTATER, repro_v15.py, last inn plist, steg 9.
