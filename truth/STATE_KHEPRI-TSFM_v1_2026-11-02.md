@@ -18,8 +18,8 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 |---|---|---|---|
 | M0 | 0 repo, truth/ | FERDIG, commit 6d89c93 | 2026-11-02 |
 | M1 | 1 kilder, 2 latens, 3 data | FERDIG, commit 38b8441 | 2026-11-02 |
-| M2 | 4 MDE, PREREG, OSF | PREREG låst (signert tagg prereg-v1 → 74539f2); **OSF IKKE SENDT: Eirik ikke innlogget på osf.io** | 2026-11-02 |
-| M3 | 6 logg, 7 kjøring, 8 analyse | STOPPET før steg 7 (OSF-regelen); issue.py + plist skrevet, plist IKKE lastet | |
+| M2 | 4 MDE, PREREG, OSF | FERDIG: OSF SENDT https://osf.io/hncz5 (07:49 UTC), embargo til 2027-12-31, venter admin-godkjenning | 2026-11-02 |
+| M3 | 6 logg, 7 kjøring, 8 analyse | steg 7 startet etter OSF-innsending | 2026-11-02 |
 | M4 | 9 frys | ikke startet | |
 
 ## Steg 1 (kilder, Sonnet-subagent; råsvar i $V/tmp/steg1/ med sha256 i subagentrapport)
@@ -64,20 +64,14 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
   (tag-objekt bab425f2a39ad3f6cb46cdc789828bc83e95c1db → commit 74539f2af7bb6d203d8c8452e01d96a222156078), pushet.
 - Tarball: $V/PREREG_KHEPRI-TSFM_v1_2026-11-02.tar.gz (git archive prereg-v1, 5 822 754 B),
   sha256 6fb2c76cfdcf7235a8284d9631a64714b3aeaf3efddb997f0b173ebcbf7ab5a0, OTS-stempel .ots (venter på Bitcoin).
-- OSF: 2026-11-02 ca. 07:40 UTC åpnet osf.io/registries/osf/new i Eiriks Chrome → videresendt til
-  accounts.osf.io/login. **Eirik er ikke innlogget på OSF.** Ingen innlogging forsøkt. OSF-URL: ingen.
-- Konsekvens (fast regel): ingen TSFM-prediksjon på ekte CI-data; stopp før steg 7. Heller ingen
-  SARIMA/GBM/naiv-prognose på holdout (PREREG §4 sier at ingen er laget). Plist er ikke lastet, fordi
-  issue.py kjører TSFM på ekte CI.
+- OSF, første forsøk ca. 07:40 UTC: Eirik ikke innlogget (videresendt til accounts.osf.io/login); stoppet før steg 7.
+- OSF, andre forsøk etter at Eirik logget inn: registrering SENDT 2026-11-02 07:49 UTC (OSF viser 8:49 AM lokal tid).
+  **Registrering: https://osf.io/hncz5** (malen «Secondary Data Preregistration»), tilknyttet prosjekt https://osf.io/dbwvx
+  (OSF-utkast 6ae83f66e155f9e3fc296ed7). Lisens CC-BY 4.0. Vedlegg: PREREG_KHEPRI-TSFM_v1_2026-11-02.tar.gz (5,8 MB).
+  Embargo med sluttdato 2027-12-31. Status «Pending approval»: OSF sender godkjenningslenke på e-post til admin
+  (Eirik); uten handling godkjennes den automatisk etter 48 t. Godkjenning i nettleseren var ikke mulig (ingen knapp på siden).
+  D-09 er nevnt i feltet «Prior knowledge». Registrerings-DOI: ingen ennå.
 - Etter tagg: D-09 (feilretting i issue.py, commit e4231f5). LICENSE (Apache-2.0) og LICENSE-DATA (CC-BY-4.0) lagt til.
 
 ## Steg 5 (B)
 - STATE-B er tom (bare arkivnøkkel) ved M2. Ingen ettermåling av kreditt.
-
-## Gjenoppta (neste økt A)
-1. Eirik logger inn på osf.io i Chrome.
-2. Registrer med malen «Secondary Data Preregistration»: innhold fra prereg/PREREG_…md, vedlegg
-   $V/PREREG_KHEPRI-TSFM_v1_2026-11-02.tar.gz, embargo til 2027-12-31, godkjenn som admin; nevn D-09.
-   OSF-URL hit.
-3. Deretter: `python run_arms.py baselines 2026-11-02`, så `python run_arms.py tsfm 2026-11-02` (serielt, run.lock),
-   analysis.py → RESULTATER, repro_v15.py, last inn plist, steg 9.
