@@ -9,7 +9,7 @@ import os
 
 import pandas as pd
 
-from khepri import forecast as fc
+from khepri_v15 import forecast as fc
 
 V = os.environ.get("V", "/Volumes/Vault/khepri-tsfm")
 HOME = os.path.expanduser("~")

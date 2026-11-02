@@ -118,3 +118,14 @@ Fordel = tap(base) − tap(TSFM). Indikator = fordel retro − fordel holdout; H
 
 - retro: Chronos-2 361, GBM 361, SARIMA 361, Timestral-209M 361, Timestral-5M 361, snaive_week 361
 - holdout: Chronos-2 14, GBM 14, SARIMA 14, Timestral-209M 14, Timestral-5M 14, snaive_week 14
+
+## Tillegg (ikke fra analysis.py): SARIMA-fallbacks
+
+Telt fra kolonnen `fallback` i PRED-SARIMA_KHEPRI-TSFM_v1_2026-11-02.parquet (v1.5-regelen: diurnal persistens ved feil i apply()/forecast()).
+
+- retro: 0 fallback-origins av 3249 (sone × origin)
+- holdout: 0 fallback-origins av 126 (sone × origin)
+
+## Tillegg: NO5-holdouten er uinformativ
+
+Khepri v1.5-CI for NO5 er konstant 24,0 g/kWh i hele holdout-vinduet (data/CI_KHEPRI-TSFM_v1_2026-11-02.parquet), så holdout-MAPE for NO5 er 0,000 for alle armer unntatt GBM (0,047). NO5 inngår i sone-snittet etter PREREG, men gir ingen informasjon om rangering på holdout.

@@ -42,7 +42,7 @@ def tsfm(name):
 def sarima():
     import pandas as pd
     from statsmodels.tsa.statespace.sarimax import SARIMAX
-    from khepri import forecast as fc
+    from khepri_v15 import forecast as fc
     from khepri_tsfm.data import set_raw_dir
     set_raw_dir()
     T = lambda s: pd.Timestamp(s, tz="UTC")

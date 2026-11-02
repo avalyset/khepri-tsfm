@@ -18,7 +18,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-from khepri import forecast as fc
+from khepri_v15 import forecast as fc
 from khepri_tsfm.common import BASELINE_ARMS, QCOLS, QLEVELS, TSFM_ARMS
 from khepri_tsfm.data import ZONES
 from khepri_tsfm.stats import H_DM, dm_hln, hac_se_mean, holm

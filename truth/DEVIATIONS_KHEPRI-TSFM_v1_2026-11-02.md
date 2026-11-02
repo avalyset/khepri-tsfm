@@ -99,3 +99,16 @@ før/etter PREREG, hva, hvorfor, konsekvens, sha256 + OTS-stempel av fila etter 
   ingen lås eller henting). Ingen endring i analyse eller armer. Steg 7: SES sjekkes manuelt
   før hver tung kjøring; den køsatte TSFM-jobben (pid 4343, bare ventende på run.lock) ble
   avsluttet før den startet, og startes etter ny SES-sjekk.
+
+### D-11 Khepri v1.5 vendret som khepri_v15/ (pakking, ingen endring i analyse eller tall)
+- 2026-11-02 ca. 08:45 UTC, før tagg repro-ready. Varslet av økt B (STATE-B 08:39:02Z): `analysis.py:21`
+  (`from khepri import forecast as fc`) krevde Khepri v1.5, som verken lå i pyproject.toml eller uv.lock; lokalt ble den
+  lagt på stien med en .pth-fil i $V/.venv. Taggen var dermed ikke selvstendig (ModuleNotFoundError etter `uv sync --frozen`).
+- Taggen v1.5 (9e2214f) har ingen pakkedefinisjon (verken pyproject.toml eller setup.py; bare requirements.txt og src/),
+  så en git-avhengighet kan ikke installeres. Derfor er `src/khepri/` vendret ordrett som `khepri_v15/` (6 filer, byte-like
+  med `git show v1.5:src/khepri/<fil>`, kontrollert med cmp), med LICENSE (Apache-2.0) og VENDORED.md.
+- Endret: bare importlinjene `from khepri import forecast as fc` → `from khepri_v15 import forecast as fc` i analysis.py,
+  repro_v15.py, khepri_tsfm/data.py, khepri_tsfm/baselines.py, run_arms.py (2), prosp_arms.py, latency.py,
+  validate_baselines.py, repro_from_ci.py. .pth-fila i $V/.venv er fjernet.
+- Kontroll: ren venv fra `git archive` (uv sync --frozen) kjører analysis.py; resultatet sammenlignes byte for byte med
+  results/ (se STATE).

@@ -60,7 +60,7 @@ def finalize(arm, revision):
 
 def run_baselines(holdout_end):
     from khepri_tsfm.baselines import fit_gbm, fit_sarima, sarima_origin, snaive_week
-    from khepri import forecast as fc
+    from khepri_v15 import forecast as fc
     for zone, split, (years, train_end, ts, te) in splits(holdout_end):
         hist, gap = data.series(zone, years, te)
         origins = data.origins(hist, ts, te)
@@ -104,7 +104,7 @@ def run_baselines(holdout_end):
 
 def run_tsfm(holdout_end):
     from khepri_tsfm.models import Arm, offline
-    from khepri import forecast as fc
+    from khepri_v15 import forecast as fc
     offline()
     series = {}
     for zone, split, (years, train_end, ts, te) in splits(holdout_end):

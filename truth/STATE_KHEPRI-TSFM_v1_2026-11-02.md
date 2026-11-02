@@ -105,3 +105,11 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 - Reproduksjon: results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md — alle |Δ| ≤ 0,005 mot v1.5-tabellene unntatt NO1 SARIMA −0,0104 (D-02).
 - Observasjon: NO5-CI i holdout er konstant 24,0 g/kWh (1 unik verdi fra 2026-10-01; 3 291 unike i 2025), så NO5-holdout-MAPE
   er 0,000 for SARIMA, snaive og alle TSFM (GBM 0,047). NO5-holdouten er uinformativ; rapporteres slik.
+
+## Økt B og eierskap (KORREKSJON fra Eirik, ca. 08:35 UTC)
+- Eirik ga GitHub-appen tilgang manuelt. Verifisert 08:34 UTC i Chrome (github.com/settings/installations/92484438):
+  «Only select repositories», 6 valgte, blant dem avalyset/khepri-tsfm. (`gh api /user/installations/92484438/repositories`
+  avvises fortsatt for OAuth-token.) Økt B kjører.
+- Eierskap: B eier MANUS-01/02/03 og SOURCES; A eier MANUS-04 og NUMBERS. A har ikke skrevet MANUS-01–03 i repoet;
+  A sin kildeverifisering (15 referanser, råsvar i $V/tmp/sources/) ligger som reserve i $V/tmp/manus-reserve/.
+- Frist: «manus ferdig» i STATE-B innen 10:30 UTC, ellers brukes reserven. REPRO: maks 1 t etter «manus ferdig», ellers fallback-subagent.

@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import norm
 
-from khepri import forecast as fc
+from khepri_v15 import forecast as fc
 from khepri_tsfm.common import QLEVELS
 
 log = logging.getLogger(__name__)

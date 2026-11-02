@@ -14,7 +14,7 @@ import sys
 import numpy as np
 import pandas as pd
 
-from khepri import forecast as fc
+from khepri_v15 import forecast as fc
 from khepri_tsfm import data
 from khepri_tsfm.baselines import run_baselines
 

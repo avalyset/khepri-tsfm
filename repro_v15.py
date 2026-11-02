@@ -13,7 +13,7 @@ import sys
 
 import pandas as pd
 
-from khepri import forecast as fc
+from khepri_v15 import forecast as fc
 
 PUBLISHED = {  # zone: (SARIMA, GBM corrected)
     "NO1": (2.47, 2.31), "NO2": (3.96, 3.42), "NO3": (6.87, 6.58), "NO4": (7.24, 10.16),
