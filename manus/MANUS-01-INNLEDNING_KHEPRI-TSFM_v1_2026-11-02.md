@@ -58,7 +58,7 @@ The contributions are as follows. We make no claim of priority.
   Chronos-2) with the Khepri v1.5 SARIMA and GBM baselines and a seasonal-naive reference, for
   96-hour CI forecasts in nine Nordic bidding zones. Design, analysis code and MDE were
   timestamped before any foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed)
-  and the GPG-signed tag `prereg-v1`; the proofs are archived in Zenodo ([ZENODO-DOI]). The
+  and the GPG-signed tag `prereg-v1`; the proofs are archived in Zenodo (10.5281/zenodo.23881315). The
   preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
 
 - A design that pairs a retrospective test with a small minimum detectable effect and a

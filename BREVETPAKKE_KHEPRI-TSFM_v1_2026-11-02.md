@@ -1,8 +1,7 @@
 Arkivnøkkel: BREVETPAKKE_KHEPRI-TSFM_v1_2026-11-02
 
-Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main 30aaf1d382ebecd19d55bf6a54fa001d795ec5b2.
-Plassholdere som settes ved publisering: \zenodoDOI (arxiv/main.tex), [ZENODO-DOI] (MANUS-01/-03),
-{{ZENODO_DOI}} (README, AIUSE). Repoet er privat; repo-URL legges inn ved utgivelse.
+Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main 7dc4b0fa132dcfb0a2b672f1170977a6a33f2092.
+Zenodo-DOI: 10.5281/zenodo.23881315 (satt inn ved publisering).
 Manuskriptkilden for arXiv er arxiv/ (main.tex, references.tex) med MANUS-01–04; md-filene i manus/ er rensede
 arbeidsfiler (annoterte versjoner med kildekommentarer på Vault, se SOURCES).
 OSF-ordlyd overalt: «submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval)». Aldri «registered», aldri «public» eller «approved».
@@ -41,8 +40,6 @@ OSF-ordlyd overalt: «submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/h
 \newcounter{none} % pandoc longtable without caption
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\pandocbounded}[1]{#1}
-% Set at publication (Brevet prompt): the Zenodo DOI of this deposit.
-\newcommand{\zenodoDOI}{[ZENODO-DOI]}
 
 \title{Zero-shot time-series foundation models against the Khepri v1.5 baselines for 96-hour
 carbon-intensity forecasts in nine Nordic bidding zones: a preregistered comparison}
@@ -59,7 +56,7 @@ Chronos-2, 8192-hour context, no covariates) with the Khepri v1.5 SARIMA and GBM
 with their code and hyperparameters unchanged, for 96-hour forecasts of hourly carbon intensity in the Nordic bidding zones NO1--NO5 and SE1--SE4. The
 design, the analysis code and a minimum detectable effect (MDE) were timestamped before any
 foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag
-prereg-v1; the proofs are archived in Zenodo (DOI \zenodoDOI{}). The preregistration was also
+prereg-v1; the proofs are archived in Zenodo (DOI 10.5281/zenodo.23881315). The preregistration was also
 submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval). On the 2025 test (361 daily origins,
 contamination not ruled out) all three models have a lower zone-averaged MAPE than both baselines,
 by 0.952 to 1.347 percentage points (Diebold--Mariano with the Harvey--Leybourne--Newbold
@@ -83,7 +80,7 @@ the locked analysis and all deviations are released with the code.
 \input{sections/results}
 
 \section*{Data and code availability}
-Code, the hourly CI series, all forecasts and the analysis output: Zenodo, DOI \zenodoDOI{}
+Code, the hourly CI series, all forecasts and the analysis output: Zenodo, DOI 10.5281/zenodo.23881315
 (repository github.com/avalyset/khepri-tsfm). Khepri v1.5.0: DOI 10.5281/zenodo.23101127.
 
 \section*{AI use}
@@ -159,7 +156,7 @@ The contributions are as follows. We make no claim of priority.
   Chronos-2) with the Khepri v1.5 SARIMA and GBM baselines and a seasonal-naive reference, for
   96-hour CI forecasts in nine Nordic bidding zones. Design, analysis code and MDE were
   timestamped before any foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed)
-  and the GPG-signed tag `prereg-v1`; the proofs are archived in Zenodo ([ZENODO-DOI]). The
+  and the GPG-signed tag `prereg-v1`; the proofs are archived in Zenodo (10.5281/zenodo.23881315). The
   preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
 
 - A design that pairs a retrospective test with a small minimum detectable effect and a
@@ -318,7 +315,7 @@ carbon-intensity (CI) data; D-09 to D-12 came later (Section 3.9).
 The design, the analysis code and the MDE were timestamped before any foundation-model forecast
 by an OpenTimestamps proof (Bitcoin-confirmed) of the tarball of the repository at the GPG-signed
 git tag `prereg-v1` (commit 74539f2af7bb6d203d8c8452e01d96a222156078) and by the signed tag itself;
-the proofs are archived in Zenodo ([ZENODO-DOI]).
+the proofs are archived in Zenodo (10.5281/zenodo.23881315).
 
 The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
 
@@ -801,7 +798,7 @@ Nordic bidding zones NO1–NO5 and SE1–SE4.
 - **Preregistration:** design, analysis code and MDE were timestamped before any
   foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag
   `prereg-v1`; the proofs (PREREG tarball, sha256, `.ots`, signed tag objects) are archived in Zenodo
-  (DOI: {{ZENODO_DOI}}). The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
+  (DOI: 10.5281/zenodo.23881315). The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
 - **Baseline source:** Khepri v1.5.0, DOI 10.5281/zenodo.23101127.
 
 Results are in `results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md` (generated by the locked
@@ -950,6 +947,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 - 10.1198/016214506000001437
 - 10.3390/en12071345
 - 10.5281/zenodo.23101127
+- 10.5281/zenodo.23881315
 
 ## 4.2 arXiv-ID-er
 
@@ -1062,7 +1060,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 2021 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:57 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:5 |
 | 214 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:57 | truth/DECISIONS_KHEPRI-TSFM_v1_2026-11-02.md:43 |
 | 2024 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:57 | data/CI_KHEPRI-TSFM_v1_2026-11-02.meta.json:7 |
-| 70 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:58 | truth/SOURCES_KHEPRI-TSFM_v1_2026-11-02.md:163 |
+| 70 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:58 | truth/STATE_KHEPRI-TSFM_v1_2026-11-02.md:218 |
 | 30 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:58 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:765 |
 | 214 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:63 | truth/DECISIONS_KHEPRI-TSFM_v1_2026-11-02.md:43 |
 | 96 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:63 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
@@ -1458,30 +1456,30 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 2 | arxiv/main.tex:18 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
 | 2 | arxiv/main.tex:19 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
 | 1 | arxiv/main.tex:29 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 96 | arxiv/main.tex:33 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 8192 | arxiv/main.tex:44 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
-| 96 | arxiv/main.tex:45 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 07 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
-| 49 | arxiv/main.tex:49 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:64 |
-| 2025 | arxiv/main.tex:49 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 361 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 0.952 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
-| 1.347 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 0.0001 | arxiv/main.tex:52 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 9 | arxiv/main.tex:52 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
-| 14 | arxiv/main.tex:53 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.729 | arxiv/main.tex:53 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
-| 1.326 | arxiv/main.tex:53 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 2.989 | arxiv/main.tex:54 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 14 | arxiv/main.tex:56 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 1.1114 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
-| 1.0733 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
-| 1.1198 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
-| 1.4165 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
-| 0.0001 | arxiv/main.tex:58 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 14 | arxiv/main.tex:61 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.124 | arxiv/main.tex:62 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
-| 0.360 | arxiv/main.tex:62 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
+| 96 | arxiv/main.tex:31 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 8192 | arxiv/main.tex:42 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
+| 96 | arxiv/main.tex:43 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 07 | arxiv/main.tex:47 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
+| 49 | arxiv/main.tex:47 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:64 |
+| 2025 | arxiv/main.tex:47 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 361 | arxiv/main.tex:47 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 0.952 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
+| 1.347 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 0.0001 | arxiv/main.tex:50 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 9 | arxiv/main.tex:50 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
+| 14 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.729 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
+| 1.326 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 2.989 | arxiv/main.tex:52 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 14 | arxiv/main.tex:54 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 1.1114 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
+| 1.0733 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
+| 1.1198 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
+| 1.4165 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
+| 0.0001 | arxiv/main.tex:56 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 14 | arxiv/main.tex:59 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.124 | arxiv/main.tex:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
+| 0.360 | arxiv/main.tex:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
 | 96 | README.md:5 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
 | 8192 | README.md:8 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
 | 2025 | README.md:11 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |

@@ -223,3 +223,12 @@ MASKINEN ER LEDIG
   ikke samme ordlyd, står); (b) lisensnavnet «Modified MIT License» ordrett fra overskriften i LICENSE for mistralai/Timestral-209M @
   9874d252… (HF-cache på Vault), likt i MANUS-02 §2.2, MANUS-03 §3.12 og README (bare MANUS-02 hadde «license»).
 - arXiv-bygg 0 feil; NUMBERS 0 uten kilde.
+
+## Publisering — steg 3 Zenodo (ca. 09:50 UTC)
+- Presedens Khepri v1.5 (zenodo 23101127): resource_type software; creator «Botten Nicolaysen, Eirik», ORCID 0009-0001-9188-6788,
+  affiliasjon EcoDeco AS; lisens cc-by-4.0. Ny post (ikke ny Khepri-versjon) opprettet via Zenodos API i Eiriks innloggede økt:
+  utkast 23881315 (forelder/konsept 23881314), reservert DOI **10.5281/zenodo.23881315**. Lisenser apache-2.0 (LICENSE) + cc-by-4.0
+  (LICENSE-DATA); versjon 1.0.0; references 10.5281/zenodo.23101127 og https://osf.io/hncz5; beskrivelse = del 3 ordrett;
+  tittel = innledningen i del 3 uten parentesene.
+- DOI satt inn i arxiv/main.tex (makroen \zenodoDOI fjernet), MANUS-01, MANUS-03, README, AIUSE, CITATION.cff (doi + date-released);
+  plassholdere etterpå: 0. OTS for PRED-filene fortsatt ikke komplett (ventende .ots følger med).

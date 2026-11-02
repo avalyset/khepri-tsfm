@@ -11,7 +11,7 @@ carbon-intensity (CI) data; D-09 to D-12 came later (Section 3.9).
 The design, the analysis code and the MDE were timestamped before any foundation-model forecast
 by an OpenTimestamps proof (Bitcoin-confirmed) of the tarball of the repository at the GPG-signed
 git tag `prereg-v1` (commit 74539f2af7bb6d203d8c8452e01d96a222156078) and by the signed tag itself;
-the proofs are archived in Zenodo ([ZENODO-DOI]).
+the proofs are archived in Zenodo (10.5281/zenodo.23881315).
 
 The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
 

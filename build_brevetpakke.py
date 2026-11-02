@@ -76,8 +76,7 @@ def main():
             if l.startswith("| ") and not l.startswith("| Tall")]
     out = [f"Arkivnøkkel: {NAME[:-3]}", "",
            f"Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main {head}.",
-           "Plassholdere som settes ved publisering: \\zenodoDOI (arxiv/main.tex), [ZENODO-DOI] (MANUS-01/-03),",
-           "{{ZENODO_DOI}} (README, AIUSE). Repoet er privat; repo-URL legges inn ved utgivelse.",
+           "Zenodo-DOI: 10.5281/zenodo.23881315 (satt inn ved publisering).",
            "Manuskriptkilden for arXiv er arxiv/ (main.tex, references.tex) med MANUS-01–04; md-filene i manus/ er rensede",
            "arbeidsfiler (annoterte versjoner med kildekommentarer på Vault, se SOURCES).",
            f"OSF-ordlyd overalt: «{OSF}». Aldri «registered», aldri «public» eller «approved».", "",

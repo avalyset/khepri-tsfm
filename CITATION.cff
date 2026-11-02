@@ -18,6 +18,8 @@ authors:
 repository-code: "https://github.com/avalyset/khepri-tsfm"
 license: [Apache-2.0, CC-BY-4.0]
 version: "1.0.0"
+doi: 10.5281/zenodo.23881315
+date-released: "2026-11-02"
 references:
   - type: software
     title: Khepri

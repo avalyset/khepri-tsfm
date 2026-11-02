@@ -27,8 +27,6 @@
 \newcounter{none} % pandoc longtable without caption
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\pandocbounded}[1]{#1}
-% Set at publication (Brevet prompt): the Zenodo DOI of this deposit.
-\newcommand{\zenodoDOI}{[ZENODO-DOI]}
 
 \title{Zero-shot time-series foundation models against the Khepri v1.5 baselines for 96-hour
 carbon-intensity forecasts in nine Nordic bidding zones: a preregistered comparison}
@@ -45,7 +43,7 @@ Chronos-2, 8192-hour context, no covariates) with the Khepri v1.5 SARIMA and GBM
 with their code and hyperparameters unchanged, for 96-hour forecasts of hourly carbon intensity in the Nordic bidding zones NO1--NO5 and SE1--SE4. The
 design, the analysis code and a minimum detectable effect (MDE) were timestamped before any
 foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag
-prereg-v1; the proofs are archived in Zenodo (DOI \zenodoDOI{}). The preregistration was also
+prereg-v1; the proofs are archived in Zenodo (DOI 10.5281/zenodo.23881315). The preregistration was also
 submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval). On the 2025 test (361 daily origins,
 contamination not ruled out) all three models have a lower zone-averaged MAPE than both baselines,
 by 0.952 to 1.347 percentage points (Diebold--Mariano with the Harvey--Leybourne--Newbold
@@ -69,7 +67,7 @@ the locked analysis and all deviations are released with the code.
 \input{sections/results}
 
 \section*{Data and code availability}
-Code, the hourly CI series, all forecasts and the analysis output: Zenodo, DOI \zenodoDOI{}
+Code, the hourly CI series, all forecasts and the analysis output: Zenodo, DOI 10.5281/zenodo.23881315
 (repository github.com/avalyset/khepri-tsfm). Khepri v1.5.0: DOI 10.5281/zenodo.23101127.
 
 \section*{AI use}
