@@ -17,8 +17,10 @@ they are bibliographic attributions only and must be checked by the author befor
 
 ## 3.1 Study design and preregistration
 
-The design, the analysis code and all deviations known at the time were fixed before any
-time-series foundation model (TSFM) forecast was produced on real carbon-intensity (CI) data.
+The design, the analysis code and deviations D-01 to D-08 were fixed in the tagged
+preregistration before any time-series foundation model (TSFM) forecast was produced on real
+carbon-intensity (CI) data; D-09 and D-10 came later (Section 3.9).
+<!-- src: PRE:5-9, PRE:207-213, PRE:221-224; DEV:82-101 -->
 The preregistration is archived on Zenodo ([ZENODO-DOI]) and is the anchor of this study. It
 contains the repository at the GPG-signed git tag `prereg-v1` (commit
 74539f2af7bb6d203d8c8452e01d96a222156078) as a tarball whose sha256 is stamped with
@@ -235,7 +237,8 @@ published v1.5 tables per zone (D-08); it enters no test.
 
 ## 3.9 Deviations
 
-All deviations from the design and the preregistration are logged with dates (table below). D-01 to D-08 were made before registration and are part of it; D-09 and D-10 were
+All deviations from the design and the preregistration are logged with dates in the deviation
+log; the table below summarises them. D-01 to D-08 were made before registration and are part of it; D-09 and D-10 were
 made after the `prereg-v1` tag and concern only the prospective log, not the arms or the
 analysis.
 <!-- src: PRE:207-213 (D-01–D-08 in the registration); DEV:84-90 (D-09), DEV:92-101 (D-10) -->
@@ -273,7 +276,7 @@ version and are not part of this study.
 
 ## 3.12 Licences
 
-Code is released under Apache-2.0 and the derived data under CC-BY-4.0. The Timestral weights
+The code is licensed under Apache-2.0 and the derived data under CC-BY-4.0. The Timestral weights
 are under Mistral AI's "Modified MIT License", which includes a revenue restriction; Chronos-2
 is under Apache-2.0.
 <!-- src: PRE:216-217; STA:74 (LICENSE, LICENSE-DATA); STA:37 (Modified MIT, revenue limit) -->

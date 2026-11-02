@@ -31,8 +31,9 @@ since that code was not public.
 
 According to its public repository, CarbonCast (Maji et al. 2022b) [NR] extends DACF to
 forecasts of up to 96 hours. The repository covers 13 regions, among them Sweden (SE) as the only
-Nordic region, and its saved models are trained on 2020, validated on January–June 2021 and
-tested on July–December 2021. It also points to a real-time v3.0 branch in testing, which we did
+Nordic region, and its saved models are trained on 2020 and validated on January–June 2021; the
+repository states that results similar to the paper are obtained when testing on July–December
+2021. It also points to a real-time v3.0 branch in testing, which we did
 not read.
 <!-- src: S07 CarbonCast README.md:5 ("up to 96 hours ... extension of DACF"), README.md:30-46 (regions; Europe: DE, NL, ES, SE, PL), README.md:94 (train Jan–Dec 2020, validate Jan–Jun 2021, test Jul–Dec 2021); README.md:11 (v3.0 real-time branch, not read); bibtex README.md:159-165. Paper not read. -->
 The repository of EnsembleCI (Yan et al. 2025) [NR] implements CI forecasting with
@@ -77,13 +78,16 @@ maximum context of 8192 steps.
 According to its repository, Impermanent (Garza et al. 2026) [NR] is a live benchmark for
 temporal generalisation in which models must forecast before the future is observed and are
 scored as data arrive. The repository motivates this with the risk that, for foundation models,
-"training data may overlap with evaluation data" in static benchmarks. The signals it lists are
+"[t]raining data may overlap with evaluation data" in static benchmarks. The signals it lists are
 activity series derived from GitHub Archive (stars, pushes, pull requests, issues).
 <!-- src: S05 impermanent README.md:8 (subtitle "Live Benchmark for Temporal Generalization in Time Series Forecasting"), README.md:39 (quote), README.md:41, README.md:133 (signals), README.md:177-185 (bibtex). Paper not read. -->
 Our post-release holdout is not a live evaluation: its forecasts were produced after the truth
-had been observed. It guarantees only that the target hours postdate the release of the frozen
-model weights. The prospective log (Section 3.10) adds forecasts issued before the truth exists.
-<!-- src: DEC:5-7; PRE:197-202; STA:52-53, STA:99 (data fetched 07:12–07:28 UTC, arms run 07:50–08:28 UTC on 2026-11-02). Describes our design, not Impermanent. -->
+had been observed. It guarantees only that the target hours postdate the public release of
+Timestral (2026-10-15, the date of its GitHub release commit) and of Chronos-2 (2025-10-20). In
+the prospective log (Section 3.10) a scheduled job issues the forecast for each 00:00 UTC origin
+a few hours later, while most of the 96 target hours are still unobserved; the context ends at the
+origin.
+<!-- src: DEC:5-7; PRE:197-202; STA:52-53, STA:99 (data fetched 07:12–07:28 UTC, arms run 07:50–08:28 UTC on 2026-11-02); S03 git log (2026-10-15), S04 README.md:20 (2025-10-20); launchd/no.ecodeco.khepri-tsfm.v1.plist:10 (05:00 local time), issue.py:9 and :84 (waits for run.lock at most 6 h). Describes our design, not Impermanent. -->
 
 ## 2.4 Forecast comparison and evaluation
 

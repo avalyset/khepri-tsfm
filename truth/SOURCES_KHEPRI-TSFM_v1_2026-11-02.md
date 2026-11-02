@@ -138,6 +138,13 @@ Identifikatorer fra truth/KJENTGRUNNLAG_KHEPRI-TSFM_v1_2026-11-02.md:2-3, 19-24.
   of the card» (As lesing, STA:38-41, ikke kontrollert av B); holdouten beskrevet som ikke-live.
 - Ikke endret (fast ordlyd i oppdraget): «[ZENODO-DOI]» og «registered on OSF 2026-11-02 07:49 UTC (osf.io/hncz5)».
 
+## Revisjon 2 (2026-11-02 ca. 08:58 UTC, siste runde)
+- Rettet: prospektiv logg utstedes noen timer etter origin (launchd/no.ecodeco.khepri-tsfm.v1.plist:10 kl. 05:00 lokal tid;
+  issue.py:9, :84 venter på run.lock i maks 6 t), ikke «før fasiten finnes»; holdoutens slippdatoer belagt (S03 git log,
+  S04 README.md:20); CarbonCast-testperioden sitert som README.md:94 sier den; sitatet «[t]raining data …»; D-01–D-08 i
+  taggen, D-09/D-10 etterpå; «licensed», ikke «released»; Maji et al. 2022a/b.
+- [NR]-markørene står bevisst i prosaen; A fjerner dem når kildene er lest.
+
 ## Ikke gjort (krav i oppdraget som ikke kunne oppfylles fra økt B)
 - «Sjekk om CarbonX dekker NO/SE»: besvart bare for kodelageret (S02), ikke for artikkelen.
 - «Om noe er prospektivt eller post-release»: besvart bare for CarbonX-lageret (S02, ingen treff).

@@ -3,13 +3,13 @@ Arkivnøkkel: MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02
 <!-- Owner: session B. Language: English (arXiv). No results in this section.
 External claims: source IDs S.. refer to truth/SOURCES_KHEPRI-TSFM_v1_2026-11-02.md (URL, date read, locator).
 Internal numbers: FILE:LINE with the abbreviations of MANUS-03 (DEC, DEV, PRE, MDE, STA, KG), files at commit 315e487.
-[NR] = not read in full text by session B; bibliographic attribution only. -->
+[NR] = not read in full text by session B; bibliographic attribution only. The [NR] markers in the prose are deliberate; A removes them before upload once each source is read. -->
 
 # 1 Introduction
 
 Forecasts of the carbon intensity (CI) of electricity, in grams of CO2-equivalent per kWh, are
 proposed as a building block for shifting flexible electricity use to hours with lower
-emissions (Maji et al. 2022, DACF).
+emissions (Maji et al. 2022a).
 <!-- src: S06 DACF.pdf p.1, Abstract ("An essential building block for these optimizations is future knowledge of the carbon intensity of the supplied electricity") and §1 "The need for carbon-aware systems" -->
 For the nine Nordic bidding zones NO1–NO5 and SE1–SE4, Khepri v1.5 computes an hourly CI series
 from ENTSO-E generation per production type and evaluates SARIMA and gradient-boosting (GBM)
@@ -40,7 +40,7 @@ SARIMA.
 Evaluating a pretrained model on historical data raises a contamination problem. If the test
 period, or the series itself, was part of the pretraining corpus, a retrospective test can
 overstate the accuracy the model would have on data it has not seen. The repository of
-the live benchmark Impermanent states the same concern for static benchmarks: "training data may
+the live benchmark Impermanent states the same concern for static benchmarks: "[t]raining data may
 overlap with evaluation data" (Garza et al. 2026 [NR]).
 <!-- The two sentences before this one are B's reasoning, not a sourced fact. -->
 <!-- src: S05 impermanent README.md:39 (quote), README.md:41 (live evaluation). The paper arXiv:2603.08707 was not read. -->
@@ -51,7 +51,7 @@ or Sweden, but a name match cannot rule out that Nordic data entered through agg
 <!-- src: S03 (grep train|corpus|cutoff|pretrain in README.md, LICENSE, pyproject.toml: no disclosure); KG:17-18; STA:38-41 (A's step-1 reading of the Chronos-2 model card; NOT re-read by B, huggingface.co blocked). The last clause is B's reasoning, not a sourced fact. -->
 
 We therefore pair two tests. A retrospective test on the Khepri v1.5 2025 test set (361 daily
-origins per zone) has statistical power but is labelled "contamination not ruled out". A
+origins per zone) has more statistical power but is labelled "contamination not ruled out". A
 post-release holdout uses only origins from 2026-10-16, the day after the Timestral release, so
 that every target hour lies after the release of all three TSFMs; it has 14 origins per zone.
 <!-- src: PRE:100-104; DEC:5-7; STA:58. Chronos-2 release 2025-10-20 (S04 README.md:20) precedes the holdout. -->
@@ -69,8 +69,9 @@ The contributions are as follows. We make no claim of priority.
   96-hour CI forecasts in nine Nordic bidding zones. The preregistration is archived on Zenodo
   ([ZENODO-DOI]) and was registered on OSF 2026-11-02 07:49 UTC (osf.io/hncz5).
   <!-- src: PRE:79-87; STA:63-69; STA "OSF-sjekk og TILLEGG" (Zenodo is the anchor; OSF never described as public or approved) -->
-- A design that pairs a powered retrospective test with a post-release holdout, with the
-  minimum detectable effect and the decision rule fixed before any TSFM forecast was made.
+- A design that pairs a retrospective test with a small minimum detectable effect and a
+  post-release holdout, with the minimum detectable effect and the decision rule fixed before
+  any TSFM forecast was made.
   <!-- src: DEC:18-22; MDE:3-4 (computed before any TSFM prediction) -->
 - Hourly predictions of every arm, the derived CI series and the code, stored with sha256 sums
   and OpenTimestamps stamps, and a deviation log in which every deviation is dated.
