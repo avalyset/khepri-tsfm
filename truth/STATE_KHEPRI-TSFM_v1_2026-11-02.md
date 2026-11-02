@@ -75,3 +75,33 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 
 ## Steg 5 (B)
 - STATE-B er tom (bare arkivnøkkel) ved M2. Ingen ettermåling av kreditt.
+
+## Maskinregel (TILLEGG fra Eirik, 2026-11-02 ca. 07:52 UTC)
+- SES-sjekk før hver tung kjøring; én tung jobb om gangen; kun lesing under sjel-eller-speil.
+- Sjekk 07:52 UTC: STATUS_SES siste linje «2026-11-02T06:41:24Z STEMPEL F5-prosessen er avsluttet»
+  (PAUSET 06:38:29Z), ingen LAS, pid 41217/41402 lever ikke → baseline-kjøringen (startet 07:50:33Z) fortsetter.
+
+## OSF-sjekk og TILLEGG (2026-11-02 ca. 08:25 UTC)
+- $V/OSFSJEKK_KHEPRI-TSFM_v1_2026-11-02.md: embargo_initiated på dbwvx 07:49:55Z (vxm64); embargo_approved mangler;
+  admin-varsel ikke sendt av OSF (Eiriks konklusjon i TILLEGG); auto-godkjenning ventes (help.osf.io/article/330).
+- TILLEGG fra Eirik: OSF gater ingenting; ingen flere OSF-sjekker, ingen ny registrering, ingen henvendelse til OSF.
+- Steg 9-krav: Zenodo-deponeringen får PREREG-tarballen, alle .ots-bevis (ots upgrade der mulig) og tagg-signaturen
+  for prereg-v1. Manus, README og CITATION.cff siterer Zenodo-DOI-en som preregistreringens anker og osf.io/hncz5 som
+  tilleggsreferanse med «registrert 2026-11-02 07:49 UTC». Ingen tekst påstår at OSF-registreringen er offentlig eller godkjent.
+
+## GitHub-app-tilgang for økt B (TILLEGG, ca. 08:20 UTC)
+- `gh api /user/installations` → 403 («must authenticate with an access token authorized to a GitHub App»).
+- Chrome: github.com/settings/installations viser appen «Claude» (installasjon 92484438). «Configure» krever
+  «Confirm access» (sudo-modus: passkey/GitHub Mobile/autentiseringsapp/passord). Ikke utført; ingen endring gjort.
+  Repo-id avalyset/khepri-tsfm: se svaret. Eirik må selv bekrefte tilgang og legge til repoet.
+
+## Steg 7–8 (M3)
+- SES-sjekk 07:52Z og 08:08Z: pauset, ingen LAS → kjørt. Baselines 07:50:33–08:07Z, TSFM 08:08–08:28Z (serielt, run.lock).
+- predictions/PRED-{snaive_week,SARIMA,GBM,Timestral-5M,Timestral-209M,Chronos-2}_KHEPRI-TSFM_v1_2026-11-02.parquet,
+  324 000 rader hver (9 soner × (361 + 14) origins × 96 t); sha256 i predictions/PRED_KHEPRI-TSFM_v1_2026-11-02.sha256;
+  OTS-stempel per fil. SARIMA-fallback: 0 origins. Ingen tapte origins.
+- analysis.py uendret siden prereg-v1 (`git diff --stat prereg-v1` tom for analysis.py, khepri_tsfm/, run_arms.py).
+  Utdata: results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.{md,json}.
+- Reproduksjon: results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md — alle |Δ| ≤ 0,005 mot v1.5-tabellene unntatt NO1 SARIMA −0,0104 (D-02).
+- Observasjon: NO5-CI i holdout er konstant 24,0 g/kWh (1 unik verdi fra 2026-10-01; 3 291 unike i 2025), så NO5-holdout-MAPE
+  er 0,000 for SARIMA, snaive og alle TSFM (GBM 0,047). NO5-holdouten er uinformativ; rapporteres slik.

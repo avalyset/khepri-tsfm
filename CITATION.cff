@@ -1,0 +1,27 @@
+# Arkivnøkkel: CITATION (fast navn) — Khepri-TSFM v1
+cff-version: 1.2.0
+message: "If you use Khepri-TSFM, please cite it as below."
+title: "Khepri-TSFM v1: zero-shot time-series foundation models vs. Khepri v1.5 baselines for Nordic carbon-intensity forecasting"
+abstract: >-
+  Preregistered comparison (preregistration anchored in this Zenodo deposit;
+  additional reference OSF https://osf.io/hncz5, registered 2026-11-02 07:49 UTC) of zero-shot time-series
+  foundation models (Timestral-5M, Timestral-209M, Chronos-2) with the Khepri v1.5
+  SARIMA and GBM baselines for 96-hour forecasts of hourly carbon intensity in the
+  nine Nordic bidding zones NO1–NO5 and SE1–SE4, on the Khepri v1.5 2025 test and a
+  post-release holdout from 2026-10-16.
+type: software
+authors:
+  - family-names: "Botten Nicolaysen"
+    given-names: "Eirik"
+    orcid: "https://orcid.org/0009-0001-9188-6788"
+repository-code: "https://github.com/avalyset/khepri-tsfm"
+license: [Apache-2.0, CC-BY-4.0]
+version: "1.0.0"
+references:
+  - type: software
+    title: Khepri
+    version: "1.5.0"
+    doi: 10.5281/zenodo.23101127
+    authors:
+      - family-names: "Botten Nicolaysen"
+        given-names: "Eirik"
