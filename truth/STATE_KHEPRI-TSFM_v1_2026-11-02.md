@@ -113,3 +113,12 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 - Eierskap: B eier MANUS-01/02/03 og SOURCES; A eier MANUS-04 og NUMBERS. A har ikke skrevet MANUS-01–03 i repoet;
   A sin kildeverifisering (15 referanser, råsvar i $V/tmp/sources/) ligger som reserve i $V/tmp/manus-reserve/.
 - Frist: «manus ferdig» i STATE-B innen 10:30 UTC, ellers brukes reserven. REPRO: maks 1 t etter «manus ferdig», ellers fallback-subagent.
+
+## RESULTATER byte-lik analysis.py (RETTELSE fra Eirik, ca. 08:50 UTC)
+- To håndførte tillegg (SARIMA-fallbacks 0/3249 retro og 0/126 holdout; NO5-holdout uinformativ) var lagt til på slutten av
+  RESULTATER-md i commit e74be60. De er flyttet uendret til results/TILLEGG_KHEPRI-TSFM_v1_2026-11-02.md, med arkivnøkkel og en
+  linje om at fila ikke er utdata fra analysis.py.
+- RESULTATER-md er gjenopprettet fra M3-commit 315e487 (`git checkout 315e487 -- …`; `git checkout --` alene ville gitt e74be60-versjonen).
+- sha256 results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md = 2883d030b1832fa05e815b262490148d91296be652a48a6e7700535470c7a76a,
+  identisk med blob-en i 315e487. (STATE hadde ingen sha256 for RESULTATER-md fra M3; verifisert mot M3-commiten og ført her nå.)
+- NUMBERS generert på nytt med TILLEGG blant kildene: 208 tall, 0 uten kilde.

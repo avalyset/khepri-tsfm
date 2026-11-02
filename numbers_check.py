@@ -10,6 +10,7 @@ import sys
 
 SOURCES = [
     "results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md",
+    "results/TILLEGG_KHEPRI-TSFM_v1_2026-11-02.md",
     "results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md",
     "results/MDE_KHEPRI-TSFM_v1_2026-11-02.md",
     "results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json",
