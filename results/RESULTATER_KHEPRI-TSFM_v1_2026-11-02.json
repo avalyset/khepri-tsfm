@@ -1,0 +1,1285 @@
+{
+  "mde": {
+    "method": "MDE = (t_{0.975,n-1} + t_{0.80,n-1}) / HLN(n,h) * sqrt(sigma2_LR / n); sigma2_LR = rectangular-kernel long-run variance (lags 0..h-1) of the zone-averaged per-origin MAPE difference SARIMA - GBM on the v1.5 2025 test",
+    "source_rows": {
+      "NO1": [
+        "s2-j2b/NO1_primaer_2025_rows.csv",
+        "s2-ren/NO1_primaer_2025_std_ren365_rows.csv"
+      ],
+      "NO2": [
+        "s2-j2b/NO2_primaer_2025_rows.csv",
+        "s2-ren/NO2_primaer_2025_std_ren365_rows.csv"
+      ],
+      "NO3": [
+        "s2-j2b/NO3_primaer_2025_rows.csv",
+        "s2-ren/NO3_primaer_2025_std_ren365_rows.csv"
+      ],
+      "NO4": [
+        "s2-j2b/NO4_primaer_2025_rows.csv",
+        "s2-ren/NO4_primaer_2025_std_ren365_rows.csv"
+      ],
+      "NO5": [
+        "s2-j2b/NO5_primaer_2025_rows.csv",
+        "s2-ren/NO5_primaer_2025_std_ren365_rows.csv"
+      ],
+      "SE1": [
+        "s2-j2b/SE1_se_2025_rows.csv",
+        "s2-ren/SE1_se_2025_std_ren365_rows.csv"
+      ],
+      "SE2": [
+        "s2-j2b/SE2_se_2025_rows.csv",
+        "s2-ren/SE2_se_2025_std_ren365_rows.csv"
+      ],
+      "SE3": [
+        "s2-j2b/SE3_se_2025_rows.csv",
+        "s2-ren/SE3_se_2025_std_ren365_rows.csv"
+      ],
+      "SE4": [
+        "s2-j2b/SE4_se_2025_rows.csv",
+        "s2-ren/SE4_se_2025_std_ren365_rows.csv"
+      ]
+    },
+    "n_retro_origins": 361,
+    "mean_diff_retro_pp": 0.21410244452464194,
+    "sigma2_lr": 7.645470746105159,
+    "kernel": "rectangular",
+    "h": 4,
+    "horizon_hours": 96,
+    "alpha": 0.05,
+    "power": 0.8,
+    "n_holdout": 14,
+    "mde_pp": 2.9894202530226432,
+    "mde_retro_pp_n361": 0.41282137852731876
+  },
+  "n_origins": {
+    "retro": {
+      "Chronos-2": 361,
+      "GBM": 361,
+      "SARIMA": 361,
+      "Timestral-209M": 361,
+      "Timestral-5M": 361,
+      "snaive_week": 361
+    },
+    "holdout": {
+      "Chronos-2": 14,
+      "GBM": 14,
+      "SARIMA": 14,
+      "Timestral-209M": 14,
+      "Timestral-5M": 14,
+      "snaive_week": 14
+    }
+  },
+  "per_zone": {
+    "retro": [
+      {
+        "zone": "NO1",
+        "arm": "Chronos-2",
+        "mean": 2.13069207790597,
+        "count": 361
+      },
+      {
+        "zone": "NO1",
+        "arm": "GBM",
+        "mean": 2.3069993922177687,
+        "count": 361
+      },
+      {
+        "zone": "NO1",
+        "arm": "SARIMA",
+        "mean": 2.4595824914909428,
+        "count": 361
+      },
+      {
+        "zone": "NO1",
+        "arm": "Timestral-209M",
+        "mean": 2.1198165675647145,
+        "count": 361
+      },
+      {
+        "zone": "NO1",
+        "arm": "Timestral-5M",
+        "mean": 2.1081959498626572,
+        "count": 361
+      },
+      {
+        "zone": "NO1",
+        "arm": "snaive_week",
+        "mean": 2.9692824024901303,
+        "count": 361
+      },
+      {
+        "zone": "NO2",
+        "arm": "Chronos-2",
+        "mean": 3.1819954337609,
+        "count": 361
+      },
+      {
+        "zone": "NO2",
+        "arm": "GBM",
+        "mean": 3.423469277152361,
+        "count": 361
+      },
+      {
+        "zone": "NO2",
+        "arm": "SARIMA",
+        "mean": 3.963975850540036,
+        "count": 361
+      },
+      {
+        "zone": "NO2",
+        "arm": "Timestral-209M",
+        "mean": 3.1106218633206835,
+        "count": 361
+      },
+      {
+        "zone": "NO2",
+        "arm": "Timestral-5M",
+        "mean": 3.151390154431738,
+        "count": 361
+      },
+      {
+        "zone": "NO2",
+        "arm": "snaive_week",
+        "mean": 4.193563455219707,
+        "count": 361
+      },
+      {
+        "zone": "NO3",
+        "arm": "Chronos-2",
+        "mean": 5.909731576822438,
+        "count": 361
+      },
+      {
+        "zone": "NO3",
+        "arm": "GBM",
+        "mean": 6.583358838664686,
+        "count": 361
+      },
+      {
+        "zone": "NO3",
+        "arm": "SARIMA",
+        "mean": 6.873959131089405,
+        "count": 361
+      },
+      {
+        "zone": "NO3",
+        "arm": "Timestral-209M",
+        "mean": 5.773271449132993,
+        "count": 361
+      },
+      {
+        "zone": "NO3",
+        "arm": "Timestral-5M",
+        "mean": 5.867563041043893,
+        "count": 361
+      },
+      {
+        "zone": "NO3",
+        "arm": "snaive_week",
+        "mean": 8.139320762205998,
+        "count": 361
+      },
+      {
+        "zone": "NO4",
+        "arm": "Chronos-2",
+        "mean": 6.339479028351467,
+        "count": 361
+      },
+      {
+        "zone": "NO4",
+        "arm": "GBM",
+        "mean": 10.158087446970102,
+        "count": 361
+      },
+      {
+        "zone": "NO4",
+        "arm": "SARIMA",
+        "mean": 7.241587413842783,
+        "count": 361
+      },
+      {
+        "zone": "NO4",
+        "arm": "Timestral-209M",
+        "mean": 6.132521553436706,
+        "count": 361
+      },
+      {
+        "zone": "NO4",
+        "arm": "Timestral-5M",
+        "mean": 6.1709625290819,
+        "count": 361
+      },
+      {
+        "zone": "NO4",
+        "arm": "snaive_week",
+        "mean": 10.104004546993993,
+        "count": 361
+      },
+      {
+        "zone": "NO5",
+        "arm": "Chronos-2",
+        "mean": 0.6286174814867427,
+        "count": 361
+      },
+      {
+        "zone": "NO5",
+        "arm": "GBM",
+        "mean": 1.2556440258985726,
+        "count": 361
+      },
+      {
+        "zone": "NO5",
+        "arm": "SARIMA",
+        "mean": 0.7216355632619504,
+        "count": 361
+      },
+      {
+        "zone": "NO5",
+        "arm": "Timestral-209M",
+        "mean": 0.5927595091112774,
+        "count": 361
+      },
+      {
+        "zone": "NO5",
+        "arm": "Timestral-5M",
+        "mean": 0.6046940027678325,
+        "count": 361
+      },
+      {
+        "zone": "NO5",
+        "arm": "snaive_week",
+        "mean": 1.0294741532180662,
+        "count": 361
+      },
+      {
+        "zone": "SE1",
+        "arm": "Chronos-2",
+        "mean": 10.265578236725432,
+        "count": 361
+      },
+      {
+        "zone": "SE1",
+        "arm": "GBM",
+        "mean": 10.757738762316727,
+        "count": 361
+      },
+      {
+        "zone": "SE1",
+        "arm": "SARIMA",
+        "mean": 11.638338569265759,
+        "count": 361
+      },
+      {
+        "zone": "SE1",
+        "arm": "Timestral-209M",
+        "mean": 10.030776855416615,
+        "count": 361
+      },
+      {
+        "zone": "SE1",
+        "arm": "Timestral-5M",
+        "mean": 10.095824479596157,
+        "count": 361
+      },
+      {
+        "zone": "SE1",
+        "arm": "snaive_week",
+        "mean": 14.322031861421396,
+        "count": 361
+      },
+      {
+        "zone": "SE2",
+        "arm": "Chronos-2",
+        "mean": 9.02792824598169,
+        "count": 361
+      },
+      {
+        "zone": "SE2",
+        "arm": "GBM",
+        "mean": 9.56759073581243,
+        "count": 361
+      },
+      {
+        "zone": "SE2",
+        "arm": "SARIMA",
+        "mean": 10.415787721044582,
+        "count": 361
+      },
+      {
+        "zone": "SE2",
+        "arm": "Timestral-209M",
+        "mean": 8.964985418462218,
+        "count": 361
+      },
+      {
+        "zone": "SE2",
+        "arm": "Timestral-5M",
+        "mean": 8.919911219067618,
+        "count": 361
+      },
+      {
+        "zone": "SE2",
+        "arm": "snaive_week",
+        "mean": 13.29296608616003,
+        "count": 361
+      },
+      {
+        "zone": "SE3",
+        "arm": "Chronos-2",
+        "mean": 3.8957956813521255,
+        "count": 361
+      },
+      {
+        "zone": "SE3",
+        "arm": "GBM",
+        "mean": 4.526099512895857,
+        "count": 361
+      },
+      {
+        "zone": "SE3",
+        "arm": "SARIMA",
+        "mean": 4.543177571887654,
+        "count": 361
+      },
+      {
+        "zone": "SE3",
+        "arm": "Timestral-209M",
+        "mean": 3.7532219474009594,
+        "count": 361
+      },
+      {
+        "zone": "SE3",
+        "arm": "Timestral-5M",
+        "mean": 3.8598842184261506,
+        "count": 361
+      },
+      {
+        "zone": "SE3",
+        "arm": "snaive_week",
+        "mean": 5.4453870215271545,
+        "count": 361
+      },
+      {
+        "zone": "SE4",
+        "arm": "Chronos-2",
+        "mean": 16.173932118654527,
+        "count": 361
+      },
+      {
+        "zone": "SE4",
+        "arm": "GBM",
+        "mean": 17.54467290702478,
+        "count": 361
+      },
+      {
+        "zone": "SE4",
+        "arm": "SARIMA",
+        "mean": 20.186508030401026,
+        "count": 361
+      },
+      {
+        "zone": "SE4",
+        "arm": "Timestral-209M",
+        "mean": 15.441449404368482,
+        "count": 361
+      },
+      {
+        "zone": "SE4",
+        "arm": "Timestral-5M",
+        "mean": 15.494847782476686,
+        "count": 361
+      },
+      {
+        "zone": "SE4",
+        "arm": "snaive_week",
+        "mean": 22.604964578969067,
+        "count": 361
+      }
+    ],
+    "holdout": [
+      {
+        "zone": "NO1",
+        "arm": "Chronos-2",
+        "mean": 2.396214461141682,
+        "count": 14
+      },
+      {
+        "zone": "NO1",
+        "arm": "GBM",
+        "mean": 2.437467665578359,
+        "count": 14
+      },
+      {
+        "zone": "NO1",
+        "arm": "SARIMA",
+        "mean": 3.1077269035148496,
+        "count": 14
+      },
+      {
+        "zone": "NO1",
+        "arm": "Timestral-209M",
+        "mean": 2.4298793586862573,
+        "count": 14
+      },
+      {
+        "zone": "NO1",
+        "arm": "Timestral-5M",
+        "mean": 2.4416200628992115,
+        "count": 14
+      },
+      {
+        "zone": "NO1",
+        "arm": "snaive_week",
+        "mean": 3.9832408427765285,
+        "count": 14
+      },
+      {
+        "zone": "NO2",
+        "arm": "Chronos-2",
+        "mean": 3.297975453721449,
+        "count": 14
+      },
+      {
+        "zone": "NO2",
+        "arm": "GBM",
+        "mean": 4.129316862956764,
+        "count": 14
+      },
+      {
+        "zone": "NO2",
+        "arm": "SARIMA",
+        "mean": 3.901850253864748,
+        "count": 14
+      },
+      {
+        "zone": "NO2",
+        "arm": "Timestral-209M",
+        "mean": 3.2743144398571005,
+        "count": 14
+      },
+      {
+        "zone": "NO2",
+        "arm": "Timestral-5M",
+        "mean": 3.121759263171839,
+        "count": 14
+      },
+      {
+        "zone": "NO2",
+        "arm": "snaive_week",
+        "mean": 2.6662538791975186,
+        "count": 14
+      },
+      {
+        "zone": "NO3",
+        "arm": "Chronos-2",
+        "mean": 8.294326689403631,
+        "count": 14
+      },
+      {
+        "zone": "NO3",
+        "arm": "GBM",
+        "mean": 7.820329746758895,
+        "count": 14
+      },
+      {
+        "zone": "NO3",
+        "arm": "SARIMA",
+        "mean": 9.343425362911889,
+        "count": 14
+      },
+      {
+        "zone": "NO3",
+        "arm": "Timestral-209M",
+        "mean": 7.73677057128926,
+        "count": 14
+      },
+      {
+        "zone": "NO3",
+        "arm": "Timestral-5M",
+        "mean": 8.021849096868662,
+        "count": 14
+      },
+      {
+        "zone": "NO3",
+        "arm": "snaive_week",
+        "mean": 12.053390074359745,
+        "count": 14
+      },
+      {
+        "zone": "NO4",
+        "arm": "Chronos-2",
+        "mean": 7.313561804375012,
+        "count": 14
+      },
+      {
+        "zone": "NO4",
+        "arm": "GBM",
+        "mean": 9.287662014187422,
+        "count": 14
+      },
+      {
+        "zone": "NO4",
+        "arm": "SARIMA",
+        "mean": 7.479565860016386,
+        "count": 14
+      },
+      {
+        "zone": "NO4",
+        "arm": "Timestral-209M",
+        "mean": 6.998210676206211,
+        "count": 14
+      },
+      {
+        "zone": "NO4",
+        "arm": "Timestral-5M",
+        "mean": 6.983779295413876,
+        "count": 14
+      },
+      {
+        "zone": "NO4",
+        "arm": "snaive_week",
+        "mean": 11.664434902162558,
+        "count": 14
+      },
+      {
+        "zone": "NO5",
+        "arm": "Chronos-2",
+        "mean": 6.057764519284088e-16,
+        "count": 14
+      },
+      {
+        "zone": "NO5",
+        "arm": "GBM",
+        "mean": 0.04718752103163252,
+        "count": 14
+      },
+      {
+        "zone": "NO5",
+        "arm": "SARIMA",
+        "mean": 2.5222328634837386e-15,
+        "count": 14
+      },
+      {
+        "zone": "NO5",
+        "arm": "Timestral-209M",
+        "mean": 6.057764519284088e-16,
+        "count": 14
+      },
+      {
+        "zone": "NO5",
+        "arm": "Timestral-5M",
+        "mean": 6.057764519284088e-16,
+        "count": 14
+      },
+      {
+        "zone": "NO5",
+        "arm": "snaive_week",
+        "mean": 1.046341144239979e-15,
+        "count": 14
+      },
+      {
+        "zone": "SE1",
+        "arm": "Chronos-2",
+        "mean": 19.259822176820116,
+        "count": 14
+      },
+      {
+        "zone": "SE1",
+        "arm": "GBM",
+        "mean": 19.699013566215577,
+        "count": 14
+      },
+      {
+        "zone": "SE1",
+        "arm": "SARIMA",
+        "mean": 20.41966920564696,
+        "count": 14
+      },
+      {
+        "zone": "SE1",
+        "arm": "Timestral-209M",
+        "mean": 18.19289886203386,
+        "count": 14
+      },
+      {
+        "zone": "SE1",
+        "arm": "Timestral-5M",
+        "mean": 20.00135422975591,
+        "count": 14
+      },
+      {
+        "zone": "SE1",
+        "arm": "snaive_week",
+        "mean": 28.188916805972248,
+        "count": 14
+      },
+      {
+        "zone": "SE2",
+        "arm": "Chronos-2",
+        "mean": 13.652475883787712,
+        "count": 14
+      },
+      {
+        "zone": "SE2",
+        "arm": "GBM",
+        "mean": 13.704766429189846,
+        "count": 14
+      },
+      {
+        "zone": "SE2",
+        "arm": "SARIMA",
+        "mean": 14.95577096779399,
+        "count": 14
+      },
+      {
+        "zone": "SE2",
+        "arm": "Timestral-209M",
+        "mean": 13.678823317097336,
+        "count": 14
+      },
+      {
+        "zone": "SE2",
+        "arm": "Timestral-5M",
+        "mean": 13.875049524463973,
+        "count": 14
+      },
+      {
+        "zone": "SE2",
+        "arm": "snaive_week",
+        "mean": 17.065481209190136,
+        "count": 14
+      },
+      {
+        "zone": "SE3",
+        "arm": "Chronos-2",
+        "mean": 5.544392806282792,
+        "count": 14
+      },
+      {
+        "zone": "SE3",
+        "arm": "GBM",
+        "mean": 5.91766148388026,
+        "count": 14
+      },
+      {
+        "zone": "SE3",
+        "arm": "SARIMA",
+        "mean": 6.394831894958336,
+        "count": 14
+      },
+      {
+        "zone": "SE3",
+        "arm": "Timestral-209M",
+        "mean": 5.014159957678124,
+        "count": 14
+      },
+      {
+        "zone": "SE3",
+        "arm": "Timestral-5M",
+        "mean": 5.261835631996833,
+        "count": 14
+      },
+      {
+        "zone": "SE3",
+        "arm": "snaive_week",
+        "mean": 7.34181756338355,
+        "count": 14
+      },
+      {
+        "zone": "SE4",
+        "arm": "Chronos-2",
+        "mean": 16.686358085476932,
+        "count": 14
+      },
+      {
+        "zone": "SE4",
+        "arm": "GBM",
+        "mean": 19.96224680141928,
+        "count": 14
+      },
+      {
+        "zone": "SE4",
+        "arm": "SARIMA",
+        "mean": 18.38066058655595,
+        "count": 14
+      },
+      {
+        "zone": "SE4",
+        "arm": "Timestral-209M",
+        "mean": 14.722499202678405,
+        "count": 14
+      },
+      {
+        "zone": "SE4",
+        "arm": "Timestral-5M",
+        "mean": 16.024238130208065,
+        "count": 14
+      },
+      {
+        "zone": "SE4",
+        "arm": "snaive_week",
+        "mean": 22.4571490276436,
+        "count": 14
+      }
+    ]
+  },
+  "dm": {
+    "retro": [
+      {
+        "n": 361,
+        "mean_diff": -1.3079198851188343,
+        "se": 0.09738743261114959,
+        "dm_hln": -13.29984701192562,
+        "p": 4.148194326385463e-33,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-5M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 6.252585930750515,
+        "mean_loss_base": 7.560505815869349,
+        "p_holm": 2.488916595831278e-32
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.0944875024665173,
+        "se": 0.10989321476444727,
+        "dm_hln": -9.862984443891355,
+        "p": 1.8078096333324562e-20,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-5M",
+        "base": "GBM",
+        "mean_loss_tsfm": 6.252585930750515,
+        "mean_loss_base": 7.347073433217031,
+        "p_holm": 3.6156192666649124e-20
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.3472364194010547,
+        "se": 0.10444381900166569,
+        "dm_hln": -12.774075846054263,
+        "p": 4.482976855870198e-31,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-209M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 6.213269396468294,
+        "mean_loss_base": 7.560505815869349,
+        "p_holm": 2.241488427935099e-30
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.1338040367487372,
+        "se": 0.11258721154995703,
+        "dm_hln": -9.972805643019932,
+        "p": 7.619926927278486e-21,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-209M",
+        "base": "GBM",
+        "mean_loss_tsfm": 6.213269396468294,
+        "mean_loss_base": 7.347073433217031,
+        "p_holm": 2.2859780781835456e-20
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.1656447179758718,
+        "se": 0.09121831205809926,
+        "dm_hln": -12.65472138602955,
+        "p": 1.2857217021946313e-30,
+        "kernel": "rectangular",
+        "tsfm": "Chronos-2",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 6.394861097893477,
+        "mean_loss_base": 7.560505815869349,
+        "p_holm": 5.142886808778525e-30
+      },
+      {
+        "n": 361,
+        "mean_diff": -0.9522123353235544,
+        "se": 0.12109853477096763,
+        "dm_hln": -7.786877349763499,
+        "p": 7.389498859565996e-14,
+        "kernel": "rectangular",
+        "tsfm": "Chronos-2",
+        "base": "GBM",
+        "mean_loss_tsfm": 6.394861097893477,
+        "mean_loss_base": 7.347073433217031,
+        "p_holm": 7.389498859565996e-14
+      }
+    ],
+    "holdout": [
+      {
+        "n": 14,
+        "mean_diff": -0.9168906444983044,
+        "se": 0.3469034396842152,
+        "dm_hln": -1.9800549472573574,
+        "p": 0.06926715144311135,
+        "kernel": "bartlett",
+        "tsfm": "Timestral-5M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 8.41460947053093,
+        "mean_loss_base": 9.331500115029238,
+        "mde_pp": 2.9894202530226432,
+        "verdict": "ikke avgjort (innenfor \u00b1MDE)",
+        "p_holm": 0.1385343028862227
+      },
+      {
+        "n": 14,
+        "mean_diff": -0.8082407618266296,
+        "se": 0.121135307724632,
+        "dm_hln": -4.998484035145138,
+        "p": 0.00024360564982553662,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-5M",
+        "base": "GBM",
+        "mean_loss_tsfm": 8.41460947053093,
+        "mean_loss_base": 9.222850232357558,
+        "mde_pp": 2.9894202530226432,
+        "verdict": "ikke avgjort (innenfor \u00b1MDE)",
+        "p_holm": 0.0012180282491276832
+      },
+      {
+        "n": 14,
+        "mean_diff": -1.3262160721929512,
+        "se": 0.26216769925293615,
+        "dm_hln": -3.789687601444816,
+        "p": 0.002251008391059454,
+        "kernel": "bartlett",
+        "tsfm": "Timestral-209M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 8.005284042836283,
+        "mean_loss_base": 9.331500115029238,
+        "mde_pp": 2.9894202530226432,
+        "verdict": "ikke avgjort (innenfor \u00b1MDE)",
+        "p_holm": 0.006753025173178362
+      },
+      {
+        "n": 14,
+        "mean_diff": -1.2175661895212766,
+        "se": 0.05076015004650928,
+        "dm_hln": -17.96958260188465,
+        "p": 1.4596669836558765e-10,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-209M",
+        "base": "GBM",
+        "mean_loss_tsfm": 8.005284042836283,
+        "mean_loss_base": 9.222850232357558,
+        "mde_pp": 2.9894202530226432,
+        "verdict": "ikke avgjort (innenfor \u00b1MDE)",
+        "p_holm": 8.75800190193526e-10
+      },
+      {
+        "n": 14,
+        "mean_diff": -0.8375970749170877,
+        "se": 0.3317264527910656,
+        "dm_hln": -1.8915740794069684,
+        "p": 0.08103580973777799,
+        "kernel": "bartlett",
+        "tsfm": "Chronos-2",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 8.493903040112148,
+        "mean_loss_base": 9.331500115029238,
+        "mde_pp": 2.9894202530226432,
+        "verdict": "ikke avgjort (innenfor \u00b1MDE)",
+        "p_holm": 0.1385343028862227
+      },
+      {
+        "n": 14,
+        "mean_diff": -0.728947192245413,
+        "se": 0.11028838867947505,
+        "dm_hln": -4.951474909357072,
+        "p": 0.0002647439578038864,
+        "kernel": "bartlett",
+        "tsfm": "Chronos-2",
+        "base": "GBM",
+        "mean_loss_tsfm": 8.493903040112148,
+        "mean_loss_base": 9.222850232357558,
+        "mde_pp": 2.9894202530226432,
+        "verdict": "ikke avgjort (innenfor \u00b1MDE)",
+        "p_holm": 0.0012180282491276832
+      }
+    ]
+  },
+  "dm_s1": {
+    "retro": [
+      {
+        "n": 361,
+        "mean_diff": -1.6392259365702635,
+        "se": 0.1354002780287409,
+        "dm_hln": -11.989130305161991,
+        "p": 4.268311493069876e-28,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-5M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 7.774937696418529,
+        "mean_loss_base": 9.41416363298879,
+        "p_holm": 2.5609868958419258e-27
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.3685937631210832,
+        "se": 0.15988143544711617,
+        "dm_hln": -8.477053756512857,
+        "p": 6.02187292834115e-16,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-5M",
+        "base": "GBM",
+        "mean_loss_tsfm": 7.774937696418529,
+        "mean_loss_base": 9.143531459539611,
+        "p_holm": 1.8065618785023448e-15
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.673701675213842,
+        "se": 0.14894870694938148,
+        "dm_hln": -11.127810798270403,
+        "p": 6.398006582029578e-25,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-209M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 7.740461957774949,
+        "mean_loss_base": 9.41416363298879,
+        "p_holm": 2.559202632811831e-24
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.403069501764662,
+        "se": 0.16443735151533234,
+        "dm_hln": -8.449813640802237,
+        "p": 7.31761549340053e-16,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-209M",
+        "base": "GBM",
+        "mean_loss_tsfm": 7.740461957774949,
+        "mean_loss_base": 9.143531459539611,
+        "p_holm": 1.8065618785023448e-15
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.4419294014935893,
+        "se": 0.1258601134456546,
+        "dm_hln": -11.345517184587282,
+        "p": 1.0313556821104273e-25,
+        "kernel": "rectangular",
+        "tsfm": "Chronos-2",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 7.972234231495203,
+        "mean_loss_base": 9.41416363298879,
+        "p_holm": 5.156778410552136e-25
+      },
+      {
+        "n": 361,
+        "mean_diff": -1.171297228044409,
+        "se": 0.17270346293624203,
+        "dm_hln": -6.716368082856033,
+        "p": 7.285068851725273e-11,
+        "kernel": "rectangular",
+        "tsfm": "Chronos-2",
+        "base": "GBM",
+        "mean_loss_tsfm": 7.972234231495203,
+        "mean_loss_base": 9.143531459539611,
+        "p_holm": 7.285068851725273e-11
+      }
+    ],
+    "holdout": [
+      {
+        "n": 14,
+        "mean_diff": -1.025058090624767,
+        "se": 0.5077504604442465,
+        "dm_hln": -1.5123992690580261,
+        "p": 0.15435656032709386,
+        "kernel": "bartlett",
+        "tsfm": "Timestral-5M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 10.764646145789644,
+        "mean_loss_base": 11.78970423641441,
+        "p_holm": 0.15435656032709386
+      },
+      {
+        "n": 14,
+        "mean_diff": -1.070156847622146,
+        "se": 0.14498080562438326,
+        "dm_hln": -5.529746634303119,
+        "p": 9.712051863415336e-05,
+        "kernel": "rectangular",
+        "tsfm": "Timestral-5M",
+        "base": "GBM",
+        "mean_loss_tsfm": 10.764646145789644,
+        "mean_loss_base": 11.834802993411788,
+        "p_holm": 0.0003884820745366134
+      },
+      {
+        "n": 14,
+        "mean_diff": -1.6169590073510471,
+        "se": 0.39825611948201434,
+        "dm_hln": -3.041619326785997,
+        "p": 0.00945115746113876,
+        "kernel": "bartlett",
+        "tsfm": "Timestral-209M",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 10.172745229063365,
+        "mean_loss_base": 11.78970423641441,
+        "p_holm": 0.01890231492227752
+      },
+      {
+        "n": 14,
+        "mean_diff": -1.6620577643484258,
+        "se": 0.14940551766280932,
+        "dm_hln": -8.333890382399606,
+        "p": 1.4251691166494988e-06,
+        "kernel": "bartlett",
+        "tsfm": "Timestral-209M",
+        "base": "GBM",
+        "mean_loss_tsfm": 10.172745229063365,
+        "mean_loss_base": 11.834802993411788,
+        "p_holm": 7.125845583247494e-06
+      },
+      {
+        "n": 14,
+        "mean_diff": -0.9809000334337039,
+        "se": 0.07559651133683766,
+        "dm_hln": -9.720560380772401,
+        "p": 2.497275225470175e-07,
+        "kernel": "rectangular",
+        "tsfm": "Chronos-2",
+        "base": "SARIMA",
+        "mean_loss_tsfm": 10.808804202980706,
+        "mean_loss_base": 11.78970423641441,
+        "p_holm": 1.498365135282105e-06
+      },
+      {
+        "n": 14,
+        "mean_diff": -1.025998790431083,
+        "se": 0.16485246448255306,
+        "dm_hln": -4.662509305749904,
+        "p": 0.00044433845505383523,
+        "kernel": "bartlett",
+        "tsfm": "Chronos-2",
+        "base": "GBM",
+        "mean_loss_tsfm": 10.808804202980706,
+        "mean_loss_base": 11.834802993411788,
+        "p_holm": 0.0013330153651615057
+      }
+    ]
+  },
+  "h1_h2": {
+    "Timestral-5M": {
+      "zones_tsfm_beats_sarima": 9,
+      "H1_supported": true,
+      "adv_pp": {
+        "NO1": 0.351387,
+        "NO2": 0.812586,
+        "NO3": 1.006396,
+        "NO4": 1.070625,
+        "NO5": 0.116942,
+        "SE1": 1.542514,
+        "SE2": 1.495877,
+        "SE3": 0.683293,
+        "SE4": 4.69166
+      },
+      "adv_rel_pct": {
+        "NO1": 14.28643,
+        "NO2": 20.499259,
+        "NO3": 14.640705,
+        "NO4": 14.784395,
+        "NO5": 16.205072,
+        "SE1": 13.253731,
+        "SE2": 14.361626,
+        "SE3": 15.039988,
+        "SE4": 23.241564
+      },
+      "min_adv_zone_pp": "NO5",
+      "H2_supported_pp": true,
+      "min_adv_zone_rel": "SE1",
+      "H2_supported_rel": false
+    },
+    "Timestral-209M": {
+      "zones_tsfm_beats_sarima": 9,
+      "H1_supported": true,
+      "adv_pp": {
+        "NO1": 0.339766,
+        "NO2": 0.853354,
+        "NO3": 1.100688,
+        "NO4": 1.109066,
+        "NO5": 0.128876,
+        "SE1": 1.607562,
+        "SE2": 1.450802,
+        "SE3": 0.789956,
+        "SE4": 4.745059
+      },
+      "adv_rel_pct": {
+        "NO1": 13.813967,
+        "NO2": 21.527729,
+        "NO3": 16.012427,
+        "NO4": 15.315231,
+        "NO5": 17.858883,
+        "SE1": 13.812639,
+        "SE2": 13.928877,
+        "SE3": 17.387734,
+        "SE4": 23.506089
+      },
+      "min_adv_zone_pp": "NO5",
+      "H2_supported_pp": true,
+      "min_adv_zone_rel": "SE1",
+      "H2_supported_rel": false
+    },
+    "Chronos-2": {
+      "zones_tsfm_beats_sarima": 9,
+      "H1_supported": true,
+      "adv_pp": {
+        "NO1": 0.32889,
+        "NO2": 0.78198,
+        "NO3": 0.964228,
+        "NO4": 0.902108,
+        "NO5": 0.093018,
+        "SE1": 1.37276,
+        "SE2": 1.387859,
+        "SE3": 0.647382,
+        "SE4": 4.012576
+      },
+      "adv_rel_pct": {
+        "NO1": 13.371798,
+        "NO2": 19.727174,
+        "NO3": 14.027252,
+        "NO4": 12.457329,
+        "NO5": 12.889897,
+        "SE1": 11.795157,
+        "SE2": 13.324575,
+        "SE3": 14.24954,
+        "SE4": 19.877514
+      },
+      "min_adv_zone_pp": "NO5",
+      "H2_supported_pp": true,
+      "min_adv_zone_rel": "SE1",
+      "H2_supported_rel": false
+    }
+  },
+  "contamination": [
+    {
+      "tsfm": "Timestral-5M",
+      "base": "SARIMA",
+      "adv_retro_pp": 1.3079198851188343,
+      "adv_holdout_pp": 0.9168906444983044,
+      "indicator_pp": 0.3910292406205299,
+      "hac_se": 0.3603141802584671,
+      "z": 1.08524521666072,
+      "n_retro": 361,
+      "n_holdout": 14,
+      "possible_contamination": false
+    },
+    {
+      "tsfm": "Timestral-5M",
+      "base": "GBM",
+      "adv_retro_pp": 1.0944875024665173,
+      "adv_holdout_pp": 0.8082407618266296,
+      "indicator_pp": 0.28624674063988764,
+      "hac_se": 0.16355513268866317,
+      "z": 1.7501544337637827,
+      "n_retro": 361,
+      "n_holdout": 14,
+      "possible_contamination": false
+    },
+    {
+      "tsfm": "Timestral-209M",
+      "base": "SARIMA",
+      "adv_retro_pp": 1.3472364194010547,
+      "adv_holdout_pp": 1.3262160721929512,
+      "indicator_pp": 0.021020347208103418,
+      "hac_se": 0.2822063320679227,
+      "z": 0.07448573904799607,
+      "n_retro": 361,
+      "n_holdout": 14,
+      "possible_contamination": false
+    },
+    {
+      "tsfm": "Timestral-209M",
+      "base": "GBM",
+      "adv_retro_pp": 1.1338040367487372,
+      "adv_holdout_pp": 1.2175661895212766,
+      "indicator_pp": -0.0837621527725394,
+      "hac_se": 0.12350090298187667,
+      "z": -0.6782310958878673,
+      "n_retro": 361,
+      "n_holdout": 14,
+      "possible_contamination": false
+    },
+    {
+      "tsfm": "Chronos-2",
+      "base": "SARIMA",
+      "adv_retro_pp": 1.1656447179758718,
+      "adv_holdout_pp": 0.8375970749170877,
+      "indicator_pp": 0.3280476430587841,
+      "hac_se": 0.3440395615856872,
+      "z": 0.9535172104824342,
+      "n_retro": 361,
+      "n_holdout": 14,
+      "possible_contamination": false
+    },
+    {
+      "tsfm": "Chronos-2",
+      "base": "GBM",
+      "adv_retro_pp": 0.9522123353235544,
+      "adv_holdout_pp": 0.728947192245413,
+      "indicator_pp": 0.22326514307814138,
+      "hac_se": 0.16379372332659825,
+      "z": 1.3630872938455612,
+      "n_retro": 361,
+      "n_holdout": 14,
+      "possible_contamination": false
+    }
+  ],
+  "calibration_summary": {
+    "Chronos-2": {
+      "crps": 1.1198316930825538,
+      "cov80": 0.8064649470899471,
+      "cov90": 0.9054232804232804
+    },
+    "SARIMA": {
+      "crps": 1.4165133472165183,
+      "cov80": 0.8345734126984127,
+      "cov90": 0.9106316137566137
+    },
+    "Timestral-209M": {
+      "crps": 1.0732649390048088,
+      "cov80": 0.8377149470899471,
+      "cov90": 0.9208829365079365
+    },
+    "Timestral-5M": {
+      "crps": 1.1113618630425794,
+      "cov80": 0.837880291005291,
+      "cov90": 0.9154265873015873
+    }
+  },
+  "calibration_dm": [
+    {
+      "n": 14,
+      "mean_diff": -0.30515148417393867,
+      "se": 0.01945007331154664,
+      "dm_hln": -11.75337386385083,
+      "p": 2.6797710824862233e-08,
+      "kernel": "rectangular",
+      "tsfm": "Timestral-5M",
+      "base": "SARIMA",
+      "metric": "CRPS"
+    },
+    {
+      "n": 14,
+      "mean_diff": -0.3432484082117096,
+      "se": 0.02289809724124137,
+      "dm_hln": -11.229940195466414,
+      "p": 4.610607893345748e-08,
+      "kernel": "bartlett",
+      "tsfm": "Timestral-209M",
+      "base": "SARIMA",
+      "metric": "CRPS"
+    },
+    {
+      "n": 14,
+      "mean_diff": -0.29668165413396463,
+      "se": 0.026073058213281493,
+      "dm_hln": -8.524462887544258,
+      "p": 1.1083365691976456e-06,
+      "kernel": "rectangular",
+      "tsfm": "Chronos-2",
+      "base": "SARIMA",
+      "metric": "CRPS"
+    }
+  ]
+}

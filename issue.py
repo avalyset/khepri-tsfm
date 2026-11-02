@@ -44,6 +44,43 @@ def vault_ok():
     return " on /Volumes/Vault " in m and os.access("/Volumes/Vault", os.W_OK)
 
 
+SES_DIR = "/Volumes/Vault/sjel-eller-speil/kjoring"
+
+
+def ses_active():
+    """Shared-machine rule (16 GB M1): read-only look at the SES-S1 run. Returns a reason
+    string if SES-S1 is running or a LAS file points to a live process, else None.
+    Nothing under SES_DIR is ever written."""
+    las = os.path.join(SES_DIR, "LAS")
+    if os.path.exists(las):
+        try:
+            txt = open(las).read(400)
+        except OSError:
+            return "LAS finnes (ulesbar)"
+        pids = [int(t) for t in txt.replace(",", " ").split() if t.isdigit()]
+        for pid in pids:
+            try:
+                os.kill(pid, 0)
+                return f"LAS peker på levende prosess {pid}"
+            except ProcessLookupError:
+                pass
+            except PermissionError:
+                return f"LAS peker på levende prosess {pid}"
+        if not pids:
+            return "LAS finnes uten pid"
+    status = os.path.join(SES_DIR, "STATUS_SES.txt")
+    if os.path.exists(status):
+        with open(status, "rb") as f:
+            f.seek(0, 2)
+            f.seek(max(0, f.tell() - 4000))
+            lines = [l for l in f.read().decode("utf-8", "replace").splitlines() if l.strip()]
+        last = lines[-1] if lines else ""
+        idle = ("PAUSET", "STOPP", "avsluttet", "FERDIG", "stopper")
+        if last and not any(k in last for k in idle):
+            return "SES-S1 går (siste statuslinje: " + last[:120] + ")"
+    return None
+
+
 def take_lock(max_wait_s=6 * 3600):
     f = open(os.path.join(V, "run.lock"), "a")
     t0 = time.time()
@@ -108,6 +145,10 @@ def main():
     out = os.path.join(PROSP, f"PROSP_KHEPRI-TSFM_v1_{day}.parquet")
     if os.path.exists(out):
         log({"day": day, "status": "already issued"}); return
+    why = ses_active()
+    if why:
+        log({"day": day, "origin": str(origin), "status": "tapt: SES aktiv", "reason": why})
+        return
     lk = take_lock()
     if lk is None:
         log({"day": day, "origin": str(origin), "status": "TAPT: run.lock ikke ledig innen 6 t"})

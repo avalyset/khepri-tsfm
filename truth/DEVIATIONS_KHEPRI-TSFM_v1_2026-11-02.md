@@ -88,3 +88,14 @@ før/etter PREREG, hva, hvorfor, konsekvens, sha256 + OTS-stempel av fila etter 
   (`np.argsort`, stabil). Etter rettingen: NO2 29 308 rader, SE4 29 307, monotont stigende,
   0 duplikater. `analysis.py`, `khepri_tsfm/*`, `run_arms.py` og `prosp_arms.py` er uendret
   siden prereg-v1.
+
+## Etter OSF-innsending (osf.io/hncz5, 07:49 UTC)
+
+### D-10 SES-vakt i issue.py (felles maskinregel fra Eirik, 2026-11-02 ca. 07:52 UTC)
+- `issue.py` leser (bare leser) /Volumes/Vault/sjel-eller-speil/kjoring/STATUS_SES.txt (siste linjer)
+  og LAS før utstedelsen. Går SES-S1, eller peker LAS på en levende prosess, hoppes dagens
+  utstedelse over og logges som «tapt: SES aktiv»; aldri etterfylling. Testet mot ekte status
+  (ledig), tre testmapper (går / pause / levende LAS) og hele `main()` (logger tapt, rører
+  ingen lås eller henting). Ingen endring i analyse eller armer. Steg 7: SES sjekkes manuelt
+  før hver tung kjøring; den køsatte TSFM-jobben (pid 4343, bare ventende på run.lock) ble
+  avsluttet før den startet, og startes etter ny SES-sjekk.
