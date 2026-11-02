@@ -133,22 +133,7 @@ small-sample correction of Harvey, Leybourne & Newbold (1997) [NR], and evaluate
 quantiles with the CRPS (Gneiting & Raftery 2007 [NR]); details are in Section 3.
 <!-- src: PRE:136-142, PRE:112-114; KG:22-24 (bibliographic only) -->
 
-## References (draft, for A)
-<!-- Bibliographic data below come only from the sources named in brackets. Entries marked [ID ONLY] have no
-verified title/authors; A must complete them from the source. -->
-- Ansari, A. F., et al. (2025). Chronos-2: From Univariate to Universal Forecasting. arXiv:2510.15821. [from authors' bibtex, S04 README.md:148-154; not read]
-- CarbonX. arXiv:2510.01521. [ID ONLY; S01 not read] <!-- repo config.json:6 lists authors Maji, Yang, Shenoy, Sitaraman, Srivastava; unverified against paper -->
-- Clauß et al. (2019). Energies 12(7):1345. [ID ONLY; KG:23]
-- Cramer et al. (2022). PNAS 119(15):e2113561119. [ID ONLY; KG:22]
-- Diebold & Mariano (1995). [ID ONLY; KG:23]
-- Garza, A., Rosillo, R., Mendoza-Smith, R., Salinas, D., Williams, A. R., Ashok, A., Goswami, M., & Juárez, J. M. (2026). Impermanent: A Live Benchmark for Temporal Generalization in Time Series Forecasting. arXiv:2603.08707. [from authors' bibtex, S05 README.md:177-185; not read]
-- Gneiting & Raftery (2007). [ID ONLY; KG:24]
-- Harvey, Leybourne & Newbold (1997). [ID ONLY; KG:23-24 and the brief]
-- Hong et al. (2016). IJF 32(3):896–913. [ID ONLY; KG:22]
-- Khepri v1.5.0. Zenodo. doi:10.5281/zenodo.23101127. [KG:4; author and year: A]
-- Leerbeck, K., Bacher, P., Junker, R. G., Goranović, G., Corradi, O., Ebrahimy, R., Tveit, A., & Madsen, H. (2020). Short-term forecasting of CO2 emission intensity in power grids by machine learning. Applied Energy 277:115527. [from DACF.pdf p.5 ref. [14]; not read]
-- Maji, D., Sitaraman, R. K., & Shenoy, P. (2022a). DACF: Day-ahead Carbon Intensity Forecasting of Power Grids using Machine Learning. e-Energy ’22. doi:10.1145/3538637.3538849. [read, S06 DACF.pdf p.1]
-- Maji, D., Shenoy, P., & Sitaraman, R. K. (2022b). CarbonCast: multi-day forecasting of grid carbon intensity. BuildSys ’22, pp. 198–207. [from authors' bibtex, S07 README.md:159-165; not read]
-- Mistral AI (2026). Timestral. github.com/mistralai/timestral, commit a534bdbd. [S03]
-- Yan, L., Wang, L., Liu, S., & Ding, Y. (2025). EnsembleCI: Ensemble Learning for Carbon Intensity Forecasting. e-Energy ’25. doi:10.1145/3679240.3734630. [from authors' bibtex, S08 README.md:53-59; not read]
-- Zenodo preregistration: [ZENODO-DOI]. OSF: registered on OSF 2026-11-02 07:49 UTC (osf.io/hncz5).
+## References
+
+The verified reference list (metadata checked against arXiv API and Crossref records, SOURCES) is
+`arxiv/references.tex`.
