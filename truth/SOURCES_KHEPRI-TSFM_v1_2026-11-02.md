@@ -130,6 +130,14 @@ Identifikatorer fra truth/KJENTGRUNNLAG_KHEPRI-TSFM_v1_2026-11-02.md:2-3, 19-24.
 | S14 | Harvey, Leybourne & Newbold 1997 | som S13 |
 | S15 | Gneiting & Raftery 2007 | som S13 |
 
+## Revisjon 1 (2026-11-02 ca. 08:50 UTC, uavhengig kontroll av manus mot kildene)
+- Rettet: KG-linjenumre (DOI KG:4, Timestral-slipp KG:16); OTS gjelder tarballen av prereg-v1, ikke commiten (STA:65-66);
+  D-02-tallet merket som valideringskjøring før registrering; «open material» erstattet med det som er belagt (sha256, OTS,
+  daterte avvik; repoet er privat, STA:12); påstander om CarbonCast/EnsembleCI/Impermanent formulert som påstander om
+  lagrene; Chronos-2-kontekst 8192 belagt med notatboka, ikke modellkortet; Chronos-2-treningsdata merket som «our reading
+  of the card» (As lesing, STA:38-41, ikke kontrollert av B); holdouten beskrevet som ikke-live.
+- Ikke endret (fast ordlyd i oppdraget): «[ZENODO-DOI]» og «registered on OSF 2026-11-02 07:49 UTC (osf.io/hncz5)».
+
 ## Ikke gjort (krav i oppdraget som ikke kunne oppfylles fra økt B)
 - «Sjekk om CarbonX dekker NO/SE»: besvart bare for kodelageret (S02), ikke for artikkelen.
 - «Om noe er prospektivt eller post-release»: besvart bare for CarbonX-lageret (S02, ingen treff).

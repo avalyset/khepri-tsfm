@@ -20,11 +20,12 @@ they are bibliographic attributions only and must be checked by the author befor
 The design, the analysis code and all deviations known at the time were fixed before any
 time-series foundation model (TSFM) forecast was produced on real carbon-intensity (CI) data.
 The preregistration is archived on Zenodo ([ZENODO-DOI]) and is the anchor of this study. It
-contains the repository at the GPG-signed git tag `prereg-v1`, whose commit
-74539f2af7bb6d203d8c8452e01d96a222156078 is timestamped with OpenTimestamps.
+contains the repository at the GPG-signed git tag `prereg-v1` (commit
+74539f2af7bb6d203d8c8452e01d96a222156078) as a tarball whose sha256 is stamped with
+OpenTimestamps.
 <!-- src: STA:63-66 (tag prereg-v1, commit 74539f2af7bb6d203d8c8452e01d96a222156078, OTS); KG/brief: Zenodo is the anchor (STA, "OSF-sjekk og TILLEGG" section: "Manus ... siterer Zenodo-DOI-en som preregistreringens anker") -->
-The same preregistration was registered on OSF 2026-11-02 07:49 UTC (osf.io/hncz5).
-<!-- src: STA:68-69 (sent 2026-11-02 07:49 UTC, https://osf.io/hncz5). Do NOT describe it as public or approved (STA, OSF-sjekk TILLEGG). -->
+It was also registered on OSF 2026-11-02 07:49 UTC (osf.io/hncz5).
+<!-- src: STA:68-69 (sent 2026-11-02 07:49 UTC, https://osf.io/hncz5). Wording fixed by the brief. Do NOT describe it as public or approved (STA:88-90). NOTE for A: the OSF entry also mentions D-09 under Prior knowledge (STA:73), so it is not byte-identical to the tarball. OTS stamp status at writing: venter på Bitcoin (STA:66). -->
 The locked analysis is `analysis.py` with `khepri_tsfm/stats.py` at that tag.
 <!-- src: PRE:222-224 -->
 Deviations are listed in Section 3.9 and in full in the repository
@@ -32,7 +33,7 @@ Deviations are listed in Section 3.9 and in full in the repository
 
 The study has two test windows with different roles. A *retrospective* test (retro) on the
 Khepri v1.5 2025 test set carries the statistical power but is labelled "contamination not
-ruled out": the training cut-off of Timestral is undisclosed, and most of the 2025 test period
+ruled out": the training cut-off of Timestral is not disclosed in its repository, and most of the 2025 test period
 precedes the release of Chronos-2 on 2025-10-20. A *post-release holdout* uses only forecast origins after the public
 release of Timestral and serves as a contamination control with low power.
 <!-- src: DEC:5-7, DEC:23-26; PRE:20-22. Chronos-2 release date: github.com/amazon-science/chronos-forecasting README.md:20 @ 1224faf (SOURCES S04).
@@ -55,7 +56,7 @@ Hourly CI (gCO2-eq/kWh) is computed with Khepri v1.5 (DOI 10.5281/zenodo.2310112
 v1.5) without study-specific code: AR5 life-cycle emission factors, the ADR-0002 materiality
 threshold, pumped-storage hours set to missing, Waste/Other excluded, hourly mean, and the
 v1.5 gap filling `interpolate(limit=6).ffill().bfill()`.
-<!-- src: PRE:53-56 (DOI 10.5281/zenodo.23101127, tag v1.5, factors and gap filling); KG:2 -->
+<!-- src: PRE:53-56 (DOI 10.5281/zenodo.23101127, tag v1.5, factors and gap filling); KG:4 -->
 The same filled series is used as model input and as truth, exactly as in v1.5.
 <!-- src: DEV:71-72; PRE:176-178 -->
 The derived CI series is in the repository (`data/CI_KHEPRI-TSFM_v1_2026-11-02.parquet`, sha256
@@ -70,8 +71,8 @@ an origin is used only if the full 96-hour truth is available.
 All arms share the same context end: the origin hour, inclusive.
 <!-- src: DEC:9-10 ("Felles kontekstslutt for alle armer"), DEC:37-38; PRE:89-91 -->
 
-*Retro.* The Khepri v1.5 2025 test exactly as published: training years 2021–2024 for NO and
-2022–2024 for SE, `train_end` 2023-12-31 23:00, test period 2025-01-01 to 2025-12-31, giving
+*Retro.* The Khepri v1.5 2025 test exactly as published: history from 2021 (NO) and 2022 (SE)
+(v1.5 data years 2021–2024 and 2022–2024), `train_end` 2023-12-31 23:00, test period 2025-01-01 to 2025-12-31, giving
 361 origins per zone (2025-01-01 to 2025-12-27).
 <!-- src: PRE:100-102; DEC:48-49; STA:58 -->
 
@@ -79,9 +80,9 @@ All arms share the same context end: the origin hour, inclusive.
 o+96 h ≤ 2026-11-02 05:00 UTC. This gives 14 origins per zone (2026-10-16 to 2026-10-29).
 <!-- src: PRE:17-18 (release 2026-10-15), PRE:103-104 (14 origins, 2026-10-16 – 2026-10-29, ≤ 2026-11-02 05:00 UTC); STA:58 -->
 For SARIMA and GBM the v1.5 training rule is applied with test start 2026-10-16, changing
-parameters only (Deviation D-06): `train_end` 2025-10-15 23:00, training years 2023–2025 (NO)
-and 2024–2025 (SE), and GBM training origins 2024-10-12 to 2025-10-11.
-<!-- src: PRE:104-106; DEV:56-60 -->
+parameters only (Deviation D-06): `train_end` 2025-10-15 23:00, history from 2023 (NO) and 2024
+(SE) (data years 2023–2025 and 2024–2025), and GBM training origins 2024-10-12 to 2025-10-11.
+<!-- src: PRE:104-106; DEV:56-60 (DEV:58-59: SARIMA fitted on hist.loc[:train_end] from 1 January of the first training year) -->
 Because v1.5 reads whole calendar years, the SARIMA training span becomes 2.79 years (NO) and
 1.79 years (SE), against 3.0 and 2.0 years in v1.5; preserving the span exactly would have
 required a change to the v1.5 forecasting code, which we did not make.
@@ -121,13 +122,15 @@ runs: for SE1 the SARIMA per-(origin, day) MAPE differs by at most 0.00036 pp an
 most 3.6e-15; for NO1 GBM differs by at most 4.4e-16.
 <!-- src: DEV:8-17 -->
 The NO1 SARIMA fit is not bit-reproducible (D-02): in the pinned environment it converges after
-1 L-BFGS iteration, against 22 in the 2026-10-01 v1.5 run, giving a NO1 retro mean SARIMA MAPE
-of 2.4596 against the published 2.4656. Data, code, library versions and BLAS thread count were
+1 L-BFGS iteration, against 22 in the 2026-10-01 v1.5 run; in the validation before registration
+this gave a NO1 retro mean SARIMA MAPE of 2.4596 against 2.4656 in the stored v1.5 rows. The
+reproduction table (Section 3.8) reports the final run. Data, code, library versions and BLAS thread count were
 ruled out; the cause was not found. We report this rather than adjust the fit.
 <!-- src: DEV:19-29; PRE:189-191 -->
-The environment is pinned by `uv.lock` (Python 3.12.13). Inference ran on CPU (Apple M1,
-16 GB) with `torch.set_num_threads(8)` and the Hugging Face hub offline after download.
-<!-- src: PRE:94-95; STA:47 (python 3.12.13) -->
+The environment is pinned by `uv.lock` (Python 3.12.13). The preregistered inference setting is
+CPU (Apple M1, 16 GB) with `torch.set_num_threads(8)` and the Hugging Face hub offline after
+download.
+<!-- src: PRE:94-95; STA:47 (python 3.12.13). NOTE for A: confirm the actual run used this setting (STA:99 gives run times only), then change to past tense. -->
 
 ## 3.5 Loss
 
@@ -232,8 +235,7 @@ published v1.5 tables per zone (D-08); it enters no test.
 
 ## 3.9 Deviations
 
-All deviations from the design and the preregistration are logged with time stamps
-(Table X). D-01 to D-08 were made before registration and are part of it; D-09 and D-10 were
+All deviations from the design and the preregistration are logged with dates (table below). D-01 to D-08 were made before registration and are part of it; D-09 and D-10 were
 made after the `prereg-v1` tag and concern only the prospective log, not the arms or the
 analysis.
 <!-- src: PRE:207-213 (D-01–D-08 in the registration); DEV:84-90 (D-09), DEV:92-101 (D-10) -->
@@ -241,7 +243,7 @@ analysis.
 | ID | Deviation | Effect |
 |---|---|---|
 | D-01 | Prediction-keeping driver around the unchanged v1.5 forecasting code | Validated against stored v1.5 runs (Section 3.4) |
-| D-02 | NO1 SARIMA fit not bit-reproducible; cause not found | NO1 retro SARIMA mean MAPE 2.4596 vs. published 2.4656 |
+| D-02 | NO1 SARIMA fit not bit-reproducible; cause not found | Pre-registration validation: NO1 retro SARIMA mean MAPE 2.4596 vs. 2.4656 |
 | D-03 | SARIMA quantiles from the Gaussian predictive distribution | Point forecast unchanged |
 | D-04 | Seasonal naive (week) added as a new reference arm | Enters no test |
 | D-05 | MDE from stored v1.5 per-origin metric rows | No 2025 predictions were stored |

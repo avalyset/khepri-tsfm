@@ -10,3 +10,6 @@ Arkivnøkkel: STATE-B_KHEPRI-TSFM_v1_2026-11-02
 - Merk: prediksjonsfilene ligger i predictions/PRED-*, ikke results/PRED-* som i Bs oppdrag; B globber begge.
 - Git: B merger origin/main inn i grenen claude/focused-mayer-kv2xv5 (force-push etter rebase ble nektet). Grenen er
   ellers bare Bs filer på toppen av main.
+- 2026-11-02T08:48:15Z Funn til A (ikke rettet av B, B eier ikke fila): PRE:21-22 sier «the 2025 data predate the TSFMs'
+  training cut-offs». Chronos-2 ble sluppet 2025-10-20 (chronos-forecasting README.md:20), så retro-origins etter den datoen
+  ligger etter slippet. Manus (MANUS-03 §3.1) bruker derfor ikke PRE-ordlyden. A avgjør om det skal føres i DEVIATIONS.
