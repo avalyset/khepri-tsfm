@@ -18,3 +18,5 @@ Arkivnøkkel: STATE-B_KHEPRI-TSFM_v1_2026-11-02
   Impermanent, Timestral og Chronos-2 er lest som kodelagre; Leerbeck, Hong, Cramer, Clauß, DM, HLN og G&R er ikke lest
   ([NR]/[ID ONLY], ingen innholdspåstand). Ingen fraværspåstand utenfor de sjekkede lagrene. Ingen resultater i manus.
   Plassholder [ZENODO-DOI] står i MANUS-01 og -03 og i referanselista. «NOTE for A» i HTML-kommentarer må leses.
+- reproduksjon ferdig 2026-11-02T09:01:20Z. truth/REPRO: alle sha256 like; analysis.py fra repro-ready (423329f) gir 467/467 like
+  tabellceller; JSON 67/921 avvik i siste siffer (maks |Δ| 4,3e-14, bare DM-statistikk). TSFM-rekjøring ikke gjort (huggingface.co blokkert).
