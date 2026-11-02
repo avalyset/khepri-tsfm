@@ -75,7 +75,7 @@ The contributions are as follows. We make no claim of priority.
   <!-- src: DEC:18-22; MDE:3-4 (computed before any TSFM prediction) -->
 - Hourly predictions of every arm, the derived CI series and the code, stored with sha256 sums
   and OpenTimestamps stamps, and a deviation log in which every deviation is dated.
-  <!-- src: PRE:62-75 (derived CI and prediction files); STA:56-57 (CI sha256, OTS); STA:100-102 (prediction files, sha256, OTS per file); DEV:8-101 (each deviation dated). NOTE for A: the repo is private (STA:12); add "released at [URL]" only once a release is decided. -->
+  <!-- src: PRE:62-75 (derived CI and prediction files); STA:56-57 (CI sha256, OTS); STA:100-102 (prediction files, sha256, OTS per file); DEV:8-101 (each deviation dated). -->
 - A prospective log that issues all arms daily from the registration onward, to be analysed
   later with the same locked analysis code.
   <!-- src: PRE:197-202 -->

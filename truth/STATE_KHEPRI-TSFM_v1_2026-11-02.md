@@ -140,3 +140,15 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
   5184 rader (6 armer × 9 soner × 96 t), sha256 7b0f70333409f33b34043f1d7eb149bc23ad73ed84eefc1144a5a51bb0f3d535, OTS-stempel rc 0.
 - arXiv: arxiv/main.tex + arxiv/references.tex + arxiv/build_arxiv.sh (pandoc for MANUS-01–03, MANUS-04 som LaTeX). Kompilert
   med pdflatex: 0 feil, 0 udefinerte referanser, 0 overfull hbox, 14 sider. Zenodo-DOI som makro \zenodoDOI (settes ved publisering).
+
+## REPRO fra B og TILLEGG-punktene (ca. 09:04–09:07 UTC)
+- truth/REPRO_KHEPRI-TSFM_v1_2026-11-02.md (B, fra repro-ready 423329f, x86_64 Linux): alle sha256 like; RESULTATER-md 467/467 celler like
+  (linje 1 ulik bare fordi utfilnavnet var RESULTATER_B); JSON 67 av 921 blader ulike i siste siffer (maks |Δ| 4,3e-14); pytest 27 passed.
+  TSFM-delen ikke kjørt i skyen (huggingface.co ikke nåbar). Merget inn i main (a7e6782; bare B-eide filer, 0 Co-Authored-By).
+- Uavhengig TSFM-sjekk (Timestral-5M, Chronos-2, NO4-holdout) startet 09:06 UTC i fersk Opus-subagent fra taggen repro-ready alene
+  (SES pauset, ingen LAS); resultat → results/TSFMREPRO_KHEPRI-TSFM_v1_2026-11-02.md.
+- D-11 utvidet med diff -r og blob-sha (alle seks like) og arkivnøkkel-avklaringen. D-12 rettet med primærkilder for Chronos-2
+  (arXiv 2025-10-17, README 2025-10-20, HF amazon/chronos-2 2025-10-30, autogluon/chronos-2 tom 2025-10-06/modell 2025-11-24).
+- «NOTE for A» fjernet etter behandling: `grep -rn "NOTE for A" manus/` → 0. Åpent punkt for publisering: repo-URL i MANUS-01
+  legges inn først når utgivelsen er besluttet (repoet er privat).
+- Kreditt-ettermåling: allerede gjort 08:59:26Z (194 USD, fall 10 USD).

@@ -112,12 +112,31 @@ før/etter PREREG, hva, hvorfor, konsekvens, sha256 + OTS-stempel av fila etter 
   validate_baselines.py, repro_from_ci.py. .pth-fila i $V/.venv er fjernet.
 - Kontroll: ren venv fra `git archive` (uv sync --frozen) kjører analysis.py; resultatet sammenlignes byte for byte med
   results/ (se STATE).
+- Kontroll 2026-11-02 ca. 09:06 UTC (A): `diff -r -x VENDORED.md -x LICENSE -x __pycache__ khepri_v15 $V/khepri-v1.5/src/khepri`
+  gir ingen forskjell. Blob-sha (`git hash-object`) mot `git -C ~/khepri ls-tree -r v1.5 src/khepri/`: alle seks like —
+  __init__.py c3150f10bbf080f05054646d0c169b8593f59ff1, ci.py f1ebe0500af5d0629d1f271f198721e45a509d41,
+  codecarbon_map.py a90ac7557a58c7d53dd0fbf13a028b654e1381ef, drift.py 19604aa701f89ec41f552172c754ac47b021de02,
+  factors.py ff2d252fe16a562e08d7cdde6516d59683c1083d, forecast.py fa8eb2aae2b948af20c9d6862840d02239bca09e.
+  khepri_v15/LICENSE er byte-lik med v1.5 sin LICENSE. Ingen avvik utover importlinjene i Khepri-TSFM sine egne filer.
+- Arkivnøkkel-linja i RESULTATER-md skrives av analysis.py selv (`analysis.py:200`, fra utfilnavnet). Med samme utfilnavn er
+  md byte-lik (A: full `cmp` i ren venv, sha256 2883d030…a76a). B kjørte med utfilnavnet «RESULTATER_B» og fikk derfor bare
+  linje 1 ulik (truth/REPRO_KHEPRI-TSFM_v1_2026-11-02.md). Ingen endring i analysis.py.
 
 ### D-12 Ordlyd i PREREG om treningsgrenser (ingen endring i analyse eller tall)
 - Meldt av økt B (STATE-B 08:48:15Z). PREREG §1.1 RQ2 (prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:21-22) sier
-  «the 2025 data predate the TSFMs' training cut-offs». Det stemmer ikke for hele vinduet for Chronos-2: den ble sluppet
-  2025-10-20 (truth/SOURCES_KHEPRI-TSFM_v1_2026-11-02.md:60, chronos-forecasting README.md:20), så retro-origins etter
-  den datoen ligger etter slippet. For Timestral er treningsdata og cut-off ikke oppgitt.
-- PREREG og OSF-teksten er låst og endres ikke. Manus bruker ordlyden «Timestral discloses neither its training data nor a
-  training cut-off, and most 2025 origins precede the release of Chronos-2 on 2025-10-20». Merkelappen «contamination not
-  ruled out» og alle analyser er uendret.
+  «the 2025 data predate the TSFMs' training cut-offs». Det stemmer ikke nødvendigvis for hele vinduet for Chronos-2, som ble
+  offentlig i oktober–november 2025. For Timestral er treningsdata og cut-off ikke oppgitt.
+- Slippdatoen for Chronos-2 fra primærkilder (lest 2026-11-02 ca. 09:05 UTC av A; råsvar i $V/tmp/chronos2-dato/ med sha256):
+  - arXiv:2510.15821v1 (teknisk rapport), published 2025-10-17T17:00:53Z — http://export.arxiv.org/api/query?id_list=2510.15821
+    (arxiv_2510.15821.xml, sha256 473dbd7972b0cf9d6a18ea4746944fa74c9559f6ec5f24eff363a520ae953c94).
+  - github.com/amazon-science/chronos-forecasting README.md:20: «20 Oct 2025: … Chronos-2 released» (kunngjøring;
+    chronos_forecasting_README.md, sha256 7f9e55723daadb20f79f3d76d23370888301d917f075e9eafa3e780c78f9ff35).
+  - https://huggingface.co/api/models/amazon/chronos-2/commits/main: «initial commit» 2025-10-30T14:54:39Z (createdAt samme;
+    hf_commits.json sha256 8b250d266e0ab1fa909706b1d3dfc32f9d963d810a541c2984880d7476149ec8).
+  - https://huggingface.co/api/models/autogluon/chronos-2/commits/main: «initial commit» 2025-10-06T18:52:51Z, «Add model»
+    2025-11-24T21:38:47Z (hf_autogluon_commits.json sha256 e532e19c8aa5cbb028b694942a1e39e8c01158ab6e92ac3e6b86b867b58704de).
+  - Første føring av D-12 (ca. 09:02 UTC) brukte bare 2025-10-20; rettet her til intervallet over. Kildene binder ikke slippet
+    til én dag; tidligste spor er 2025-10-06 (tomt repo), tidligste innhold 2025-10-17 (rapporten).
+- Følge: retro-origins 2025-01-01 – 2025-10-05 (278 av 361) ligger før ethvert spor av Chronos-2 offentlig; senere origins kan
+  ligge etter slippet. PREREG og OSF-teksten er låst og endres ikke. Manus bruker «most 2025 origins precede the public release of
+  Chronos-2 in October 2025». Merkelappen «contamination not ruled out» og alle analyser er uendret.

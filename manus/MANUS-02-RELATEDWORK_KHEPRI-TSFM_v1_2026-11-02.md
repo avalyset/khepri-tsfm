@@ -69,7 +69,9 @@ not be verified.
 The three TSFMs evaluated here come from two families: Timestral (Mistral AI) and Chronos-2
 (Ansari et al. 2025 [NR]). The Timestral code is released under Apache-2.0 and the weights separately under a
 "Modified MIT license"; its repository discloses neither training data nor a training cut-off.
-Chronos-2 was released on 2025-10-20, and the quickstart notebook in its repository gives a
+Chronos-2 became public in October 2025: its technical report appeared on 2025-10-17, its
+repository announces the release on 2025-10-20, and the Hugging Face model repository
+amazon/chronos-2 dates from 2025-10-30 (D-12). The quickstart notebook in its repository gives a
 maximum context of 8192 steps.
 <!-- src: S03 timestral README.md:16, 150-162 (licences), grep (no training-data disclosure); S04 chronos-forecasting README.md:20 (release 20 Oct 2025), notebooks/chronos-2-quickstart.ipynb:26 (max context 8192); KG:17-18 (max context 8192; A's reading of the model card). -->
 
@@ -83,7 +85,7 @@ activity series derived from GitHub Archive (stars, pushes, pull requests, issue
 <!-- src: S05 impermanent README.md:8 (subtitle "Live Benchmark for Temporal Generalization in Time Series Forecasting"), README.md:39 (quote), README.md:41, README.md:133 (signals), README.md:177-185 (bibtex). Paper not read. -->
 Our post-release holdout is not a live evaluation: its forecasts were produced after the truth
 had been observed. It guarantees only that the target hours postdate the public release of
-Timestral (2026-10-15, the date of its GitHub release commit) and of Chronos-2 (2025-10-20). In
+Timestral (2026-10-15, the date of its GitHub release commit) and of Chronos-2 (October 2025). In
 the prospective log (Section 3.10) a scheduled job issues the forecast for each 00:00 UTC origin
 a few hours later, while most of the 96 target hours are still unobserved; the context ends at the
 origin.

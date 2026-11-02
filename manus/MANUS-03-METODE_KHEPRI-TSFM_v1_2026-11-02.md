@@ -27,7 +27,7 @@ contains the repository at the GPG-signed git tag `prereg-v1` (commit
 OpenTimestamps.
 <!-- src: STA:63-66 (tag prereg-v1, commit 74539f2af7bb6d203d8c8452e01d96a222156078, OTS); KG/brief: Zenodo is the anchor (STA, "OSF-sjekk og TILLEGG" section: "Manus ... siterer Zenodo-DOI-en som preregistreringens anker") -->
 It was also registered on OSF 2026-11-02 07:49 UTC (osf.io/hncz5).
-<!-- src: STA:68-69 (sent 2026-11-02 07:49 UTC, https://osf.io/hncz5). Wording fixed by the brief. Do NOT describe it as public or approved (STA:88-90). NOTE for A: the OSF entry also mentions D-09 under Prior knowledge (STA:73), so it is not byte-identical to the tarball. OTS stamp status at writing: venter på Bitcoin (STA:66). -->
+<!-- src: STA:68-69 (sent 2026-11-02 07:49 UTC, https://osf.io/hncz5). Wording fixed by the brief. Do NOT describe it as public or approved (STA:88-90). -->
 The locked analysis is `analysis.py` with `khepri_tsfm/stats.py` at that tag.
 <!-- src: PRE:222-224 -->
 Deviations are listed in Section 3.9 and in full in the repository
@@ -36,11 +36,9 @@ Deviations are listed in Section 3.9 and in full in the repository
 The study has two test windows with different roles. A *retrospective* test (retro) on the
 Khepri v1.5 2025 test set carries the statistical power but is labelled "contamination not
 ruled out": the training cut-off of Timestral is not disclosed in its repository, and most of the 2025 test period
-precedes the release of Chronos-2 on 2025-10-20. A *post-release holdout* uses only forecast origins after the public
+precedes the public release of Chronos-2 in October 2025 (D-12). A *post-release holdout* uses only forecast origins after the public
 release of Timestral and serves as a contamination control with low power.
-<!-- src: DEC:5-7, DEC:23-26; PRE:20-22. Chronos-2 release date: github.com/amazon-science/chronos-forecasting README.md:20 @ 1224faf (SOURCES S04).
-NOTE for A: PRE:21-22 says "the 2025 data predate the TSFMs' training cut-offs". For Chronos-2 this is not true of the
-whole window: origins after 2025-10-20 postdate its release. B has therefore NOT copied the PRE wording. -->
+<!-- src: DEC:5-7, DEC:23-26; PRE:20-22; DEV D-12 (Chronos-2 public in October–November 2025: arXiv report 2025-10-17, README announcement 2025-10-20, HF amazon/chronos-2 2025-10-30; PRE wording handled in D-12). -->
 
 ## 3.2 Data and carbon intensity
 
@@ -227,8 +225,6 @@ Diebold–Mariano tests on the zone average over the six zones without filled ho
 SE1, SE2, SE3, SE4), reported descriptively next to the primary tests. The zone set was fixed
 from the CI data before any TSFM forecast.
 <!-- src: DEV:73-75; PRE:184-185 -->
-<!-- NOTE for A (not manuscript text): STA:107 records a post-run observation about the NO5 holdout CI.
-It is not in DECISIONS/DEVIATIONS/PREREG, so B has not put it in the methods; A decides where it belongs. -->
 
 A descriptive reproduction table compares our retro mean MAPE for SARIMA and GBM with the
 published v1.5 tables per zone (D-08); it enters no test.
@@ -255,8 +251,6 @@ analysis.
 | D-09 | Bug fix in the prospective-log issuer (chronological splicing of new A75 data) | Prospective log only; analysis and arms unchanged |
 | D-10 | Guard in the prospective-log issuer that skips a day's issue while another heavy job runs; such days are logged as lost, never back-filled | Prospective log only; analysis and arms unchanged |
 <!-- src: D-01 DEV:8-17; D-02 DEV:19-29; D-03 DEV:36-39; D-04 DEV:41-43; D-05 DEV:45-51; D-06 DEV:55-63; D-07 DEV:65-75; D-08 DEV:77-80; D-09 DEV:84-90; D-10 DEV:94-99 -->
-<!-- NOTE for A: D-10 refers to a local machine rule (SES status file on the author's volume). B phrased it generically
-("another heavy job"); A decides whether more detail belongs in the paper. -->
 
 ## 3.10 Prospective log
 
