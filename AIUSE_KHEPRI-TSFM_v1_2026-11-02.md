@@ -13,9 +13,9 @@ by the owner before any computation; deviations are logged in `truth/DEVIATIONS_
 
 | Tool | Version | Role |
 |---|---|---|
-| Claude Code (Anthropic), local session A | CLI 2.1.303, model Opus 5.5 (`claude-opus-5-5`) | Wrote the code in this repository, fetched data, ran the arms and the locked analysis, filled the OSF form from the PREREG file, drafted the results section and this file. |
+| Claude Code (Anthropic), local session | CLI 2.1.303, model Opus 5.5 (`claude-opus-5-5`) | Wrote the code in this repository, fetched data, ran the arms and the locked analysis, filled the OSF form from the PREREG file, drafted the results section and this file. |
 | Claude Code subagent | model Sonnet (Anthropic) | Step 1: read the Khepri v1.5 sources and model cards; reported file:line references, which session A checked against the code. |
-| Claude Code, cloud session B | as reported in `truth/STATE-B_…` | Literature, the manuscript sections without results, and independent reproduction (see `truth/STATE-B_…` and the REPRO file). |
+| Claude Code, cloud session | as reported in `truth/STATE-B_…` | Literature, the manuscript sections without results, and independent reproduction (see `truth/STATE-B_…` and the REPRO file). |
 
 No model was fine-tuned or trained on project data. The forecasting models studied
 (Timestral, Chronos-2) are objects of study, not tools; they are listed in the PREREG with
@@ -25,6 +25,7 @@ pinned revisions.
 
 - Every number in the manuscript is listed in `truth/NUMBERS_…` with file:line.
 - Every external claim is listed in `truth/SOURCES_…` with URL, date read and locator.
-- Results come only from `analysis.py` as locked at tag `prereg-v1`. The preregistration is anchored by the
-  Zenodo deposit (DOI: {{ZENODO_DOI}}, set at publication), which holds the PREREG tarball, the OpenTimestamps
-  proofs and the signed tag; additional reference: OSF https://osf.io/hncz5, registered 2026-11-02 07:49 UTC.
+- Results come only from `analysis.py` as locked at tag `prereg-v1`. Design, analysis code and MDE were
+  timestamped before any foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the
+  GPG-signed tag `prereg-v1`; the proofs are archived in Zenodo (DOI: {{ZENODO_DOI}}, set at publication). The
+  preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5, under embargo).

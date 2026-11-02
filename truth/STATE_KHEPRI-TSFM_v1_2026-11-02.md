@@ -182,3 +182,23 @@ Eier: økt A (lokal Mac). Tilstand påstås kun herfra.
 - Ingen egne prosesser kjører (pgrep tomt). Plist er lastet og kjører neste gang 05:00 lokal tid med SES-vakt.
 
 MASKINEN ER LEDIG
+
+## Rettelser før Brevet (Eirik, RETTELSER 1–5 + TILLEGG 6–9; ca. 09:20–09:35 UTC; ingen tall endret)
+- Publiseringsmål: arXiv + Zenodo. JOSS er ikke mål for v1. Ingen ny Zenodo-tarball før etter Brevet
+  ($V/ZENODO_… fra dbf3702 inneholder derfor den eldre OSF-/ankerordlyden; bygges på nytt ved publisering).
+- Anker- og OSF-ordlyd overalt (arxiv/main.tex, MANUS-01, MANUS-03, README, CITATION.cff, AIUSE, Zenodo-beskrivelse):
+  «Design, analysis code and MDE … timestamped … by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag prereg-v1;
+  proofs archived in Zenodo» + «submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5, under embargo)».
+  Merk: OSF-API-et viste ved sjekken embargoed=false / pending_embargo_approval=true; «under embargo» blir bokstavelig riktig når
+  den automatiske godkjenningen er gått gjennom.
+- Abstract: holdout-CRPS som punktestimater med DM-HLN p = 0.0000 og n = 14; kontamineringsindikatoren med lav styrke (SE 0.124–0.360 pp).
+- Chronos-2-rapporten arXiv:2510.15821v1 lest i fulltekst (SOURCES S27); MANUS-02 §2.2 oppgradert; D-12-datoene bekreftet (rapporten
+  oppgir verken cut-off eller slippdato).
+- manus/MANUS-01–03 renset (HTML-kommentarer, [NR], session-B-notater); annoterte versjoner i $V/tmp/manus-annotert/ (sha256 i SOURCES).
+  MANUS-03 §3.9 fikk D-11 og D-12 (utdatert status). Den foreldede kommentaren i MANUS-02:88 om arXiv:2510.01521 er fjernet med rensingen.
+- arXiv bygget: 0 feil, 0 overfull/udefinert, 15 sider. ARXIV-tarball sha256 528906785ac32ffc737856e5888364b2fb32c9c90d36a695bdf2064719542ccc
+  (kompilerer fra utpakking med 0 feil). NUMBERS: 504 tall, 0 uten kilde. BREVETPAKKE regenerert av build_brevetpakke.py (Vault = repo).
+- grep over manus/, arxiv/, README.md, CITATION.cff, AIUSE og BREVETPAKKE: «anchored in Zenodo» 0, «registered on OSF» 0,
+  «NOTE for A» 0, «session B» 0; kontrollstreng «submitted to OSF Registries» i 7 filer.
+
+MASKINEN ER LEDIG

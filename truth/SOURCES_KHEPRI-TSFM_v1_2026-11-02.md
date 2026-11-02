@@ -194,3 +194,22 @@ førte til alternativ åpen kopi eller «ikke tilgjengelig». Lesedato for alle:
 ### Chronos-2 slippdato (D-12)
 - Primærkilder og sha256 i truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md D-12 (arXiv 2025-10-17; README 2025-10-20; HF amazon/chronos-2 2025-10-30;
   autogluon/chronos-2 opprettet 2025-10-06, modell 2025-11-24). Råsvar i $V/tmp/chronos2-dato/.
+
+### S27 Chronos-2 — teknisk rapport (fulltekst) arXiv:2510.15821v1 (lest av A 2026-11-02 09:24 UTC)
+- URL https://arxiv.org/pdf/2510.15821v1 · $V/tmp/fulltekst/chronos2.pdf sha256 73a0da2cbfafa5eda8e28041249ff889273a386acaffd35be13a688af1364edd (31 s.)
+- s.1 abstrakt: «a pretrained model capable of handling univariate, multivariate, and covariate-informed forecasting tasks in a
+  zero-shot manner»; s.6: «the context length is extended to 8192»; s.7 §4.2: «For multivariate and covariate-informed tasks, we
+  relied entirely on synthetic data.»; s.20 Tabell 6 «Real univariate datasets used for pretraining Chronos-2» (energi: Electricity,
+  Solar, Wind Farms, London Smart Meters, Buildings 900K; ingen ENTSO-E- eller CI-serie). «ENTSO-e Load» bare som evalueringsoppgave
+  (s.31). Søk uten treff: cutoff, October → rapporten oppgir verken treningsgrense eller slippdato; D-12-datoene er uendret
+  (arXiv v1 2025-10-17 samsvarer). → MANUS-01 §1 (Ansari et al. 2025), MANUS-02 §2.2.
+
+## Rensing av md-utkastene (2026-11-02 ca. 09:28 UTC, Eiriks rettelse punkt 8)
+- manus/MANUS-01–03 renset for HTML-kildekommentarer, [NR]-merker og «session B»-notater; ingen innholdsendring utover dette,
+  bortsett fra (i) OSF-/ankerordlyden (Eiriks punkt 1 og 6), (ii) Chronos-2-påstanden (S27), (iii) D-11/D-12 i avvikstabellen
+  (utdatert status). Annoterte versjoner med kildekommentarer (fil:linje-kilder for hver påstand) ligger i $V/tmp/manus-annotert/:
+  - 0093b17fc02e87e9ad7e2d3722cd67828bf05f3f1e2e433c69d414909007c223  MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md
+  - a9d0629778cecc2c4b3c6dd87b7dc44c093b054bcfac70bfdb815b04854ad301  MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md
+  - 1765c16a2eb16f9161067e989b8122ba8ac44b3b9a69a87df18548ad4019232c  MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md
+- [NR] betydde «ikke lest i fulltekst». Etter fulltekstpasset er dette fortsatt ikke lest: CarbonCast-artikkelen, Diebold & Mariano 1995,
+  Harvey et al. 1997, Gneiting & Raftery 2007 (bare bibliografisk sitert for metodenavn) og Hong et al. 2016 utover abstraktet.
