@@ -5,7 +5,7 @@ title: "Khepri-TSFM v1: zero-shot time-series foundation models vs. Khepri v1.5 
 abstract: >-
   Preregistered comparison (design, analysis code and MDE timestamped before any
   foundation-model forecast by an OpenTimestamps proof and the GPG-signed tag prereg-v1, proofs
-  archived in this Zenodo deposit; also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5, under embargo)) of zero-shot time-series
+  archived in this Zenodo deposit; also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval)) of zero-shot time-series
   foundation models (Timestral-5M, Timestral-209M, Chronos-2) with the Khepri v1.5
   SARIMA and GBM baselines for 96-hour forecasts of hourly carbon intensity in the
   nine Nordic bidding zones NO1–NO5 and SE1–SE4, on the Khepri v1.5 2025 test and a

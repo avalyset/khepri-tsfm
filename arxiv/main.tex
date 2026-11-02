@@ -46,15 +46,18 @@ whose code and hyperparameters are unchanged, for 96-hour forecasts of hourly ca
 design, the analysis code and a minimum detectable effect (MDE) were timestamped before any
 foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag
 prereg-v1; the proofs are archived in Zenodo (DOI \zenodoDOI{}). The preregistration was also
-submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5, under embargo). On the 2025 test (361 daily origins,
+submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval). On the 2025 test (361 daily origins,
 contamination not ruled out) all three models have a lower zone-averaged MAPE than both baselines,
 by 0.952 to 1.347 percentage points (Diebold--Mariano with the Harvey--Leybourne--Newbold
 correction, all $p<0.0001$), and each beats SARIMA in 9 of 9 zones. On a post-release holdout of
 14 origins from 2026-10-16 the point estimates have the same sign (0.729 to 1.326 percentage
 points lower), but all lie within the preregistered minimum detectable effect of 2.989 points and
-are reported as not determined. Holdout CRPS point estimates (n = 14 origins) are 1.1114 (Timestral-5M), 1.0733 (Timestral-209M)
-and 1.1198 (Chronos-2) against 1.4165 gCO$_2$-eq/kWh for SARIMA (Diebold--Mariano--HLN $p = 0.0000$
-for each comparison). With 14 holdout origins the contamination indicator has low power (HAC
+are reported as not determined. For the preregistered calibration question (RQ4: a Diebold--Mariano--HLN test on CRPS, locked in the
+preregistration; the MDE applies to MAPE only), holdout CRPS point estimates (n = 14 origins) are
+1.1114 (Timestral-5M), 1.0733 (Timestral-209M) and 1.1198 (Chronos-2) against 1.4165 gCO$_2$-eq/kWh
+for SARIMA ($p<0.0001$ for each comparison); the SARIMA quantiles are constructed as a Gaussian
+predictive distribution from the fitted model (deviation D-03), not a native v1.5 forecast, so the
+difference may partly reflect the SARIMA intervals. With 14 holdout origins the contamination indicator has low power (HAC
 standard errors 0.124 to 0.360 pp); it does not exceed its preregistered threshold for any
 comparison. Forecasts, the CI series,
 the locked analysis and all deviations are released with the code.

@@ -202,3 +202,13 @@ MASKINEN ER LEDIG
   «NOTE for A» 0, «session B» 0; kontrollstreng «submitted to OSF Registries» i 7 filer.
 
 MASKINEN ER LEDIG
+
+## To rettelser før Brevet (Eirik, ca. 09:40 UTC; ingen tall endret)
+- RQ4/CRPS i abstract og MANUS-04: «p < 0.0001» (aldri «p = 0.0000»); formulert som preregistrert RQ4-resultat (DM-HLN på CRPS låst i
+  PREREG; MDE gjelder MAPE), med D-03-forbeholdet (gaussisk konstruerte SARIMA-kvantiler) i samme eller neste setning. README og
+  Zenodo-beskrivelsen omtaler ikke CRPS.
+- OSF-ordlyd overalt: «submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval)»
+  (arxiv/main.tex, MANUS-01, MANUS-03, README, CITATION.cff, AIUSE, build_brevetpakke.py → Zenodo-beskrivelse).
+- arXiv: 0 feil, 15 sider; ARXIV-tarball sha256 5709217e7a23ddf9b475d61237f3fc152474b14dab4f084864c030f9dc1c114a. NUMBERS 504/0.
+
+MASKINEN ER LEDIG

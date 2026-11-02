@@ -12,7 +12,7 @@ import subprocess
 R = os.path.dirname(os.path.abspath(__file__))
 V = os.environ.get("V", "/Volumes/Vault/khepri-tsfm")
 NAME = "BREVETPAKKE_KHEPRI-TSFM_v1_2026-11-02.md"
-OSF = "submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5, under embargo)"
+OSF = "submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval)"
 
 ZENODO = f"""Khepri-TSFM v1 — preregistered comparison of zero-shot time-series foundation models (Timestral-5M,
 Timestral-209M, Chronos-2; pinned Hugging Face revisions, 8192-hour context, no covariates) with the Khepri v1.5

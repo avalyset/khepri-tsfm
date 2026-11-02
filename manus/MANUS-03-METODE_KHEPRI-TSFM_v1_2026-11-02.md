@@ -13,7 +13,7 @@ by an OpenTimestamps proof (Bitcoin-confirmed) of the tarball of the repository 
 git tag `prereg-v1` (commit 74539f2af7bb6d203d8c8452e01d96a222156078) and by the signed tag itself;
 the proofs are archived in Zenodo ([ZENODO-DOI]).
 
-The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5, under embargo).
+The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
 
 The locked analysis is `analysis.py` with `khepri_tsfm/stats.py` at that tag.
 

@@ -28,4 +28,4 @@ pinned revisions.
 - Results come only from `analysis.py` as locked at tag `prereg-v1`. Design, analysis code and MDE were
   timestamped before any foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the
   GPG-signed tag `prereg-v1`; the proofs are archived in Zenodo (DOI: {{ZENODO_DOI}}, set at publication). The
-  preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5, under embargo).
+  preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).

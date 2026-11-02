@@ -141,9 +141,14 @@ Chronos-2 & 1.1198 & 0.806 & 0.905 \\
 \end{tabular}
 \end{table}
 
+RQ4 is the preregistered calibration comparison: a DM-HLN test on the zone-averaged per-origin CRPS
+difference TSFM $-$ SARIMA was locked in the preregistration, and the MDE applies to MAPE only.
 All three TSFMs have a lower holdout CRPS than SARIMA (differences $-0.3052$, $-0.3432$ and
 $-0.2967$~gCO$_2$-eq/kWh for Timestral-5M, Timestral-209M and Chronos-2; HLN statistics
-$-11.75$, $-11.23$ and $-8.52$; all $p<0.0001$). Empirical coverage lies between 0.806 and 0.838
+$-11.75$, $-11.23$ and $-8.52$; all $p<0.0001$). The SARIMA quantiles are constructed from the
+fitted model's Gaussian predictive distribution (deviation D-03), not taken from a native v1.5
+probabilistic forecast, so the difference may partly reflect the SARIMA intervals rather than the
+TSFMs alone. Empirical coverage lies between 0.806 and 0.838
 for the 80~\% interval and between 0.905 and 0.921 for the 90~\% interval across the four arms
 (Table~\ref{tab:calib}); these are 14 origins and are not tested.
 
