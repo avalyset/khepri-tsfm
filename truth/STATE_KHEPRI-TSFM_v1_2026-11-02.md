@@ -282,3 +282,17 @@ MASKINEN ER LEDIG
 - Publisering ferdig ca. 10:30 UTC. Ingen egne prosesser kjører; plisten for prospektiv logg er lastet (05:00 lokal tid).
 
 MASKINEN ER LEDIG
+
+## A-ABS: kontroll av innsendt arXiv-abstract (2026-11-02 ca. 10:36 UTC)
+- Innsendt tekst: $V/ARXIVABSTRACT_KHEPRI-TSFM_v1_2026-11-02.txt (kopi av $V/tmp/arxiv_abstract_ascii.txt), 1919 B ASCII,
+  sha256 cf1872db45b866b119a48748a081e509f26ed6a68fb6a5234e38e9136b359b6c (verifisert).
+- Mot PDF-abstractet i arxiv/main.tex @ 70ddbf7 (2057 tegn, tankestreker normalisert til bindestrek):
+  a) alle 28 tallverdier finnes med samme antall; ingen nye tall;
+  b) forbehold PDF/innsendt: «not determined» 1/1, «contamination not ruled out» 1/1, «may partly reflect» 1/1, «low power» 1/1,
+     «MDE applies to MAPE only» 1/1; «possible contamination», «descriptive», «not a test of contamination» 0/0 (står ikke i PDF-abstractet);
+  c) first/novel/state-of-the-art/outperform/significant: 0/0;
+  d) setningsdiff: 7 av 10 setninger like; tre ulike: «minimum detectable effect» → «MDE», «(n = 14 origins)» → «(n = 14)» og
+     «(p < 0.0001 for each comparison)» → «(each p < 0.0001)»; siste setning («Forecasts, … released with the code.») utelatt.
+- Handling: ingen (submit/8316470 urørt). Kontrollen ble kjørt i hovedøkta (Opus), ikke i en Sonnet-økt.
+
+MASKINEN ER LEDIG
