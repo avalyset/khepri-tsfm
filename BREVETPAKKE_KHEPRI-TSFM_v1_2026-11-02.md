@@ -1,6 +1,6 @@
 Arkivnøkkel: BREVETPAKKE_KHEPRI-TSFM_v1_2026-11-02
 
-Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main 7dc4b0fa132dcfb0a2b672f1170977a6a33f2092.
+Til publiseringsprompten (Brevet). Generert av build_brevetpakke.py fra main 0956f10db2cfd7be353fc741116e10e819c03780.
 Zenodo-DOI: 10.5281/zenodo.23881315 (satt inn ved publisering).
 Manuskriptkilden for arXiv er arxiv/ (main.tex, references.tex) med MANUS-01–04; md-filene i manus/ er rensede
 arbeidsfiler (annoterte versjoner med kildekommentarer på Vault, se SOURCES).
@@ -40,6 +40,8 @@ OSF-ordlyd overalt: «submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/h
 \newcounter{none} % pandoc longtable without caption
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\pandocbounded}[1]{#1}
+\hyphenation{zenodo Zenodo}
+\hypersetup{pdftitle={Zero-shot time-series foundation models against the Khepri v1.5 baselines for 96-hour carbon-intensity forecasts in nine Nordic bidding zones: a preregistered comparison}, pdfauthor={Eirik Botten Nicolaysen}}
 
 \title{Zero-shot time-series foundation models against the Khepri v1.5 baselines for 96-hour
 carbon-intensity forecasts in nine Nordic bidding zones: a preregistered comparison}
@@ -115,7 +117,7 @@ Time-series foundation models (TSFMs) are pretrained forecasters that can be app
 series without training on it ("zero-shot").
 Chronos-2 is described by its developers as
 offering zero-shot support for univariate, multivariate and covariate-informed forecasting
-(Ansari et al. 2025). Timestral, released by Mistral AI on 2026-10-15, comes in four sizes
+(Ansari et al. 2025). Timestral, released by Mistral AI on 2026-10-15 (Mistral AI 2026), comes in four sizes
 from 5M to 209M parameters with 21 predictive quantiles per time step.
 
 For a CI series, a zero-shot TSFM needs only the history of the series itself. This makes it
@@ -152,6 +154,7 @@ The holdout is therefore a contamination control, and the difference between the
 on the two tests is reported as a descriptive contamination indicator, not as a test.
 
 The contributions are as follows. We make no claim of priority.
+
 - A preregistered comparison of three zero-shot TSFMs (Timestral-5M, Timestral-209M,
   Chronos-2) with the Khepri v1.5 SARIMA and GBM baselines and a seasonal-naive reference, for
   96-hour CI forecasts in nine Nordic bidding zones. Design, analysis code and MDE were
@@ -394,7 +397,7 @@ the TSFM point forecast is the 0.5 quantile.
 
 All three TSFMs natively provide the same 21 quantile levels 0.01, 0.05, 0.10, …, 0.90, 0.95,
 0.99, which form the common quantile set. SARIMA provides them from its Gaussian predictive
-distribution (`get_forecast`, predicted mean + z_q · standard error), with the point forecast
+distribution (`get_forecast`, predicted mean + $z_q \cdot$ standard error), with the point forecast
 unchanged (D-03). GBM and the seasonal-naive arm give no quantiles.
 
 Khepri v1.5 does not store hourly predictions, so a driver repeats the v1.5 forecasting loop line
@@ -420,7 +423,7 @@ the point forecast; hours with |actual| ≤ 1e-6 are excluded.
 The test series is the zone-averaged loss per origin, the mean over the nine zones.
 
 For probabilistic forecasts (RQ4) we use the quantile-score approximation of the continuous
-ranked probability score (CRPS) over the 21 levels, CRPS ≈ (2/21) Σ_k pinball_{τ_k}(y, q_k),
+ranked probability score (CRPS) over the 21 levels, $\mathrm{CRPS} \approx \frac{2}{21} \sum_k \mathrm{pinball}_{\tau_k}(y, q_k)$,
 averaged over the 96 hours, in gCO2-eq/kWh, and the empirical coverage of the central 80 %
 interval [q0.10, q0.90] and 90 % interval [q0.05, q0.95] (Gneiting & Raftery 2007).
 
@@ -445,7 +448,7 @@ advantage (pp divided by SARIMA MAPE) is reported as a secondary measure. The nu
 difference is reported as a result in its own right.
 
 *Diebold–Mariano tests.* For each TSFM against each baseline we form
-d_t = loss(TSFM)_t − loss(baseline)_t on the zone-averaged per-origin losses and apply the
+$d_t = \mathrm{loss}(\mathrm{TSFM})_t - \mathrm{loss}(\mathrm{baseline})_t$ on the zone-averaged per-origin losses and apply the
 Diebold–Mariano test (Diebold & Mariano 1995) with the Harvey–Leybourne–Newbold
 small-sample correction (Harvey et al. 1997), h = 4, because 96-hour horizons at daily
 origins overlap. The long-run variance uses a rectangular kernel over lags 0…3, with Bartlett
@@ -462,9 +465,9 @@ Section 3.7) the holdout result is "not determined", regardless of p, and never 
 equivalence. If |mean d| ≥ MDE and p < 0.05 the result is "TSFM better" (d < 0) or "TSFM worse"
 (d > 0); otherwise "not significant".
 
-*Contamination indicator (RQ5).* With the advantage A_t = loss(baseline)_t − loss(TSFM)_t
-(zone-averaged), the indicator is mean(A_retro) − mean(A_holdout), with standard error
-√(SE_retro² + SE_holdout²) from HAC (rectangular, lags 0…3) standard errors of each mean. A
+*Contamination indicator (RQ5).* With the advantage $A_t = \mathrm{loss}(\mathrm{baseline})_t - \mathrm{loss}(\mathrm{TSFM})_t$
+(zone-averaged), the indicator is $\overline{A}_{\mathrm{retro}} - \overline{A}_{\mathrm{holdout}}$, with standard error
+$\sqrt{\mathrm{SE}_{\mathrm{retro}}^2 + \mathrm{SE}_{\mathrm{holdout}}^2}$ from HAC (rectangular, lags 0…3) standard errors of each mean. A
 value with z = indicator/SE > 1.96 is reported as "possible contamination". The indicator also
 reflects any genuine change between 2025 and October 2026 and is not a test of contamination.
 
@@ -476,10 +479,10 @@ listed in the preregistration are labelled exploratory.
 The MDE was computed before any TSFM run, from the stored Khepri v1.5 per-(origin, day) metric
 rows of the 2025 test (D-05), because no 2025 per-origin predictions were stored. The series is
 the zone-averaged SARIMA − GBM loss difference over 361 origins; its long-run variance with a
-rectangular kernel and h = 4 is σ²_LR = 7.6455 pp².
+rectangular kernel and h = 4 is $\sigma^2_{\mathrm{LR}} = 7.6455$ pp$^2$.
 
-With MDE = (t_{0.975, n−1} + t_{0.80, n−1}) / HLN(n, h) · √(σ²_LR / n), where
-HLN(n, h) = √((n + 1 − 2h + h(h−1)/n) / n), α = 0.05 two-sided and power 0.8, the MDE is
+With $\mathrm{MDE} = (t_{0.975,\,n-1} + t_{0.80,\,n-1}) / \mathrm{HLN}(n,h) \cdot \sqrt{\sigma^2_{\mathrm{LR}}/n}$, where
+$\mathrm{HLN}(n,h) = \sqrt{(n + 1 - 2h + h(h-1)/n)/n}$, $\alpha = 0.05$ two-sided and power 0.8, the MDE is
 2.989 pp for the n = 14 holdout origins and 0.413 pp for the n = 361 retro origins.
 
 The holdout is therefore a contamination control with low power; the retro test carries the
@@ -551,8 +554,8 @@ is under Apache-2.0.
 \section{Results}
 \label{sec:results}
 
-All numbers in this section come from the locked \texttt{analysis.py} (tag \texttt{prereg-v1})
-applied to the six prediction files; the output is
+Unless stated otherwise, the numbers in this section come from the locked \texttt{analysis.py} (tag
+\texttt{prereg-v1}; run with the import change of deviation D-11) applied to the six prediction files; the output is
 \texttt{results/RESULTATER\_KHEPRI-TSFM\_v1\_2026-11-02.md}. Every arm produced forecasts for all
 nine zones at all 361 retro origins and all 14 holdout origins; no origin was lost and SARIMA
 never fell back to diurnal persistence. Loss is the Khepri v1.5 MAPE over the 96 target hours;
@@ -566,9 +569,12 @@ equality, whatever its $p$-value.
 
 \subsection{Reproduction of the baselines}
 Our rerun of SARIMA and GBM reproduces the published Khepri v1.5 retro means within
-$\pm 0.005$~pp in every zone except NO1 SARIMA ($2.4596$ against the published $2.47$, a
-difference of $-0.0104$~pp; the fit converges after one L-BFGS iteration in the current
-environment, deviation D-02).
+$\pm 0.005$~pp in every zone except NO1 SARIMA ($2.4596$ against the published, rounded $2.47$, a
+difference of $-0.0104$~pp; against the unrounded stored v1.5 rows, $2.4656$, the difference is
+$-0.006$~pp; the fit converges after one L-BFGS iteration in the current
+environment, deviation D-02). These reproduction figures come from
+\texttt{results/REPRO-V15\_KHEPRI-TSFM\_v1\_2026-11-02.md}; the NO5 note below comes from
+\texttt{results/TILLEGG\_KHEPRI-TSFM\_v1\_2026-11-02.md}.
 
 \subsection{RQ2: retro test (2025, 361 origins)}
 \begin{table}[t]
@@ -652,7 +658,7 @@ TSFM & baseline & TSFM & base & diff. & stat. & $p$ & $p_{\mathrm{Holm}}$ & verd
 Timestral-5M & SARIMA & 8.415 & 9.332 & $-0.917$ & $-1.98$ & 0.0693 & 0.1385 & not determined \\
 Timestral-5M & GBM & 8.415 & 9.223 & $-0.808$ & $-5.00$ & 0.0002 & 0.0012 & not determined \\
 Timestral-209M & SARIMA & 8.005 & 9.332 & $-1.326$ & $-3.79$ & 0.0023 & 0.0068 & not determined \\
-Timestral-209M & GBM & 8.005 & 9.223 & $-1.218$ & $-17.97$ & 0.0000 & 0.0000 & not determined \\
+Timestral-209M & GBM & 8.005 & 9.223 & $-1.218$ & $-17.97$ & $<$0.0001 & $<$0.0001 & not determined \\
 Chronos-2 & SARIMA & 8.494 & 9.332 & $-0.838$ & $-1.89$ & 0.0810 & 0.1385 & not determined \\
 Chronos-2 & GBM & 8.494 & 9.223 & $-0.729$ & $-4.95$ & 0.0003 & 0.0012 & not determined \\
 \bottomrule
@@ -760,9 +766,7 @@ numbers.
 % ($V/tmp/sources/, sha256 per file in truth/SOURCES_KHEPRI-TSFM_v1_2026-11-02.md).
 \section*{References}
 \begin{list}{}{\leftmargin=1.5em \itemindent=-1.5em \itemsep=2pt}
-\item Aksu, T., Woo, G., Liu, J., Liu, X., Liu, C., Savarese, S., Xiong, C., \& Sahoo, D. (2024). GIFT-Eval: A benchmark for general time series forecasting model evaluation. arXiv:2410.10393.
 \item Ansari, A.\,F., Shchur, O., K\"uken, J., et al. (2025). Chronos-2: From univariate to universal forecasting. arXiv:2510.15821.
-\item Ansari, A.\,F., Stella, L., Turkmen, C., et al. (2024). Chronos: Learning the language of time series. arXiv:2403.07815.
 \item Botten Nicolaysen, E. (2026). Khepri v1.5.0. Zenodo. doi:10.5281/zenodo.23101127.
 \item Clau\ss, J., Stinner, S., Solli, C., Lindberg, K.\,B., Madsen, H., \& Georges, L. (2019). Evaluation method for the hourly average CO2eq.\ intensity of the electricity mix and its application to the demand response of residential heating. \emph{Energies}, 12(7), 1345. doi:10.3390/en12071345.
 \item Cramer, E.\,Y., Ray, E.\,L., Lopez, V.\,K., et al. (2022). Evaluation of individual and ensemble probabilistic forecasts of COVID-19 mortality in the United States. \emph{Proceedings of the National Academy of Sciences}, 119(15), e2113561119. doi:10.1073/pnas.2113561119.
@@ -800,6 +804,8 @@ Nordic bidding zones NO1–NO5 and SE1–SE4.
   `prereg-v1`; the proofs (PREREG tarball, sha256, `.ots`, signed tag objects) are archived in Zenodo
   (DOI: 10.5281/zenodo.23881315). The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval).
 - **Baseline source:** Khepri v1.5.0, DOI 10.5281/zenodo.23101127.
+- **Code:** https://github.com/avalyset/khepri-tsfm. The signed tag `v1.0.0` is the commit deposited on
+  Zenodo (DOI 10.5281/zenodo.23881315).
 
 Results are in `results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md` (generated by the locked
 `analysis.py`) and in the manuscript sources in `manus/`. Two hand-made notes that are not
@@ -952,8 +958,6 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 ## 4.2 arXiv-ID-er
 
 - arXiv:2003.05740v1
-- arXiv:2403.07815
-- arXiv:2410.10393
 - arXiv:2505.01959
 - arXiv:2505.01959v2
 - arXiv:2510.01521
@@ -978,6 +982,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 
 ## 4.5 sha-er (40 hex = git, 64 hex = sha256) i manus, README, Zenodo-beskrivelse, STATE og DEVIATIONS
 
+- 0495e6a158b0bf545bc7685ffacf379e0c703c81
 - 168479a5205c26c12afa80e1c98612432ef824272b74121efa70e4d8522bd6cb
 - 19604aa701f89ec41f552172c754ac47b021de02
 - 1d68802b290a985c5c77b06a54b8476326d4dc61f1100b4e06e4d3639987636c
@@ -994,6 +999,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 - 8b250d266e0ab1fa909706b1d3dfc32f9d963d810a541c2984880d7476149ec8
 - 97f1cf6d7c640968ec800ebefb578680bdcdf44a8269dea6bdb6f0638a5f7929
 - 9874d252ab0aae16f7f7c999f98f98d6ad7d8365
+- 9a2dce9d3c33efdd6b36741bf3e4094bb64e914301bd9d1855cbe679f8dab184
 - 9e2214f8bf9410f6fcf45d4d5b287bac6441bb47
 - a534bdbd244d64f3d9d743f46c7bf6fc330ed4ff
 - a90ac7557a58c7d53dd0fbf13a028b654e1381ef
@@ -1006,7 +1012,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 - fa8eb2aae2b948af20c9d6862840d02239bca09e
 - ff2d252fe16a562e08d7cdde6516d59683c1083d
 
-## 4.6 Alle tall i manus og README med kilde (504 rader, fra truth/NUMBERS)
+## 4.6 Alle tall i manus og README med kilde (510 rader, fra truth/NUMBERS)
 
 | Tall | Manus (fil:linje) | Kilde (fil:linje) |
 |---|---|---|
@@ -1019,6 +1025,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 2.92 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:14 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:24 |
 | 0.53 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:14 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:24 |
 | 2025 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:20 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 2026 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:20 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
 | 21 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:21 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:772 |
 | 214 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:27 | truth/DECISIONS_KHEPRI-TSFM_v1_2026-11-02.md:43 |
 | 0.72 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:30 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:11 |
@@ -1029,9 +1036,9 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 2025 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:50 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
 | 2.989 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:50 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
 | 0.413 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:50 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:19 |
-| 96 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:59 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 07 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:62 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
-| 49 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:62 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:64 |
+| 96 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 07 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:63 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
+| 49 | manus/MANUS-01-INNLEDNING_KHEPRI-TSFM_v1_2026-11-02.md:63 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:64 |
 | 24 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:7 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:939 |
 | 2019 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:13 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:47 |
 | 2021 | manus/MANUS-02-RELATEDWORK_KHEPRI-TSFM_v1_2026-11-02.md:13 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:5 |
@@ -1199,6 +1206,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 0.05 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:158 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
 | 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:158 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
 | 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:159 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
+| 2 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
 | 0 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
 | 3 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
 | 1.96 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:164 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
@@ -1208,6 +1216,7 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 361 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:174 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
 | 4 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:175 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
 | 7.6455 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:175 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:12 |
+| 2 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:175 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
 | 0.975 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:13 |
 | 1 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
 | 0.80 | manus/MANUS-03-METODE_KHEPRI-TSFM_v1_2026-11-02.md:177 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:13 |
@@ -1246,240 +1255,243 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 2.4596 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:21 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:7 |
 | 2.47 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:21 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:7 |
 | 0.0104 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:22 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:7 |
-| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:28 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 4 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:29 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 1 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:29 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 361 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:29 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 0.0001 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:30 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 6.253 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:36 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 7.561 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:36 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 1.308 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:36 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 13.30 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:36 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 6.253 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:37 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 7.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:37 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
-| 1.094 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:37 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
-| 9.86 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:37 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
-| 6.213 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:38 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 7.561 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:38 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 1.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:38 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 12.77 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:38 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 6.213 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 7.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
-| 1.134 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:14 |
-| 9.97 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:14 |
-| 6.395 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
-| 7.561 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 1.166 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
-| 12.65 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
-| 6.395 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
-| 7.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
-| 0.952 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
-| 7.79 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
-| 2025 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:46 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 0.952 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:47 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
-| 1.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:48 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 2025 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:50 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 9 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:53 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
-| 5 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:54 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 9 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:54 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
-| 0.722 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:58 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 17.8589 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1112 |
-| 13.8126 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1113 |
-| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:64 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 2.969 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:70 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
-| 2.460 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:70 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
-| 2.307 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:70 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
-| 2.108 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:70 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
-| 2.120 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:70 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
-| 2.131 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:70 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
-| 4.194 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:71 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
-| 3.964 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:71 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
-| 3.423 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:71 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
-| 3.151 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:71 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
-| 3.111 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:71 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
-| 3.182 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:71 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
-| 8.139 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:72 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 6.874 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:72 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 6.583 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:72 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 5.868 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:72 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 5.773 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:72 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 5.910 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:72 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 10.104 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 7.242 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 10.158 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 6.171 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 6.133 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 6.339 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 1.029 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 0.722 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 1.256 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 0.605 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 0.593 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 0.629 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 14.322 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
-| 11.638 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
-| 10.758 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
-| 10.096 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
-| 10.031 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
-| 10.266 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
-| 13.293 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 10.416 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 9.568 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 8.920 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 8.965 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 9.028 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
-| 5.445 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
-| 4.543 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
-| 4.526 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
-| 3.860 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
-| 3.753 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
-| 3.896 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
-| 22.605 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
-| 20.187 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
-| 17.545 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
-| 15.495 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
-| 15.441 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
-| 16.174 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
-| 6.133 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:85 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 6.171 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:85 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 6.339 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:85 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 7.242 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:85 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 10.158 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:86 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
-| 0.593 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:86 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 0.629 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:86 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 0.722 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:86 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
-| 6.984 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:87 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
-| 7.314 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:87 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
-| 7.480 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:87 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
-| 9.288 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:87 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
-| 24.0 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:89 | results/TILLEGG_KHEPRI-TSFM_v1_2026-11-02.md:14 |
-| 0.047 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:89 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:51 |
-| 0.000 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:90 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:51 |
-| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:95 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 1 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:96 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:96 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 2.989 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:97 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 8.415 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:104 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 9.332 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:104 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 0.917 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:104 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 1.98 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:104 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 0.0693 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:104 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 0.1385 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:104 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 8.415 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:105 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 9.223 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:105 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 0.808 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:105 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 5.00 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:105 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 0.0002 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:105 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 0.0012 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:105 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 8.005 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 9.332 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 1.326 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 3.79 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 0.0023 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 0.0068 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 8.005 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 9.223 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 1.218 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:39 |
-| 17.97 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:39 |
-| 0.0000 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 8.494 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 9.332 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 1.89 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 0.0810 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 0.1385 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
-| 8.494 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 9.223 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 0.729 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
-| 4.95 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
-| 0.0003 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
-| 0.0012 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
-| 0.729 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:114 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
-| 1.326 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:115 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 2.989 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:115 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.05 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:117 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
-| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:117 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 1.171 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:121 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:68 |
-| 1.674 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:121 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:65 |
-| 0.0001 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:122 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 0.981 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:122 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:73 |
-| 1.662 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:122 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:72 |
-| 21 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:129 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:772 |
-| 80 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:130 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
-| 90 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:130 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
-| 80 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:134 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
-| 90 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:134 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
-| 1.4165 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:136 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
-| 0.835 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:136 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
-| 0.911 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:136 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
-| 1.1114 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:137 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
-| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:137 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 0.915 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:137 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
-| 1.0733 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:138 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
-| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:138 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 0.921 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:138 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
-| 1.1198 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:139 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
-| 0.806 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:139 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
-| 0.905 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:139 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
-| 0.3052 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:146 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:100 |
-| 0.3432 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:146 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:101 |
-| 0.2967 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:147 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:102 |
-| 11.75 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:148 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:100 |
-| 11.23 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:148 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:101 |
-| 8.52 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:148 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:102 |
-| 0.0001 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:148 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 0.806 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:151 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
-| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:151 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
-| 80 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:152 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
-| 0.905 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:152 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
-| 0.921 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:152 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
-| 90 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:152 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
-| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:153 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.084 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:157 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
-| 0.391 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:157 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
-| 0.68 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:158 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
-| 1.75 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:158 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:111 |
-| 1.96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:159 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
-| 2025 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:160 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 2026 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:160 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
-| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:160 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.124 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:161 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
-| 0.360 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:161 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
-| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:168 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 21 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:169 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:772 |
-| 8192 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:190 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
-| 16 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:191 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:15 |
-| 0.143 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:192 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:9 |
-| 1.800 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:192 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:10 |
-| 0.922 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:192 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 17.8 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:193 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 2.4656 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:22 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:191 |
+| 0.006 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:23 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:31 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 4 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:32 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 1 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:32 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
+| 361 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:32 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 0.0001 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:33 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 6.253 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 7.561 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 1.308 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 13.30 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:39 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 6.253 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 7.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
+| 1.094 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
+| 9.86 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:40 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
+| 6.213 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 7.561 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 1.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 12.77 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:41 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 6.213 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:42 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 7.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:42 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
+| 1.134 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:42 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 9.97 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:42 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 6.395 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:43 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 7.561 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:43 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 1.166 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:43 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 12.65 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:43 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 6.395 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:44 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 7.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:44 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:12 |
+| 0.952 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:44 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
+| 7.79 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:44 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
+| 2025 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:49 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 0.952 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:50 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
+| 1.347 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 2025 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:53 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 9 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:56 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
+| 5 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 9 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
+| 0.722 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:61 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 17.8589 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:63 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1112 |
+| 13.8126 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:63 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1113 |
+| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:67 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 2.969 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
+| 2.460 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
+| 2.307 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
+| 2.108 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
+| 2.120 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
+| 2.131 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:73 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:22 |
+| 4.194 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
+| 3.964 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
+| 3.423 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
+| 3.151 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
+| 3.111 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
+| 3.182 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:74 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:23 |
+| 8.139 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 6.874 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 6.583 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 5.868 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 5.773 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 5.910 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:75 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 10.104 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 7.242 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 10.158 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 6.171 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 6.133 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 6.339 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:76 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 1.029 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 0.722 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 1.256 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 0.605 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 0.593 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 0.629 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:77 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 14.322 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
+| 11.638 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
+| 10.758 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
+| 10.096 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
+| 10.031 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
+| 10.266 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:78 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:27 |
+| 13.293 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:79 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 10.416 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:79 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 9.568 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:79 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 8.920 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:79 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 8.965 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:79 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 9.028 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:79 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:28 |
+| 5.445 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:80 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
+| 4.543 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:80 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
+| 4.526 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:80 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
+| 3.860 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:80 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
+| 3.753 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:80 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
+| 3.896 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:80 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:29 |
+| 22.605 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:81 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
+| 20.187 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:81 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
+| 17.545 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:81 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
+| 15.495 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:81 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
+| 15.441 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:81 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
+| 16.174 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:81 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:30 |
+| 6.133 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:88 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 6.171 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:88 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 6.339 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:88 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 7.242 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:88 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 10.158 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:89 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:25 |
+| 0.593 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:89 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 0.629 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:89 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 0.722 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:89 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:26 |
+| 6.984 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:90 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
+| 7.314 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:90 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
+| 7.480 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:90 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
+| 9.288 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:90 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:50 |
+| 24.0 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:92 | results/TILLEGG_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 0.047 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:92 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:51 |
+| 0.000 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:93 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:51 |
+| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:98 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 1 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:99 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
+| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:99 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 2.989 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:100 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 8.415 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 9.332 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 0.917 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 1.98 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 0.0693 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 0.1385 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:107 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 8.415 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 9.223 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 0.808 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 5.00 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 0.0002 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 0.0012 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 8.005 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 9.332 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 1.326 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 3.79 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 0.0023 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 0.0068 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:109 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 8.005 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:110 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 9.223 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:110 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 1.218 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:110 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:39 |
+| 17.97 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:110 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:39 |
+| 0.0001 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:110 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 8.494 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:111 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 9.332 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:111 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:111 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 1.89 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:111 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 0.0810 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:111 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 0.1385 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:111 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:36 |
+| 8.494 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:112 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 9.223 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:112 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 0.729 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:112 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
+| 4.95 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:112 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
+| 0.0003 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:112 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
+| 0.0012 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:112 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:37 |
+| 0.729 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:117 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
+| 1.326 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:118 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 2.989 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:118 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.05 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:120 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:14 |
+| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:120 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 1.171 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:124 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:68 |
+| 1.674 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:124 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:65 |
+| 0.0001 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:125 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 0.981 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:125 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:73 |
+| 1.662 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:125 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:72 |
+| 21 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:132 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:772 |
+| 80 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:133 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
+| 90 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:133 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
+| 80 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:137 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
+| 90 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:137 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
+| 1.4165 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:139 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
+| 0.835 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:139 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
+| 0.911 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:139 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
+| 1.1114 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:140 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
+| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:140 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 0.915 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:140 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
+| 1.0733 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:141 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
+| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:141 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 0.921 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:141 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
+| 1.1198 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:142 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
+| 0.806 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:142 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
+| 0.905 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:142 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
+| 0.3052 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:149 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:100 |
+| 0.3432 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:149 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:101 |
+| 0.2967 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:150 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:102 |
+| 11.75 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:151 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:100 |
+| 11.23 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:151 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:101 |
+| 8.52 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:151 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:102 |
+| 0.0001 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:151 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 0.806 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:154 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
+| 0.838 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:154 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:40 |
+| 80 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:155 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
+| 0.905 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:155 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
+| 0.921 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:155 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
+| 90 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:155 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:91 |
+| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:156 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.084 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:160 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
+| 0.391 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:160 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
+| 0.68 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:161 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
+| 1.75 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:161 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:111 |
+| 1.96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:162 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:106 |
+| 2025 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:163 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 2026 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
+| 14 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:163 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.124 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:164 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
+| 0.360 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:164 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
+| 96 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:171 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 21 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:172 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:772 |
+| 8192 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:193 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
+| 16 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:194 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 0.143 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:195 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:9 |
+| 1.800 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:195 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:10 |
+| 0.922 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:195 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 17.8 | manus/MANUS-04-RESULTATER_KHEPRI-TSFM_v1_2026-11-02.tex:196 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:15 |
 | 2 | arxiv/main.tex:18 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
 | 2 | arxiv/main.tex:19 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:15 |
 | 1 | arxiv/main.tex:29 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:1 |
 | 96 | arxiv/main.tex:31 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 8192 | arxiv/main.tex:42 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
-| 96 | arxiv/main.tex:43 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 07 | arxiv/main.tex:47 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
-| 49 | arxiv/main.tex:47 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:64 |
-| 2025 | arxiv/main.tex:47 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 361 | arxiv/main.tex:47 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 0.952 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
-| 1.347 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
-| 0.0001 | arxiv/main.tex:50 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 9 | arxiv/main.tex:50 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
-| 14 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.729 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
-| 1.326 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
-| 2.989 | arxiv/main.tex:52 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 14 | arxiv/main.tex:54 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 1.1114 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
-| 1.0733 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
-| 1.1198 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
-| 1.4165 | arxiv/main.tex:55 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
-| 0.0001 | arxiv/main.tex:56 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
-| 14 | arxiv/main.tex:59 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 0.124 | arxiv/main.tex:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
-| 0.360 | arxiv/main.tex:60 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
+| 96 | arxiv/main.tex:33 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 8192 | arxiv/main.tex:44 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
+| 96 | arxiv/main.tex:45 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 07 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
+| 49 | arxiv/main.tex:49 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:64 |
+| 2025 | arxiv/main.tex:49 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 361 | arxiv/main.tex:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 0.952 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:16 |
+| 1.347 | arxiv/main.tex:51 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:13 |
+| 0.0001 | arxiv/main.tex:52 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 9 | arxiv/main.tex:52 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
+| 14 | arxiv/main.tex:53 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.729 | arxiv/main.tex:53 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:41 |
+| 1.326 | arxiv/main.tex:53 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:38 |
+| 2.989 | arxiv/main.tex:54 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 14 | arxiv/main.tex:56 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 1.1114 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:96 |
+| 1.0733 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:95 |
+| 1.1198 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:93 |
+| 1.4165 | arxiv/main.tex:57 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:94 |
+| 0.0001 | arxiv/main.tex:58 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:70 |
+| 14 | arxiv/main.tex:61 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 0.124 | arxiv/main.tex:62 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:113 |
+| 0.360 | arxiv/main.tex:62 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:110 |
 | 96 | README.md:5 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:3 |
 | 8192 | README.md:8 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
 | 2025 | README.md:11 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
@@ -1487,30 +1499,30 @@ numbers (AIUSE_KHEPRI-TSFM_v1_2026-11-02.md).
 | 14 | README.md:12 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:5 |
 | 07 | README.md:16 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
 | 49 | README.md:16 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:64 |
-| 7 | README.md:41 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:24 |
-| 21 | README.md:47 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:772 |
-| 3.12 | README.md:53 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:34 |
-| 256 | README.md:64 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:59 |
-| 27 | README.md:76 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:10 |
-| 30 | README.md:87 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:765 |
-| 30 | README.md:88 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:765 |
-| 16 | README.md:102 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:15 |
-| 8 | README.md:102 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 9 | README.md:103 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
-| 8192 | README.md:103 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
-| 0.143 | README.md:104 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:9 |
-| 1.800 | README.md:104 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:10 |
-| 0.922 | README.md:105 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 334 | README.md:105 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:9 |
-| 1800 | README.md:105 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:10 |
-| 1352 | README.md:105 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:11 |
-| 2021 | README.md:105 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:5 |
-| 2023 | README.md:105 | data/CI_KHEPRI-TSFM_v1_2026-11-02.meta.json:6 |
-| 17.8 | README.md:106 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:15 |
-| 07 | README.md:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
-| 50 | README.md:106 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:83 |
-| 08 | README.md:106 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
-| 28 | README.md:106 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:907 |
-| 2.0 | README.md:111 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
-| 4.0 | README.md:111 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
+| 7 | README.md:43 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:24 |
+| 21 | README.md:49 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:772 |
+| 3.12 | README.md:55 | truth/DEVIATIONS_KHEPRI-TSFM_v1_2026-11-02.md:34 |
+| 256 | README.md:66 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:59 |
+| 27 | README.md:78 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:10 |
+| 30 | README.md:89 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:765 |
+| 30 | README.md:90 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:765 |
+| 16 | README.md:104 | results/MDE_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 8 | README.md:104 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 9 | README.md:105 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.md:78 |
+| 8192 | README.md:105 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:4 |
+| 0.143 | README.md:106 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:9 |
+| 1.800 | README.md:106 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:10 |
+| 0.922 | README.md:107 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 334 | README.md:107 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:9 |
+| 1800 | README.md:107 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:10 |
+| 1352 | README.md:107 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:11 |
+| 2021 | README.md:107 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:5 |
+| 2023 | README.md:107 | data/CI_KHEPRI-TSFM_v1_2026-11-02.meta.json:6 |
+| 17.8 | README.md:108 | results/LATENS_KHEPRI-TSFM_v1_2026-11-02.md:15 |
+| 07 | README.md:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:1039 |
+| 50 | README.md:108 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:83 |
+| 08 | README.md:108 | results/REPRO-V15_KHEPRI-TSFM_v1_2026-11-02.md:3 |
+| 28 | README.md:108 | results/RESULTATER_KHEPRI-TSFM_v1_2026-11-02.json:907 |
 | 2.0 | README.md:113 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
+| 4.0 | README.md:113 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |
+| 2.0 | README.md:115 | prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:216 |

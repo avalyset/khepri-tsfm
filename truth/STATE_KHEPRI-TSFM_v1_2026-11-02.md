@@ -247,3 +247,17 @@ MASKINEN ER LEDIG
 - Tagg **v1.0.0** (GPG-signert, god) → 0495e6a158b0bf545bc7685ffacf379e0c703c81, pushet. Ingen GitHub-release.
 - **Repoet er OFFENTLIG** fra ca. 10:08 UTC: https://github.com/avalyset/khepri-tsfm (anonym curl 200; README og tagg-arkiv 200).
 - Repo-URL lagt inn i README (CITATION.cff hadde den) i commit etter taggen.
+
+## Publisering — steg 5 uavhengig kontroll, fiks-runde 1 (ca. 10:20–10:30 UTC)
+- Fersk Opus-subagent, bare det publiserte: Zenodo-fil lastet ned fra DOI, md5/sha256/størrelse = lokal; uv sync --frozen, pytest 27 passed,
+  analysis.py → RESULTATER md 2883d030… og JSON byte-like; prereg-bevis OK; begge taggsignaturer gode (isolert nøkkelknippe); OTS for
+  PREREG/SHA256SUMS/CI i Bitcoin-blokk 974230 (07:50:42 UTC, før TSFM-kjøringen 08:08 UTC). PDF: ingen forbudte strenger, ingen «??».
+- Avvik rettet (ingen tall endret): formler i MANUS-03 som rå tekst → pandoc-matematikk; første bidragspunkt i MANUS-01 slått sammen →
+  blank linje; tabell 3 «0.0000» → «<0.0001» (p 1.46e-10 i JSON); «All numbers … analysis.py» → «Unless stated otherwise … (D-11)» med
+  kilde for REPRO-V15 og TILLEGG; NO1 to referanseverdier forklart (2.47 avrundet publisert, 2.4656 lagrede rader, −0.006 pp);
+  «zen-odo»-orddeling hindret (\hyphenation); PDF-tittel/forfatter satt; Timestral sitert (Mistral AI 2026); to usiterte referanser
+  (GIFT-Eval, Chronos 2024) fjernet fra lista.
+- Ikke endret (kommentarer): RQ4/CRPS-formuleringen (Eiriks rettelse før Brevet avgjorde den: preregistrert RQ4-resultat, MDE gjelder
+  MAPE, D-03-forbehold); «before any foundation-model forecast» (latensmålingen før PREREG brukte bare syntetiske serier, presisert i
+  PREREG og MANUS-03 «on real CI data»); «v2» vs «a later version»; repo-påstander uten egne referanseoppføringer (kilder i SOURCES).
+- Zenodo-lisensfeltet har begge (RDM: apache-2.0, cc-by-4.0); det eldre API-et viser bare den første.

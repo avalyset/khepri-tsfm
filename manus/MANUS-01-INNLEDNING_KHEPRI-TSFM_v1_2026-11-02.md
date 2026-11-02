@@ -17,7 +17,7 @@ Time-series foundation models (TSFMs) are pretrained forecasters that can be app
 series without training on it ("zero-shot").
 Chronos-2 is described by its developers as
 offering zero-shot support for univariate, multivariate and covariate-informed forecasting
-(Ansari et al. 2025). Timestral, released by Mistral AI on 2026-10-15, comes in four sizes
+(Ansari et al. 2025). Timestral, released by Mistral AI on 2026-10-15 (Mistral AI 2026), comes in four sizes
 from 5M to 209M parameters with 21 predictive quantiles per time step.
 
 For a CI series, a zero-shot TSFM needs only the history of the series itself. This makes it
@@ -54,6 +54,7 @@ The holdout is therefore a contamination control, and the difference between the
 on the two tests is reported as a descriptive contamination indicator, not as a test.
 
 The contributions are as follows. We make no claim of priority.
+
 - A preregistered comparison of three zero-shot TSFMs (Timestral-5M, Timestral-209M,
   Chronos-2) with the Khepri v1.5 SARIMA and GBM baselines and a seasonal-naive reference, for
   96-hour CI forecasts in nine Nordic bidding zones. Design, analysis code and MDE were

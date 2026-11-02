@@ -90,7 +90,7 @@ the TSFM point forecast is the 0.5 quantile.
 
 All three TSFMs natively provide the same 21 quantile levels 0.01, 0.05, 0.10, …, 0.90, 0.95,
 0.99, which form the common quantile set. SARIMA provides them from its Gaussian predictive
-distribution (`get_forecast`, predicted mean + z_q · standard error), with the point forecast
+distribution (`get_forecast`, predicted mean + $z_q \cdot$ standard error), with the point forecast
 unchanged (D-03). GBM and the seasonal-naive arm give no quantiles.
 
 Khepri v1.5 does not store hourly predictions, so a driver repeats the v1.5 forecasting loop line
@@ -116,7 +116,7 @@ the point forecast; hours with |actual| ≤ 1e-6 are excluded.
 The test series is the zone-averaged loss per origin, the mean over the nine zones.
 
 For probabilistic forecasts (RQ4) we use the quantile-score approximation of the continuous
-ranked probability score (CRPS) over the 21 levels, CRPS ≈ (2/21) Σ_k pinball_{τ_k}(y, q_k),
+ranked probability score (CRPS) over the 21 levels, $\mathrm{CRPS} \approx \frac{2}{21} \sum_k \mathrm{pinball}_{\tau_k}(y, q_k)$,
 averaged over the 96 hours, in gCO2-eq/kWh, and the empirical coverage of the central 80 %
 interval [q0.10, q0.90] and 90 % interval [q0.05, q0.95] (Gneiting & Raftery 2007).
 
@@ -141,7 +141,7 @@ advantage (pp divided by SARIMA MAPE) is reported as a secondary measure. The nu
 difference is reported as a result in its own right.
 
 *Diebold–Mariano tests.* For each TSFM against each baseline we form
-d_t = loss(TSFM)_t − loss(baseline)_t on the zone-averaged per-origin losses and apply the
+$d_t = \mathrm{loss}(\mathrm{TSFM})_t - \mathrm{loss}(\mathrm{baseline})_t$ on the zone-averaged per-origin losses and apply the
 Diebold–Mariano test (Diebold & Mariano 1995) with the Harvey–Leybourne–Newbold
 small-sample correction (Harvey et al. 1997), h = 4, because 96-hour horizons at daily
 origins overlap. The long-run variance uses a rectangular kernel over lags 0…3, with Bartlett
@@ -158,9 +158,9 @@ Section 3.7) the holdout result is "not determined", regardless of p, and never 
 equivalence. If |mean d| ≥ MDE and p < 0.05 the result is "TSFM better" (d < 0) or "TSFM worse"
 (d > 0); otherwise "not significant".
 
-*Contamination indicator (RQ5).* With the advantage A_t = loss(baseline)_t − loss(TSFM)_t
-(zone-averaged), the indicator is mean(A_retro) − mean(A_holdout), with standard error
-√(SE_retro² + SE_holdout²) from HAC (rectangular, lags 0…3) standard errors of each mean. A
+*Contamination indicator (RQ5).* With the advantage $A_t = \mathrm{loss}(\mathrm{baseline})_t - \mathrm{loss}(\mathrm{TSFM})_t$
+(zone-averaged), the indicator is $\overline{A}_{\mathrm{retro}} - \overline{A}_{\mathrm{holdout}}$, with standard error
+$\sqrt{\mathrm{SE}_{\mathrm{retro}}^2 + \mathrm{SE}_{\mathrm{holdout}}^2}$ from HAC (rectangular, lags 0…3) standard errors of each mean. A
 value with z = indicator/SE > 1.96 is reported as "possible contamination". The indicator also
 reflects any genuine change between 2025 and October 2026 and is not a test of contamination.
 
@@ -172,10 +172,10 @@ listed in the preregistration are labelled exploratory.
 The MDE was computed before any TSFM run, from the stored Khepri v1.5 per-(origin, day) metric
 rows of the 2025 test (D-05), because no 2025 per-origin predictions were stored. The series is
 the zone-averaged SARIMA − GBM loss difference over 361 origins; its long-run variance with a
-rectangular kernel and h = 4 is σ²_LR = 7.6455 pp².
+rectangular kernel and h = 4 is $\sigma^2_{\mathrm{LR}} = 7.6455$ pp$^2$.
 
-With MDE = (t_{0.975, n−1} + t_{0.80, n−1}) / HLN(n, h) · √(σ²_LR / n), where
-HLN(n, h) = √((n + 1 − 2h + h(h−1)/n) / n), α = 0.05 two-sided and power 0.8, the MDE is
+With $\mathrm{MDE} = (t_{0.975,\,n-1} + t_{0.80,\,n-1}) / \mathrm{HLN}(n,h) \cdot \sqrt{\sigma^2_{\mathrm{LR}}/n}$, where
+$\mathrm{HLN}(n,h) = \sqrt{(n + 1 - 2h + h(h-1)/n)/n}$, $\alpha = 0.05$ two-sided and power 0.8, the MDE is
 2.989 pp for the n = 14 holdout origins and 0.413 pp for the n = 361 retro origins.
 
 The holdout is therefore a contamination control with low power; the retro test carries the

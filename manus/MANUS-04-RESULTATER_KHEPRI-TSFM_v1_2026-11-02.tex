@@ -3,8 +3,8 @@
 \section{Results}
 \label{sec:results}
 
-All numbers in this section come from the locked \texttt{analysis.py} (tag \texttt{prereg-v1})
-applied to the six prediction files; the output is
+Unless stated otherwise, the numbers in this section come from the locked \texttt{analysis.py} (tag
+\texttt{prereg-v1}; run with the import change of deviation D-11) applied to the six prediction files; the output is
 \texttt{results/RESULTATER\_KHEPRI-TSFM\_v1\_2026-11-02.md}. Every arm produced forecasts for all
 nine zones at all 361 retro origins and all 14 holdout origins; no origin was lost and SARIMA
 never fell back to diurnal persistence. Loss is the Khepri v1.5 MAPE over the 96 target hours;
@@ -18,9 +18,12 @@ equality, whatever its $p$-value.
 
 \subsection{Reproduction of the baselines}
 Our rerun of SARIMA and GBM reproduces the published Khepri v1.5 retro means within
-$\pm 0.005$~pp in every zone except NO1 SARIMA ($2.4596$ against the published $2.47$, a
-difference of $-0.0104$~pp; the fit converges after one L-BFGS iteration in the current
-environment, deviation D-02).
+$\pm 0.005$~pp in every zone except NO1 SARIMA ($2.4596$ against the published, rounded $2.47$, a
+difference of $-0.0104$~pp; against the unrounded stored v1.5 rows, $2.4656$, the difference is
+$-0.006$~pp; the fit converges after one L-BFGS iteration in the current
+environment, deviation D-02). These reproduction figures come from
+\texttt{results/REPRO-V15\_KHEPRI-TSFM\_v1\_2026-11-02.md}; the NO5 note below comes from
+\texttt{results/TILLEGG\_KHEPRI-TSFM\_v1\_2026-11-02.md}.
 
 \subsection{RQ2: retro test (2025, 361 origins)}
 \begin{table}[t]
@@ -104,7 +107,7 @@ TSFM & baseline & TSFM & base & diff. & stat. & $p$ & $p_{\mathrm{Holm}}$ & verd
 Timestral-5M & SARIMA & 8.415 & 9.332 & $-0.917$ & $-1.98$ & 0.0693 & 0.1385 & not determined \\
 Timestral-5M & GBM & 8.415 & 9.223 & $-0.808$ & $-5.00$ & 0.0002 & 0.0012 & not determined \\
 Timestral-209M & SARIMA & 8.005 & 9.332 & $-1.326$ & $-3.79$ & 0.0023 & 0.0068 & not determined \\
-Timestral-209M & GBM & 8.005 & 9.223 & $-1.218$ & $-17.97$ & 0.0000 & 0.0000 & not determined \\
+Timestral-209M & GBM & 8.005 & 9.223 & $-1.218$ & $-17.97$ & $<$0.0001 & $<$0.0001 & not determined \\
 Chronos-2 & SARIMA & 8.494 & 9.332 & $-0.838$ & $-1.89$ & 0.0810 & 0.1385 & not determined \\
 Chronos-2 & GBM & 8.494 & 9.223 & $-0.729$ & $-4.95$ & 0.0003 & 0.0012 & not determined \\
 \bottomrule
