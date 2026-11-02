@@ -112,3 +112,12 @@ før/etter PREREG, hva, hvorfor, konsekvens, sha256 + OTS-stempel av fila etter 
   validate_baselines.py, repro_from_ci.py. .pth-fila i $V/.venv er fjernet.
 - Kontroll: ren venv fra `git archive` (uv sync --frozen) kjører analysis.py; resultatet sammenlignes byte for byte med
   results/ (se STATE).
+
+### D-12 Ordlyd i PREREG om treningsgrenser (ingen endring i analyse eller tall)
+- Meldt av økt B (STATE-B 08:48:15Z). PREREG §1.1 RQ2 (prereg/PREREG_KHEPRI-TSFM_v1_2026-11-02.md:21-22) sier
+  «the 2025 data predate the TSFMs' training cut-offs». Det stemmer ikke for hele vinduet for Chronos-2: den ble sluppet
+  2025-10-20 (truth/SOURCES_KHEPRI-TSFM_v1_2026-11-02.md:60, chronos-forecasting README.md:20), så retro-origins etter
+  den datoen ligger etter slippet. For Timestral er treningsdata og cut-off ikke oppgitt.
+- PREREG og OSF-teksten er låst og endres ikke. Manus bruker ordlyden «Timestral discloses neither its training data nor a
+  training cut-off, and most 2025 origins precede the release of Chronos-2 on 2025-10-20». Merkelappen «contamination not
+  ruled out» og alle analyser er uendret.

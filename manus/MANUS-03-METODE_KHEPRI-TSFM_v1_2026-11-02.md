@@ -129,10 +129,9 @@ this gave a NO1 retro mean SARIMA MAPE of 2.4596 against 2.4656 in the stored v1
 reproduction table (Section 3.8) reports the final run. Data, code, library versions and BLAS thread count were
 ruled out; the cause was not found. We report this rather than adjust the fit.
 <!-- src: DEV:19-29; PRE:189-191 -->
-The environment is pinned by `uv.lock` (Python 3.12.13). The preregistered inference setting is
-CPU (Apple M1, 16 GB) with `torch.set_num_threads(8)` and the Hugging Face hub offline after
-download.
-<!-- src: PRE:94-95; STA:47 (python 3.12.13). NOTE for A: confirm the actual run used this setting (STA:99 gives run times only), then change to past tense. -->
+The environment is pinned by `uv.lock` (Python 3.12.13). Inference ran on a CPU (Apple M1, 16 GB)
+with `torch.set_num_threads(8)` and the Hugging Face hub offline after download.
+<!-- src: PRE:94-95; STA:47 (python 3.12.13); khepri_tsfm/models.py:17 (set_num_threads(8)), :59 (HF_HUB_OFFLINE=1); confirmed by A 2026-11-02 for the step-7 run (run_arms.py tsfm started with HF_HUB_OFFLINE=1). -->
 
 ## 3.5 Loss
 
