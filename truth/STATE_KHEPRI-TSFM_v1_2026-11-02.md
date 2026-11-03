@@ -296,3 +296,10 @@ MASKINEN ER LEDIG
 - Handling: ingen (submit/8316470 urørt). Kontrollen ble kjørt i hovedøkta (Opus), ikke i en Sonnet-økt.
 
 MASKINEN ER LEDIG
+
+## A-ZEN: Zenodo v1.0.1 (2026-11-03, fra ca. 09:04 UTC)
+- arXiv: **arXiv:2611.02895** (kunngjort 2026-11-03, physics.soc-ph; oppgitt av Eirik), https://arxiv.org/abs/2611.02895.
+- Zenodo «New version» av 23881315 (API, Eiriks økt): utkast 23912503, reservert DOI **10.5281/zenodo.23912503**, konsept 23881314; ingen arvede filer.
+- README: tagg-/DOI-setningen → v1.0.1 og 10.5281/zenodo.23912503 (v1.0.0 = 10.5281/zenodo.23881315 er den arXiv v1 siterer); Paper-linje
+  arXiv:2611.02895. CITATION.cff: version 1.0.1, doi 10.5281/zenodo.23912503, date-released 2026-11-03, identifiers konsept-DOI + arXiv-URL.
+  arxiv/main.tex uendret (arXiv v1 viser til v1.0.0).

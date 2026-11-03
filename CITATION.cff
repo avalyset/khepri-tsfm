@@ -17,9 +17,16 @@ authors:
     orcid: "https://orcid.org/0009-0001-9188-6788"
 repository-code: "https://github.com/avalyset/khepri-tsfm"
 license: [Apache-2.0, CC-BY-4.0]
-version: "1.0.0"
-doi: 10.5281/zenodo.23881315
-date-released: "2026-11-02"
+version: "1.0.1"
+doi: 10.5281/zenodo.23912503
+date-released: "2026-11-03"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23881314
+    description: Concept DOI (all versions)
+  - type: url
+    value: "https://arxiv.org/abs/2611.02895"
+    description: "Paper: arXiv:2611.02895"
 references:
   - type: software
     title: Khepri
