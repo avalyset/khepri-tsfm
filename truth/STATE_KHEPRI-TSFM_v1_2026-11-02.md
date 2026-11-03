@@ -314,3 +314,15 @@ MASKINEN ER LEDIG
 - Gjenstår når SES er ferdig/pauset: SES-sjekk → ren venv fra tarballen (pytest, RESULTATER 2883d030…) → grep i manus/ og arxiv/ («All numbers in
   this section come from», «0\.0000») → opplasting (bitmetoden) → metadata som v1.0.0 + «is documented by» arXiv:2611.02895 + versjonslinje →
   publiser → md5 → konsept-DOI viser v1.0.1 → sha256/ots stamp → STATE/RAPPORT.
+- 09:10 UTC: SES-S1 PAUSET (STATUS_SES «2026-11-03T09:09:18Z PAUSET (ren stopp) …»; ingen LAS) → fortsatt etter Eiriks «da er den pauset».
+- Ren venv fra v1.0.1-tarballen ($V/tmp/cleantest3, slettet etterpå): uv sync --frozen, pytest 27 passed, RESULTATER 2883d030… byte-lik.
+  Kontrollsøk: «All numbers in this section come from» og «0\.0000» gir treff i results/ (kontroll), 0 i manus/ og arxiv/.
+- Opplasting: 20 biter à ≤ 9 MB, satt sammen i siden (sha256 = lokal), PUT 104 s, commit 200; Zenodo-md5 b338a9d5…5ca9a = lokal.
+  Metadata som v1.0.0 utenom version 1.0.1, publication_date 2026-11-03, related identifier isdocumentedby arXiv:2611.02895 (scheme arxiv),
+  siste beskrivelseslinje «1.0.1: manuscript corrections after independent check (formulas, table 3 p-values, source sentence, references);
+  results unchanged.» Ingen valideringsfeil ved tilbakelesing.
+- **PUBLISERT 2026-11-03 09:18:24 UTC: https://zenodo.org/records/23912503, DOI 10.5281/zenodo.23912503.** Anonymt: versjon 1.0.1, én fil
+  (175 440 353 B, md5 = lokal); doi.org/10.5281/zenodo.23881314 → records/23912503 (200); versions/latest → 23912503.
+- `ots stamp` på ZENODO_KHEPRI-TSFM_v1_2026-11-03.tar.gz 09:19 UTC (ventende; `ots upgrade` senere). sha256-fila kontrollert OK.
+- Gjenstår: `ots upgrade` for tarball-.ots. v1.0.0 (23881315) har ikke arXiv-relasjonen (arXiv v1 siterer den; relasjonen ligger på v1.0.1).
+- Ingen A-prosesser kjører. MASKINEN ER LEDIG
