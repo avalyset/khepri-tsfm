@@ -303,3 +303,14 @@ MASKINEN ER LEDIG
 - README: tagg-/DOI-setningen → v1.0.1 og 10.5281/zenodo.23912503 (v1.0.0 = 10.5281/zenodo.23881315 er den arXiv v1 siterer); Paper-linje
   arXiv:2611.02895. CITATION.cff: version 1.0.1, doi 10.5281/zenodo.23912503, date-released 2026-11-03, identifiers konsept-DOI + arXiv-URL.
   arxiv/main.tex uendret (arXiv v1 viser til v1.0.0).
+- Tagg **v1.0.1** (GPG-signert, god) → f968f271487a110956ff1e29b9a88001d523aeb4, pushet.
+- `ots upgrade` 2026-11-03 ca. 09:05 UTC: alle seks PRED-.ots og PROSP-.ots komplette (Bitcoin). Oppgraderte PRED-.ots committet etter taggen;
+  build_zenodo.sh tar dem med i tarballen («oppgradert ots»).
+- ZENODO-tarball fra v1.0.1: $V/ZENODO_KHEPRI-TSFM_v1_2026-11-03.tar.gz, 175 440 353 B, sha256 eca0d15c713a231768c0f41abf2036e5066baed83ef3b75a6b8be7c1651a338f,
+  md5 b338a9d58b6c9ab617669d5967f5ca9a. v1.0.0-tarballen flyttet til $V/arkiv/zenodo-v1.0.0/ (glob-regelen: ett treff per nøkkel).
+- **STOPP 09:05 UTC (maskinregel): SES-S1 kjører** — $V/../sjel-eller-speil/kjoring/LAS peker på levende pid 12593 (etime 17:34:06); STATUS_SES siste
+  linje «2026-11-03T05:18:21Z MODELL NbAiLab/borealis-open-4b: starter». Ren venv (pytest, analysis) er IKKE startet; Zenodo-utkast 23912503 er
+  ikke publisert og har ingen filer. Venter på Eirik.
+- Gjenstår når SES er ferdig/pauset: SES-sjekk → ren venv fra tarballen (pytest, RESULTATER 2883d030…) → grep i manus/ og arxiv/ («All numbers in
+  this section come from», «0\.0000») → opplasting (bitmetoden) → metadata som v1.0.0 + «is documented by» arXiv:2611.02895 + versjonslinje →
+  publiser → md5 → konsept-DOI viser v1.0.1 → sha256/ots stamp → STATE/RAPPORT.
