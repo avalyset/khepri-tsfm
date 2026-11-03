@@ -326,3 +326,10 @@ MASKINEN ER LEDIG
 - `ots stamp` på ZENODO_KHEPRI-TSFM_v1_2026-11-03.tar.gz 09:19 UTC (ventende; `ots upgrade` senere). sha256-fila kontrollert OK.
 - Gjenstår: `ots upgrade` for tarball-.ots. v1.0.0 (23881315) har ikke arXiv-relasjonen (arXiv v1 siterer den; relasjonen ligger på v1.0.1).
 - Ingen A-prosesser kjører. MASKINEN ER LEDIG
+
+## A-FERDIG (2026-11-03)
+- Zenodo 23881315 (v1.0.0) redigert, ikke ny versjon: «is documented by» arXiv:2611.02895 lagt til, publisert 09:33 UTC,
+  lest tilbake anonymt (fil uendret, md5 fb8f6b1f…).
+- OTS: alle sju sporede .ots i repoet komplette og kontrollert mot blokkutforsker (CI 974230; PRED 974236/974257/974272).
+  v1.0.1-tarballens .ots venter; bakgrunnsløkke PID 30428 (20 min, maks 8 t), logg $V/tmp/ots_loop.log.
+- Detaljer, også KHEPRI-DC og MASTER_KHEPRI v0.28, står i $V/RAPPORT_KHEPRI-TSFM_v1_2026-11-02.md (A-FERDIG).
